@@ -2,20 +2,27 @@ CREATE DATABASE CourseManagement;
 use CourseManagement;
 
 
-CREATE TABLE Category(
-    id INT AUTO_INCREMENT PRIMARY KEY ,
-    categoryName varchar(255),
-    description varchar(255)
-);
 
 CREATE TABLE Course(
     id INT AUTO_INCREMENT PRIMARY KEY ,
     name varchar(255) not null ,
     price decimal,
-    categoryId INT,
     status TINYINT,
-    FOREIGN KEY (categoryId) REFERENCES Category(id)
+    createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
+    updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE  CURRENT_TIMESTAMP
 );
+
+CREATE TABLE Category(
+    id INT AUTO_INCREMENT PRIMARY KEY ,
+    categoryName varchar(255),
+    courseId int,
+    description varchar(255),
+    createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
+    updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE  CURRENT_TIMESTAMP,
+    FOREIGN KEY (courseId) REFERENCES Course(id)
+);
+
+
 
 
 
@@ -24,7 +31,9 @@ CREATE TABLE Instructor (
     name VARCHAR(255) NOT NULL,
     bio TEXT, # mô tả về giáo viên
     email VARCHAR(255) NOT NULL,
-    phoneNumber VARCHAR(255)
+    phoneNumber VARCHAR(255),
+    createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
+    updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE Account(
@@ -33,10 +42,12 @@ CREATE TABLE Account(
     password varchar(255) not null,
     email varchar(255) not null,
     phoneNumber varchar(255) not null,
-    createdAt DATE,
-    updateAt DATE,
+    createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
+    updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     role enum('admin', 'customer', 'staff') not null
 );
+
+
 
 CREATE TABLE Review (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -44,7 +55,9 @@ CREATE TABLE Review (
     userId INT NOT NULL,
     rating INT CHECK (rating >= 1 AND rating <= 5),
     comment TEXT,
-    reviewDate DATE,
+    reviewDate TIMESTAMP,
+    createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
+    updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (courseId) REFERENCES Course(id),
     FOREIGN KEY (userId) REFERENCES Account(id)
 );
@@ -58,6 +71,8 @@ CREATE TABLE Class (
     startDate DATE,
     endDate DATE,
     status TINYINT,
+    createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
+    updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (courseId) REFERENCES Course(id),
     FOREIGN KEY (instructorId) REFERENCES Instructor(id)
 );
@@ -69,6 +84,8 @@ CREATE TABLE Enrollment (
     userId INT NOT NULL,
     enrollmentDate DATE,
     status TINYINT,
+    createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
+    updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (classId) REFERENCES Class(id),
     FOREIGN KEY (userId) REFERENCES Account(id)
 );
@@ -78,8 +95,10 @@ CREATE TABLE Notification (
     id INT AUTO_INCREMENT PRIMARY KEY,
     userId INT NOT NULL,
     message TEXT,
-    dateSent DATE,
+    dateSent TIMESTAMP,
     status TINYINT,
+    createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
+    updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (userId) REFERENCES Account(id)
 );
 
@@ -90,9 +109,9 @@ CREATE TABLE Order_(
     id INT AUTO_INCREMENT PRIMARY KEY ,
     userId INT,
     totalPrice decimal,
-    createAt DATE,
-    updateAt DATE,
     status TINYINT,
+    createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
+    updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (userId) REFERENCES Account(id)
 );
 
@@ -105,6 +124,8 @@ CREATE TABLE OrderDetail(
     quantity int ,
     totalAmount decimal,
     status tinyint,
+    createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
+    updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (courseId) REFERENCES Course(id),
     FOREIGN KEY (orderId) REFERENCES Order_(id)
 );
@@ -115,8 +136,10 @@ CREATE TABLE Payment(
     paymentMethod ENUM('Visa', 'MasterCard', 'COD'),
     orderDetailId int not null ,
     amount decimal,
-    paymentDate DATE,
+    paymentDate TIMESTAMP,
     status tinyint, # trạng thái: paid, outstanding, cancel
+    createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
+    updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (userId) REFERENCES Account(id),
     FOREIGN KEY (orderDetailId) REFERENCES OrderDetail(id)
 );
@@ -125,7 +148,8 @@ CREATE TABLE ImageCourse(
     id INT AUTO_INCREMENT PRIMARY KEY ,
     courseId INT,
     path varchar(255),
-    updateAt DATE,
+    createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
+    updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (courseId) REFERENCES Course(id)
 );
 
