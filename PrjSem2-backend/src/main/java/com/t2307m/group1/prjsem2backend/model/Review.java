@@ -7,7 +7,7 @@ import org.antlr.v4.runtime.misc.NotNull;
 @Entity
 public class Review {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment
     private int id;
 
     @NotNull
