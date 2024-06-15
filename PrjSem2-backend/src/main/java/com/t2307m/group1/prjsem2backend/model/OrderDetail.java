@@ -20,6 +20,62 @@ public class OrderDetail {
     private Order order;
 
     private double discount;
+    private int quantity;
+    private double totalAmount;
 
+    public OrderDetail( Course course, Order order, double discount, int quantity, double totalAmount) {
+        this.course = course;
+        this.order = order;
+        this.discount = discount;
+        this.quantity = quantity;
+        this.totalAmount = totalAmount;
+    }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
 }

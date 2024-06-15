@@ -24,13 +24,16 @@ public class Enrollment {
 
     private Date enrollmentDate;
 
+    private int status;
+
     public Enrollment() {
     }
 
-    public Enrollment(Class aClass, Account account, Date enrollmentDate) {
+    public Enrollment(Class aClass, Account account, Date enrollmentDate, int status) {
         this.aClass = aClass;
         this.account = account;
         this.enrollmentDate = enrollmentDate;
+        this.status = status;
     }
 
     public int getId() {
@@ -64,4 +67,6 @@ public class Enrollment {
     public void setEnrollmentDate(Date enrollmentDate) {
         this.enrollmentDate = enrollmentDate;
     }
+    public int getStatus() {return status;}
+    public void setStatus(int status ){this.status = status;}
 }
