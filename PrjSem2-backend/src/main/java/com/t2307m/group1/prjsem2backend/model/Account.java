@@ -20,4 +20,7 @@ public class Account {
     private Date createdAt;// khoi tao dung 1 lan
     private Date updateAt;
 
+
+    public Account() {
+    }
 }
