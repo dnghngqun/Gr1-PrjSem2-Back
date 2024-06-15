@@ -51,7 +51,6 @@ public class Course {
         return status;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
+
+
 }
