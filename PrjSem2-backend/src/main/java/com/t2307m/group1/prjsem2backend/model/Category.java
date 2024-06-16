@@ -43,8 +43,8 @@ public class Category {
         this.course = course;
     }
 
-    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "courseId", nullable = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Course course;
 

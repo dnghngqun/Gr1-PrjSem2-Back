@@ -12,14 +12,14 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment
     private int id;
 
-    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JoinColumn(name = "courseId", nullable = false)
     private Course course;
 
-    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JoinColumn(name = "userId", nullable = false)
     private Account account;
 
     private int rating; //theo so start 1 2 3 4 5

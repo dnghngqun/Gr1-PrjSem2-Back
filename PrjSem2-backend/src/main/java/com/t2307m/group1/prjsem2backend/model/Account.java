@@ -11,14 +11,13 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(nullable = false, unique = true)
+    @Column(name = "userName",nullable = false, unique = true)
     private String userName;
-    @Column(nullable = false, unique = true)
+    @Column(name = "email",nullable = false, unique = true)
     private String email;
-    @Column(nullable = false, unique = true)
+    @Column(name = "password",nullable = false)
     private String password;
-    @Column(nullable = false, unique = true)
-
+    @Column(name = "phoneNumber",nullable = false, unique = true)
     private String phoneNumber;// this field require regex
     private String role = "customer"; //default customer, if admin or staff, ghi de
 
@@ -46,12 +45,11 @@ public class Account {
     public Account() {
     }
 
-    public Account(String userName, String email, String password, String phoneNumber, String role) {
+    public Account(String userName, String email, String password, String phoneNumber) {
         this.userName = userName;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
-        this.role = role;
     }
 
     public int getId() {

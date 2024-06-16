@@ -11,16 +11,16 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY,optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JoinColumn(name = "userId", nullable = false)
     private Account account;
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY,optional = false)
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JoinColumn(name = "orderDetailId", nullable = false)
     private OrderDetail orderDetail;
 
-    private int userId;
     private String paymentMethod = "'Visa', 'MasterCard', 'COD'";
     private double amount;
     private Timestamp paymentDate;
@@ -49,10 +49,9 @@ public class Payment {
     public Payment() {
     }
 
-    public Payment(Account account, OrderDetail orderDetail, int userId, String paymentMethod, double amount, Timestamp paymentDate, int status) {
+    public Payment(Account account, OrderDetail orderDetail, String paymentMethod, double amount, Timestamp paymentDate, int status) {
         this.account = account;
         this.orderDetail = orderDetail;
-        this.userId = userId;
         this.paymentMethod = paymentMethod;
         this.amount = amount;
         this.paymentDate = paymentDate;
@@ -81,14 +80,6 @@ public class Payment {
 
     public void setOrderDetail(OrderDetail orderDetail) {
         this.orderDetail = orderDetail;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public String getPaymentMethod() {
