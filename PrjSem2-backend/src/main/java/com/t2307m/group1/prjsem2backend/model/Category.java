@@ -12,7 +12,7 @@ public class Category {
     private String categoryName;
     private String description;
 
-    @NotNull
+    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Course course;

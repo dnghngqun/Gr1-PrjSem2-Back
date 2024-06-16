@@ -9,12 +9,12 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotNull
+    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Course course;
 
-    @NotNull
+    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Order order;
@@ -23,7 +23,10 @@ public class OrderDetail {
     private int quantity;
     private double totalAmount;
 
-    public OrderDetail( Course course, Order order, double discount, int quantity, double totalAmount) {
+    public OrderDetail() {
+    }
+
+    public OrderDetail(Course course, Order order, double discount, int quantity, double totalAmount) {
         this.course = course;
         this.order = order;
         this.discount = discount;

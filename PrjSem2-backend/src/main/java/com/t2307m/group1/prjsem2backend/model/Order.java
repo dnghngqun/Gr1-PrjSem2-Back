@@ -10,7 +10,7 @@ public class Order{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotNull
+    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY,optional = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Account account;
