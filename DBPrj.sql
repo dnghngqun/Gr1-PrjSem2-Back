@@ -2,7 +2,6 @@ CREATE DATABASE CourseManagement;
 use CourseManagement;
 
 
-
 CREATE TABLE Course(
     id INT AUTO_INCREMENT PRIMARY KEY ,
     name varchar(255) not null ,
