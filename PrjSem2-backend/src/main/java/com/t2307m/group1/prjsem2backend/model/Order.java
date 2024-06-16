@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import org.antlr.v4.runtime.misc.NotNull;
 
+import java.sql.Timestamp;
+
 @Entity
 public class Order{
     @Id
@@ -17,9 +19,28 @@ public class Order{
 
     private double totalPrice;
     private int status;
+    @Transient //giá trị này không được ánh xạ vào database
+    private Timestamp createdAt;
+    @Transient
+    private Timestamp updateAt;
 
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
 
-    public Order( Account account, double totalPrice, int status) {
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Timestamp getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(Timestamp updateAt) {
+        this.updateAt = updateAt;
+    }
+
+    public Order(Account account, double totalPrice, int status) {
         this.account = account;
         this.totalPrice = totalPrice;
         this.status = status;

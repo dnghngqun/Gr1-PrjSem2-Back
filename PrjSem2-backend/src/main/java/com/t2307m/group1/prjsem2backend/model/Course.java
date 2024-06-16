@@ -1,9 +1,8 @@
 package com.t2307m.group1.prjsem2backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.sql.Timestamp;
 
 @Entity
 public class Course {
@@ -13,6 +12,30 @@ public class Course {
     private String name;
     private double price;
     private int status;
+    @Transient //giá trị này không được ánh xạ vào database
+    private Timestamp createdAt;
+    @Transient
+    private Timestamp updateAt;
+
+    public Timestamp getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(Timestamp updateAt) {
+        this.updateAt = updateAt;
+    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     public Course() {
     }

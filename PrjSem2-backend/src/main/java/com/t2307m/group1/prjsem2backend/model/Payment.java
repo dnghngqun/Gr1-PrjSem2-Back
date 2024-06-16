@@ -25,9 +25,31 @@ public class Payment {
     private double amount;
     private Timestamp paymentDate;
     private int status;
+    @Transient //giá trị này không được ánh xạ vào database
+    private Timestamp createdAt;
+    @Transient
+    private Timestamp updateAt;
 
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
 
-    public Payment( Account account, OrderDetail orderDetail, int userId, String paymentMethod, double amount, Timestamp paymentDate, int status) {
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Timestamp getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(Timestamp updateAt) {
+        this.updateAt = updateAt;
+    }
+
+    public Payment() {
+    }
+
+    public Payment(Account account, OrderDetail orderDetail, int userId, String paymentMethod, double amount, Timestamp paymentDate, int status) {
         this.account = account;
         this.orderDetail = orderDetail;
         this.userId = userId;

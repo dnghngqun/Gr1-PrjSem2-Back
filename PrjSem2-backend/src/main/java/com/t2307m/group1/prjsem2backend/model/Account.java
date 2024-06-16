@@ -1,20 +1,47 @@
 package com.t2307m.group1.prjsem2backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.hibernate.annotations.Parent;
+import org.hibernate.annotations.processing.Pattern;
+
+import java.sql.Timestamp;
 
 @Entity
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(nullable = false, unique = true)
     private String userName;
+    @Column(nullable = false, unique = true)
     private String email;
+    @Column(nullable = false, unique = true)
     private String password;
+    @Column(nullable = false, unique = true)
+
     private String phoneNumber;// this field require regex
     private String role = "customer"; //default customer, if admin or staff, ghi de
+
+    @Transient //giá trị này không được ánh xạ vào database
+    private Timestamp createdAt;
+    @Transient
+    private Timestamp updateAt;
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Timestamp getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(Timestamp updateAt) {
+        this.updateAt = updateAt;
+    }
 
     public Account() {
     }
