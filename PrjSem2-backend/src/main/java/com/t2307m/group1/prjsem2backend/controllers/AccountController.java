@@ -2,9 +2,10 @@ package com.t2307m.group1.prjsem2backend.controllers;
 
 import com.t2307m.group1.prjsem2backend.model.Account;
 import com.t2307m.group1.prjsem2backend.model.ResponseObject;
-import com.t2307m.group1.prjsem2backend.repositories.AccountRepository;
 import com.t2307m.group1.prjsem2backend.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -67,8 +68,8 @@ public class AccountController {
 
 
     @GetMapping("")
-    public ResponseEntity<ResponseObject> getAllAccounts(){
-        List<Account> accounts = accountService.getAllAccount();
+    public ResponseEntity<ResponseObject> getAllAccounts(Pageable pageable){
+        Page<Account> accounts = accountService.getAllAccount(pageable);
         return ResponseEntity.status(HttpStatus.OK).body(
           new ResponseObject("ok", "Get all accounts successfully!", accounts)
         );
