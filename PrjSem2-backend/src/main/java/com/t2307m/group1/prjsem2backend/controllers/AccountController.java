@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController//báo cho spring biết đây là controller
 @RequestMapping("/api/v1/accounts")// connect to api = this link
@@ -71,8 +72,23 @@ public class AccountController {
     public ResponseEntity<ResponseObject> getAllAccounts(Pageable pageable){
         Page<Account> accounts = accountService.getAllAccount(pageable);
         return ResponseEntity.status(HttpStatus.OK).body(
-          new ResponseObject("ok", "Get all accounts successfully!", accounts)
+          new ResponseObject("ok", "Get accounts successfully!", accounts)
         );
     }
+
+    @PutMapping("/changePassword")
+    public ResponseEntity<ResponseObject> changePassword(@RequestParam String identify,@RequestParam String oldPassword, @RequestParam String newPassword){
+        Optional<Account> changePassword = accountService.changePassword(identify,oldPassword, newPassword);
+        if (changePassword.isPresent()){
+            return ResponseEntity.status(HttpStatus.OK).body(
+                    new ResponseObject("ok", "change password successfully!", changePassword.get())
+            );
+        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
+                new ResponseObject("failed", "username or password is incorrect, please check!", "")
+        );
+    }
+
+
 
 }

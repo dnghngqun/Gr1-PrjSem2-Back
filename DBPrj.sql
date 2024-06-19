@@ -149,4 +149,5 @@ CREATE TABLE ImageCourse(
     FOREIGN KEY (courseId) REFERENCES Course(id)
 );
 
+SELECT * FROM Account;
 

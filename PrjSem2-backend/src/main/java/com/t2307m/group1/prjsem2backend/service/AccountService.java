@@ -44,9 +44,27 @@ public class AccountService {
     }
 
 
-    public Optional<Account> findById(@PathVariable Integer id){
-        return accountRepository.findById(id);
+    public Optional<Account> changePassword(String identify, String oldPassword , String newPassword){
+        Optional<Account> optionalAccount = accountRepository.findByUserName(identify);
+        if (optionalAccount.isEmpty()){
+            optionalAccount = accountRepository.findByEmail(identify);
+        }
+        if(optionalAccount.isEmpty()){
+            optionalAccount = accountRepository.findByPhoneNumber(identify);
+        }
+        //ktra xem optional có chứa dữ liệu ko, return true or false
+        if (optionalAccount.isPresent()){
+            Account account = optionalAccount.get();//get value of optional
+            if (!account.getPassword().equals(oldPassword)) return Optional.empty();
+            account.setPassword(newPassword);
+            accountRepository.save(account);
+            return Optional.of(account); //return value of account
+        }
+        return Optional.empty();//return empty optional
     }
+
+
+
 
 
 
