@@ -89,6 +89,20 @@ public class AccountController {
         );
     }
 
+    @DeleteMapping("/deleteAccount")
+    public ResponseEntity<ResponseObject> deleteAccount(@RequestParam String identify, @RequestParam String password){
+        boolean status = accountService.deleteAccount(identify, password);
+        if (status){
+            return ResponseEntity.status(HttpStatus.OK).body(
+                    new ResponseObject("ok", "delete account succesfully!", "")
+            );
+        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
+                new ResponseObject("failed", "username or password is incorrect!", "")
+        );
+
+    }
+
 
 
 }

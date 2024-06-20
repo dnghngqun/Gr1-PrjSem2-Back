@@ -63,6 +63,24 @@ public class AccountService {
         return Optional.empty();//return empty optional
     }
 
+    public boolean deleteAccount(String identify, String password){
+        Optional<Account> optionalAccount = accountRepository.findByUserName(identify);
+        if (optionalAccount.isEmpty()){
+            optionalAccount = accountRepository.findByEmail(identify);
+        }
+        if(optionalAccount.isEmpty()){
+            optionalAccount = accountRepository.findByPhoneNumber(identify);
+        }
+        if(optionalAccount.isPresent()){
+            Account account = optionalAccount.get();
+            if(!account.getPassword().equals(password)) return false;
+
+            accountRepository.delete(account);
+            return true;
+        }
+        return false;
+    }
+
 
 
 
