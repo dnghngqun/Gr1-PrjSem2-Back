@@ -2,7 +2,6 @@ package com.t2307m.group1.prjsem2backend.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import org.antlr.v4.runtime.misc.NotNull;
 
 import java.sql.Timestamp;
 
@@ -40,7 +39,7 @@ public class Notification {
         this.updateAt = updateAt;
     }
 
-    public Notification() {
+    public Notification(Account account, String message, java.security.Timestamp dateSent, int status) {
     }
 
     public Notification(Account account, String message, Timestamp dateSent, int status) {
