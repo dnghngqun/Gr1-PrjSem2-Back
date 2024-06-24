@@ -37,5 +37,36 @@ public class CourseService {
          // nên dt course sẽ dc update theo cac trg của courseDetails ( nó là dữ liêu phải yc chỉnh sửa từ phía client)
          return courseRepository.save(course);
      }
+     public void deleteCourse(int id) {
+         Course course = courseRepository.findById(id).orElseThrow(() -> new RuntimeException("Course not found"));
+         courseRepository.delete(course);
+         // tìm id ko tìm thì ném ngoaị lệ
+         // xóa course trg csdl
+     }
 
-}
+
+     // Các phương thức sử dụng Optional
+     public Optional<Course> getCourseByName(String name) {
+         return courseRepository.findByName(name);
+         // trả về tên course
+     }
+
+
+     public Optional<List<Course>> getCoursesByPrice(double price) {
+         return courseRepository.findByPrice(price);
+         //giá course
+     }
+
+
+     public Optional<List<Course>> getCoursesByStatus(int status) {
+         return courseRepository.findByStatus(status);
+         //trạng thái
+     }
+
+
+     public Optional<List<Course>> getCoursesByNameAndStatus(String name, int status) {
+         return courseRepository.findByNameAndStatus(name, status);
+         //trạng thái và tên
+     }
+ }
+
