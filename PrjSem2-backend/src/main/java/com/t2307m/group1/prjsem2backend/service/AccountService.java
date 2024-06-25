@@ -63,6 +63,18 @@ public class AccountService {
         return Optional.empty();//return empty optional
     }
 
+    public Optional<Account> login(String identify, String password) {
+        // Giả sử Account có các thuộc tính: username, email, phoneNumber, password
+        Optional<Account> account = accountRepository.findByUserName(identify);
+        if (account.isEmpty()) account = accountRepository.findByPhoneNumber(identify);
+        if (account.isEmpty()) account = accountRepository.findByPhoneNumber(identify);
+
+        if (account.isPresent() && account.get().getPassword().equals(password)) {
+            return Optional.of(account.get());
+        }
+        return Optional.empty();
+    }
+
     public boolean deleteAccount(String identify, String password){
         Optional<Account> optionalAccount = accountRepository.findByUserName(identify);
         if (optionalAccount.isEmpty()){

@@ -1,6 +1,7 @@
 package com.t2307m.group1.prjsem2backend.controllers;
 
 import com.t2307m.group1.prjsem2backend.model.Account;
+import com.t2307m.group1.prjsem2backend.model.LoginRequest;
 import com.t2307m.group1.prjsem2backend.model.ResponseObject;
 import com.t2307m.group1.prjsem2backend.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,8 +91,8 @@ public class AccountController {
     }
 
     @DeleteMapping("/deleteAccount")
-    public ResponseEntity<ResponseObject> deleteAccount(@RequestParam String identify, @RequestParam String password){
-        boolean status = accountService.deleteAccount(identify, password);
+    public ResponseEntity<ResponseObject> deleteAccount(@RequestBody LoginRequest loginRequest){
+        boolean status = accountService.deleteAccount(loginRequest.getIdentify().trim(), loginRequest.getPassword().trim());
         if (status){
             return ResponseEntity.status(HttpStatus.OK).body(
                     new ResponseObject("ok", "delete account succesfully!", "")
@@ -101,6 +102,19 @@ public class AccountController {
                 new ResponseObject("failed", "username or password is incorrect!", "")
         );
 
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<ResponseObject> login(@RequestBody LoginRequest loginRequest) {
+        Optional<Account> account = accountService.login(loginRequest.getIdentify().trim(), loginRequest.getPassword().trim());
+        if (account.isPresent()) {
+            return ResponseEntity.status(HttpStatus.OK).body(
+                    new ResponseObject("ok", "Login successfully!", account.get())
+            );
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
+                new ResponseObject("failed", "Invalid username or password!", "")
+        );
     }
 
 
