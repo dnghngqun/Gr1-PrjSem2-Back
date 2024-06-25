@@ -29,6 +29,8 @@ public class OrderDetail {
     private Timestamp createdAt;
     @Transient
     private Timestamp updateAt;
+    private int status;
+    private int courseId;
 
     public Timestamp getCreatedAt() {
         return createdAt;
@@ -104,4 +106,12 @@ public class OrderDetail {
     public void setTotalAmount(double totalAmount) {
         this.totalAmount = totalAmount;
     }
+
+    public void setStatus(int status) {this.status = status;}
+
+    public int getStatus() {return status;}
+
+    public void setCourseId(int courseId) {this.courseId = courseId;}
+
+    public int getCourseId() {return courseId;}
 }
