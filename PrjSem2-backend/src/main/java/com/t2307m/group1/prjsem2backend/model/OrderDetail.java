@@ -14,7 +14,7 @@ public class OrderDetail {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @JoinColumn(name = "courseId", nullable = false)
+    @JoinColumn(name = "courseId", nullable = false, insertable = false, updatable = false)
     private Course course;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -30,6 +30,7 @@ public class OrderDetail {
     @Transient
     private Timestamp updateAt;
     private int status;
+    @Column(name = "courseId", nullable = false)
     private int courseId;
 
     public Timestamp getCreatedAt() {
@@ -52,6 +53,7 @@ public class OrderDetail {
     }
 
     public OrderDetail(Course course, Order order, double discount, int quantity, double totalAmount) {
+        this.courseId = courseId;
         this.course = course;
         this.order = order;
         this.discount = discount;

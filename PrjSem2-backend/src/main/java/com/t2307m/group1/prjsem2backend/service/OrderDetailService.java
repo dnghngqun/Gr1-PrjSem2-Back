@@ -27,7 +27,7 @@ public class OrderDetailService {
     }
 
     @Transactional
-    public OrderDetail createOrderDetail(int orderId, int course, double discount, int quantity, double totalAmount, int status) {
+    public OrderDetail createOrderDetail(int orderId, int courseId, double discount, int quantity, double totalAmount, int status) {
         Optional<Order> orderOpt = orderRepository.findById(orderId);
         if (!orderOpt.isPresent()) {
             throw new RuntimeException("Order not found");
@@ -36,7 +36,7 @@ public class OrderDetailService {
         Order order = orderOpt.get();
         OrderDetail orderDetail = new OrderDetail();
         orderDetail.setOrder(order);
-        orderDetail.setCourseId(course);
+        orderDetail.setCourseId(courseId);
         orderDetail.setDiscount(discount);
         orderDetail.setQuantity(quantity);
         orderDetail.setTotalAmount(totalAmount);
