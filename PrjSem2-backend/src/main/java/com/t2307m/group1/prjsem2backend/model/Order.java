@@ -23,7 +23,6 @@ public class Order{
     private Timestamp createdAt;
     @Transient
     private Timestamp updateAt;
-    private int userId;
 
     public Timestamp getCreatedAt() {
         return createdAt;
@@ -82,9 +81,9 @@ public class Order{
         this.status = status;
     }
 
-    public void setUserId(int userId) {this.userId = userId;}
-
-    public int getUserId() {return userId;}
+//    public void setUserId(int userId) {this.userId = userId;}
+//
+//    public int getUserId() {return userId;}
 
     public Timestamp getCreateAt() {return createdAt;}
 }

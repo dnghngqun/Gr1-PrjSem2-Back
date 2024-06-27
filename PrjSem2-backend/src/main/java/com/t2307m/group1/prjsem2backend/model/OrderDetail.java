@@ -53,7 +53,6 @@ public class OrderDetail {
     }
 
     public OrderDetail(Course course, Order order, double discount, int quantity, double totalAmount) {
-        this.courseId = courseId;
         this.course = course;
         this.order = order;
         this.discount = discount;
@@ -113,7 +112,11 @@ public class OrderDetail {
 
     public int getStatus() {return status;}
 
-    public void setCourseId(int courseId) {this.courseId = courseId;}
+    public int getCourseId() {
+        return courseId;
+    }
 
-    public int getCourseId() {return courseId;}
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
+    }
 }

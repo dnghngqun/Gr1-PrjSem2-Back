@@ -4,6 +4,7 @@ import com.t2307m.group1.prjsem2backend.model.Account;
 import com.t2307m.group1.prjsem2backend.model.LoginRequest;
 import com.t2307m.group1.prjsem2backend.model.ResponseObject;
 import com.t2307m.group1.prjsem2backend.service.AccountService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +19,7 @@ import java.util.Optional;
 @RequestMapping("/api/v1/accounts")// connect to api = this link
 public class AccountController {
     private final AccountService accountService;
+
     @Autowired
     public AccountController(AccountService accountService) {
         this.accountService = accountService;
@@ -105,15 +107,38 @@ public class AccountController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<ResponseObject> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<ResponseObject> login(@RequestBody LoginRequest loginRequest, HttpSession session) {
         Optional<Account> account = accountService.login(loginRequest.getIdentify().trim(), loginRequest.getPassword().trim());
         if (account.isPresent()) {
+            session.setAttribute("user", account.get()); //lưu thông tin người dùng vào session
             return ResponseEntity.status(HttpStatus.OK).body(
                     new ResponseObject("ok", "Login successfully!", account.get())
             );
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
                 new ResponseObject("failed", "Invalid username or password!", "")
+        );
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<ResponseObject> logout(HttpSession session){
+        session.invalidate();//xoá session khi logout
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject("ok", "Logout successfully!","")
+        );
+    }
+
+    @GetMapping("/currentUser")
+    public ResponseEntity<ResponseObject> getCurrentUser(HttpSession session){
+        Object user = session.getAttribute("user");
+        if (user != null){
+            return ResponseEntity.status(HttpStatus.OK).body(
+                    new ResponseObject("ok","Current user retrieved successfully",user)
+            );
+
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                new ResponseObject("failed", "No user logged in!", "")
         );
     }
 

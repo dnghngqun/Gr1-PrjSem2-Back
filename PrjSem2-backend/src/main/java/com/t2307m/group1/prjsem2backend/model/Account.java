@@ -4,10 +4,11 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.Parent;
 import org.hibernate.annotations.processing.Pattern;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity
-public class Account {
+public class Account implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
