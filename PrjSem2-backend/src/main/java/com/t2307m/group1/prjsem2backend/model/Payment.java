@@ -13,19 +13,15 @@ public class Payment {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @JoinColumn(name = "userId", insertable = false, updatable = false)
+    @JoinColumn(name = "userId", nullable = false)
     private Account account;
 
-    @Column(name = "userId", nullable = false)
-    private int userId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @JoinColumn(name = "orderDetailId", insertable = false, updatable = false)
+    @JoinColumn(name = "orderDetailId", nullable = false)
     private OrderDetail orderDetail;
 
-    @Column(name = "orderDetailId", nullable = false)
-    private int orderDetailId;
 
     private String paymentMethod = "'Visa', 'MasterCard', 'COD'";
     private double amount;
@@ -55,9 +51,9 @@ public class Payment {
     public Payment() {
     }
 
-    public Payment(int userId, int orderDetailId, String paymentMethod, double amount, Timestamp paymentDate, int status) {
-        this.userId = userId;
-        this.orderDetailId = orderDetailId;
+    public Payment(Account account, OrderDetail orderDetail, String paymentMethod, double amount, Timestamp paymentDate, int status) {
+        this.account = account;
+        this.orderDetail = orderDetail;
         this.paymentMethod = paymentMethod;
         this.amount = amount;
         this.paymentDate = paymentDate;
@@ -118,21 +114,5 @@ public class Payment {
 
     public void setStatus(int status) {
         this.status = status;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public int getOrderDetailId() {
-        return orderDetailId;
-    }
-
-    public void setOrderDetailId(int orderDetailId) {
-        this.orderDetailId = orderDetailId;
     }
 }

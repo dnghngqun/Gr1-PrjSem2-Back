@@ -40,6 +40,8 @@ public class Order{
         this.updateAt = updateAt;
     }
 
+
+
     public Order(Account account, double totalPrice, int status) {
         this.account = account;
         this.totalPrice = totalPrice;
@@ -81,9 +83,6 @@ public class Order{
         this.status = status;
     }
 
-//    public void setUserId(int userId) {this.userId = userId;}
-//
-//    public int getUserId() {return userId;}
 
     public Timestamp getCreateAt() {return createdAt;}
 }

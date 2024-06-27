@@ -67,7 +67,7 @@ public class AccountService {
         // Giả sử Account có các thuộc tính: username, email, phoneNumber, password
         Optional<Account> account = accountRepository.findByUserName(identify);
         if (account.isEmpty()) account = accountRepository.findByPhoneNumber(identify);
-        if (account.isEmpty()) account = accountRepository.findByPhoneNumber(identify);
+        if (account.isEmpty()) account = accountRepository.findByEmail(identify);
 
         if (account.isPresent() && account.get().getPassword().equals(password)) {
             return Optional.of(account.get());

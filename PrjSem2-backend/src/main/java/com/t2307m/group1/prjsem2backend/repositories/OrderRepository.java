@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface OrderRepository extends JpaRepository<Order, Integer> {
-//    Optional<List<Order>> findByUserId(int userId); // Tìm các đơn hàng theo userId
+    Optional<Order> findByAccount_Id(int id); // Tìm các đơn hàng theo userId
     Optional<List<Order>> findByStatus(int status); // Tìm các đơn hàng theo trạng thái
+    boolean existsByAccountId(int Id);
+    void deleteByAccount_Id(int Id);
 }
