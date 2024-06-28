@@ -7,6 +7,7 @@ import org.antlr.v4.runtime.misc.NotNull;
 import java.sql.Timestamp;
 
 @Entity
+@Table(name = "Order_")
 public class Order{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

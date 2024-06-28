@@ -29,7 +29,7 @@ public class OrderController {
                     new ResponseObject("ok", "Create order successfully!", newOrder)
             );
         }catch (Exception e){
-            System.out.println("Exception: "+ e);
+            System.err.println("Exception: "+ e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
                     new ResponseObject("Failed", "Create Order error!", "")
             );
