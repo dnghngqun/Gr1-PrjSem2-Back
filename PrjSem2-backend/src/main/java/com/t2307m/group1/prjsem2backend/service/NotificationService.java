@@ -14,11 +14,12 @@ import java.util.Optional;
 @Service
 public class NotificationService {
 
-    @Autowired
     private NotificationRepository NotificationRepository;
 
     @Autowired
-    private AccountRepository accountRepository;
+    public NotificationService(com.t2307m.group1.prjsem2backend.repositories.NotificationRepository notificationRepository) {
+        NotificationRepository = notificationRepository;
+    }
 
     public List<Notification> getAllNotifications() { //lấy ra các thôgn báo
         return NotificationRepository.findAll();
@@ -29,41 +30,29 @@ public class NotificationService {
     }
 
     @Transactional
-    public Notification createNotification(int accountId, String message, int status) { //Tạo một thông báo mới
-        Optional<Account> accountOpt = accountRepository.findById(accountId);
-        if (!accountOpt.isPresent()) {
-            throw new RuntimeException("Tài khoản không tồn tại");
-        }
-
-        Account account = accountOpt.get();
-        Timestamp dateSent = new Timestamp(System.currentTimeMillis());
-
-        Notification notification = new Notification(account, message, dateSent, status);
+    public Notification createNotification(Notification notification) { //Tạo một thông báo mới
         return NotificationRepository.save(notification);
     }
 
     @Transactional
-    public Notification updateNotification(int id, String message, int status) { //Cập nhật một thông báo hiện có
+    public Notification updateNotification(int id, Notification notificationUpdate) { //Cập nhật một thông báo hiện có
         Optional<Notification> NotificationOpt = NotificationRepository.findById(id);
-        if (!NotificationOpt.isPresent()) {
-            throw new RuntimeException("Thông báo không tồn tại");
+        if (NotificationOpt.isEmpty()) {
+            throw new RuntimeException("Notification not exist!");
         }
 
         Notification notification = NotificationOpt.get();
-        notification.setMessage(message);
-        notification.setStatus(status);
-        notification.setUpdateAt(new Timestamp(System.currentTimeMillis()));
-
+        notification.setMessage(notificationUpdate.getMessage());
+        notification.setStatus(notificationUpdate.getStatus());
         return NotificationRepository.save(notification);
     }
 
     @Transactional
     public void deleteNotification(int id) { //Xóa một thông báo theo ID của nó
-        if (!NotificationRepository.existsById((long) id)) {
-            throw new RuntimeException("Thông báo không tồn tại");
+        if (!NotificationRepository.existsById(id)) {
+            throw new RuntimeException("Notification not exist!");
         }
-
-        NotificationRepository.deleteById((long) id);
+        NotificationRepository.deleteById(id);
     }
 
 

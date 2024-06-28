@@ -10,11 +10,10 @@ import java.security.Timestamp;
 import java.util.List;
 
 @Repository
-public interface NotificationRepository extends JpaRepository<Notification, Long> {
+public interface NotificationRepository extends JpaRepository<Notification, Integer> {
 //    Optional<Notification> findByAccount(Account account);
 //    Optional<List<Notification>> findByMessage(String message);
 //    Optional<List<Notification>> findByDateSent(Timestamp dateSent);
 //    Optional<List<Notification>> findByStatus(int status);
 
-    java.util.Optional<Notification> findById(int id);
 }

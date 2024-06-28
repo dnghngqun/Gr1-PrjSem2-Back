@@ -15,6 +15,7 @@ public class Notification {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @JoinColumn(name = "userId", nullable = false)
     private Account account;
+
     private String message;
     private Timestamp dateSent;
     private int status;
@@ -39,7 +40,7 @@ public class Notification {
         this.updateAt = updateAt;
     }
 
-    public Notification(Account account, String message, java.security.Timestamp dateSent, int status) {
+    public Notification() {
     }
 
     public Notification(Account account, String message, Timestamp dateSent, int status) {
