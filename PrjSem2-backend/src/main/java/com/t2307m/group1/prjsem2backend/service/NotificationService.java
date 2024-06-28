@@ -1,14 +1,11 @@
 package com.t2307m.group1.prjsem2backend.service;
 
-import com.t2307m.group1.prjsem2backend.model.Account;
 import com.t2307m.group1.prjsem2backend.model.Notification;
-import com.t2307m.group1.prjsem2backend.repositories.AccountRepository;
 import com.t2307m.group1.prjsem2backend.repositories.NotificationRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 @Service
