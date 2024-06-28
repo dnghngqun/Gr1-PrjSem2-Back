@@ -1,45 +1,38 @@
 package com.t2307m.group1.prjsem2backend.service;
 
-import com.t2307m.group1.prjsem2backend.model.Account;
 import com.t2307m.group1.prjsem2backend.model.Order;
-import com.t2307m.group1.prjsem2backend.repositories.AccountRepository;
 import com.t2307m.group1.prjsem2backend.repositories.OrderRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
-import static java.lang.System.currentTimeMillis;
 @Service
 public class OrderService {
     private OrderRepository orderRepository;
-    private AccountRepository accountRepository;
 
     @Autowired
-    public OrderService(OrderRepository orderRepository, AccountRepository accountRepository) {
+    public OrderService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
-        this.accountRepository = accountRepository;
     }
 
+
     @Transactional
-    public Order createOrder(int userId, double totalPrice, int status) {
-        Optional<Account> account = accountRepository.findById(userId);
-        Order order = new Order(account.get(),totalPrice,status);
+    public Order createOrder(Order order) {
         return orderRepository.save(order);
     }
 
     @Transactional
-    public Order updateOrder(int userId, double totalPrice, int status) {
+    public Order updateOrder(int userId, Order orderUpdate) {
         Optional<Order> orderOpt = orderRepository.findByAccount_Id(userId);
-        if (!orderOpt.isPresent()) {
+        if (orderOpt.isEmpty()) {
             throw new RuntimeException("Order not found");
         }
         Order order = orderOpt.get();
-        order.setTotalPrice(totalPrice);
-        order.setStatus(status);
+        order.setTotalPrice(orderUpdate.getTotalPrice());
+        order.setStatus(orderUpdate.getStatus());
         return orderRepository.save(order);
     }
 

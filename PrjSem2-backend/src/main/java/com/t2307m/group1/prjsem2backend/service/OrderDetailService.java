@@ -15,15 +15,12 @@ import java.util.Optional;
 @Service
 public class OrderDetailService {
     private OrderDetailRepository orderDetailRepository;
-    private OrderRepository orderRepository;
-    private CourseRepository courseRepository;
 
     @Autowired
-    public OrderDetailService(OrderDetailRepository orderDetailRepository, OrderRepository orderRepository, CourseRepository courseRepository) {
+    public OrderDetailService(OrderDetailRepository orderDetailRepository) {
         this.orderDetailRepository = orderDetailRepository;
-        this.orderRepository = orderRepository;
-        this.courseRepository = courseRepository;
     }
+
 
     public List<OrderDetail> getAllOrderDetails() {
         return orderDetailRepository.findAll();
@@ -35,34 +32,21 @@ public class OrderDetailService {
 
 
     @Transactional
-    public OrderDetail createOrderDetail(int orderId, int courseId, double discount, int quantity, double totalAmount, int status) {
-        Optional<Order> orderOpt = orderRepository.findById(orderId);
-        if (!orderOpt.isPresent()) throw new RuntimeException("Order not found");
-
-        Optional<Course> courseOpt = courseRepository.findById(courseId);
-        if(courseOpt.isEmpty()) throw new RuntimeException("Course not found");
-        Order order = orderOpt.get();
-        OrderDetail orderDetail = new OrderDetail();
-        orderDetail.setOrder(orderOpt.get());
-        orderDetail.setCourse(courseOpt.get());
-        orderDetail.setDiscount(discount);
-        orderDetail.setQuantity(quantity);
-        orderDetail.setTotalAmount(totalAmount);
-        orderDetail.setStatus(status);
+    public OrderDetail createOrderDetail(OrderDetail orderDetail) {
         return orderDetailRepository.save(orderDetail);
     }
 
     @Transactional
-    public OrderDetail updateOrderDetail(int id, double discount, int quantity, double totalAmount, int status) {
+    public OrderDetail updateOrderDetail(int id, OrderDetail orderDetailUpdate) {
         Optional<OrderDetail> orderDetailOpt = orderDetailRepository.findById(id);
         if (orderDetailOpt.isEmpty()) throw new RuntimeException("Order detail not found");
 
 
         OrderDetail orderDetail = orderDetailOpt.get();
-        orderDetail.setDiscount(discount);
-        orderDetail.setQuantity(quantity);
-        orderDetail.setTotalAmount(totalAmount);
-        orderDetail.setStatus(status);
+        orderDetail.setDiscount(orderDetailUpdate.getDiscount());
+        orderDetail.setQuantity(orderDetailUpdate.getQuantity());
+        orderDetail.setTotalAmount(orderDetailUpdate.getTotalAmount());
+        orderDetail.setStatus(orderDetailUpdate.getStatus());
         return orderDetailRepository.save(orderDetail);
     }
 

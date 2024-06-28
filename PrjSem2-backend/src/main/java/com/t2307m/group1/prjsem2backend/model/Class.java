@@ -15,7 +15,6 @@ public class Class {
     // cấu hìnhh để id tự  đông tăng theo kiểu identity trong cơ sở dữ liệu
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @JoinColumn(name = "courseId", nullable = false)
     private Course course;
