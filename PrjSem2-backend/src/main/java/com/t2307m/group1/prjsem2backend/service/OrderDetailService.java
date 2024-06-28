@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 @Service
 public class OrderDetailService {
-    private OrderDetailRepository orderDetailRepository;
+    private final OrderDetailRepository orderDetailRepository;
 
     @Autowired
     public OrderDetailService(OrderDetailRepository orderDetailRepository) {
