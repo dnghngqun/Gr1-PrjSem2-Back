@@ -19,10 +19,12 @@ public class OrderService {
     }
 
 
+    // tạo mới đơn hàng
     @Transactional
     public Order createOrder(Order order) {
         return orderRepository.save(order);
     }
+    //
 
     @Transactional
     public Order updateOrder(int userId, Order orderUpdate) {
@@ -44,17 +46,22 @@ public class OrderService {
         orderRepository.deleteByAccount_Id(userId);
     }
 
+    //lấy toàn bộ orderDetail
     public Optional<List<Order>> getAllOrders() {
         return Optional.of(orderRepository.findAll());
     }
 
+    //lấy theo id
     public Optional<Order> getOrderById(int id) {
         return orderRepository.findById(id);
     }
 
+    //lấy theo id khách hàng
     public Optional<Order> getOrderByUserId(int userId) {
         return orderRepository.findByAccount_Id(userId);
     }
+
+    //lấy theo trạng thái
 
     public Optional<List<Order>> getOrdersByStatus(int status) {
         return orderRepository.findByStatus(status);
