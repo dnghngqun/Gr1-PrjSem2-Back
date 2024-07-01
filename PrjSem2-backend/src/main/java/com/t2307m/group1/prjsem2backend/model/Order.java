@@ -2,8 +2,6 @@ package com.t2307m.group1.prjsem2backend.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import org.antlr.v4.runtime.misc.NotNull;
-
 import java.sql.Timestamp;
 
 @Entity

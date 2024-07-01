@@ -1,11 +1,9 @@
 package com.t2307m.group1.prjsem2backend.model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Parent;
-import org.hibernate.annotations.processing.Pattern;
-
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 public class Account implements Serializable {
@@ -20,6 +18,10 @@ public class Account implements Serializable {
     private String password;
     @Column(name = "phoneNumber",nullable = false, unique = true)
     private String phoneNumber;// this field require regex
+    @Column(name = "fullName", nullable = false)
+    private String fullName;
+    @Column(name = "birthday", nullable = false)
+    private Date birthday;
     private String role = "customer"; //default customer, if admin or staff, ghi de
 
     @Transient //giá trị này không được ánh xạ vào database
@@ -46,11 +48,30 @@ public class Account implements Serializable {
     public Account() {
     }
 
-    public Account(String userName, String email, String password, String phoneNumber) {
+
+    public Account(String userName, String email, String password, String phoneNumber, String fullName, Date birthday) {
         this.userName = userName;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
+        this.fullName = fullName;
+        this.birthday = birthday;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     public int getId() {

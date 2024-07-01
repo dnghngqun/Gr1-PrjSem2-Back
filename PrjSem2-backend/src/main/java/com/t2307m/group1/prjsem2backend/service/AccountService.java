@@ -63,6 +63,18 @@ public class AccountService {
         return Optional.empty();//return empty optional
     }
 
+    public Optional<Account> updateAccount(int id, Account account){
+        Optional<Account> accountOpt = accountRepository.findById(id);
+        if (accountOpt.isEmpty()) throw new RuntimeException("not found account");
+        Account newAccount = accountOpt.get();
+        newAccount.setFullName(account.getFullName());
+        newAccount.setBirthday(account.getBirthday());
+        newAccount.setEmail(account.getEmail());
+        newAccount.setPhoneNumber(account.getPhoneNumber());
+        accountRepository.save(newAccount);
+        return Optional.of(newAccount);
+    }
+
     public Optional<Account> login(String identify, String password) {
         // Giả sử Account có các thuộc tính: username, email, phoneNumber, password
         Optional<Account> account = accountRepository.findByUserName(identify);

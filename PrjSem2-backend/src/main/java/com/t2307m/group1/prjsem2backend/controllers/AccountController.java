@@ -3,6 +3,7 @@ package com.t2307m.group1.prjsem2backend.controllers;
 import com.t2307m.group1.prjsem2backend.model.Account;
 import com.t2307m.group1.prjsem2backend.model.LoginRequest;
 import com.t2307m.group1.prjsem2backend.model.ResponseObject;
+import com.t2307m.group1.prjsem2backend.repositories.AccountRepository;
 import com.t2307m.group1.prjsem2backend.service.AccountService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,8 @@ import java.util.Optional;
 @RequestMapping("/api/v1/accounts")// connect to api = this link
 public class AccountController {
     private final AccountService accountService;
-
     @Autowired
-    public AccountController(AccountService accountService) {
+    public AccountController(AccountService accountService, AccountRepository accountRepository) {
         this.accountService = accountService;
     }
 
@@ -142,6 +142,13 @@ public class AccountController {
         );
     }
 
-
-
+    @PutMapping("/updateInformation/{id}")
+    public ResponseEntity<ResponseObject> updateInformation(@PathVariable int id, @RequestBody Account account){
+        Optional<Account> updateInformation = accountService.updateAccount(id, account);
+        return updateInformation.map(value -> ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject("ok", "Update Information Success!", value)
+        )).orElseGet(() -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
+                new ResponseObject("failed", "Update Information Failed!","")
+        ));
+    }
 }

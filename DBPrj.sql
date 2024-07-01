@@ -1,7 +1,6 @@
 CREATE DATABASE CourseManagement;
 use CourseManagement;
 
-
 CREATE TABLE Course(
     id INT AUTO_INCREMENT PRIMARY KEY ,
     name varchar(255) not null ,
@@ -36,6 +35,8 @@ CREATE TABLE Account(
     id INT AUTO_INCREMENT PRIMARY KEY ,
     userName varchar(255) not null ,
     password varchar(255) not null,
+    fullName varchar(255) not null,
+    birthday DATE not null ,
     email varchar(255) not null,
     phoneNumber varchar(255) not null,
     createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
