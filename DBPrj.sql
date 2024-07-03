@@ -118,7 +118,6 @@ CREATE TABLE OrderDetail(
     courseId INT Not Null ,
     orderId int NOT NULL ,
     discount decimal DEFAULT 0,
-    quantity int ,
     totalAmount decimal,
     status tinyint,
     createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
@@ -127,19 +126,22 @@ CREATE TABLE OrderDetail(
     FOREIGN KEY (orderId) REFERENCES Order_(id)
 );
 
-CREATE TABLE Payment(
-    id INT AUTO_INCREMENT PRIMARY KEY ,
-    userId int,
-    paymentMethod ENUM('Visa', 'MasterCard', 'COD'),
-    orderDetailId int not null ,
-    amount decimal,
+
+CREATE TABLE Payment (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    paymentId VARCHAR(255) NOT NULL,
+    userId INT,
+    paymentMethod ENUM('Visa/MasterCard', 'PayPal', 'QRCode'),
+    orderDetailId INT NOT NULL,
+    amount DECIMAL,
     paymentDate TIMESTAMP,
-    status tinyint, # trạng thái: paid, outstanding, cancel
-    createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
+    status TINYINT,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (userId) REFERENCES Account(id),
     FOREIGN KEY (orderDetailId) REFERENCES OrderDetail(id)
 );
+
 
 CREATE TABLE ImageCourse(
     id INT AUTO_INCREMENT PRIMARY KEY ,
@@ -178,3 +180,4 @@ CREATE TABLE SPRING_SESSION_ATTRIBUTES (
 CREATE INDEX SPRING_SESSION_ATTRIBUTES_IX1 ON SPRING_SESSION_ATTRIBUTES (SESSION_PRIMARY_ID);
 
 select * From SPRING_SESSION
+

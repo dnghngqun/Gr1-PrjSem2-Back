@@ -1,7 +1,9 @@
 package com.t2307m.group1.prjsem2backend.service;
 
 import com.t2307m.group1.prjsem2backend.model.Account;
+import com.t2307m.group1.prjsem2backend.model.Order;
 import com.t2307m.group1.prjsem2backend.repositories.AccountRepository;
+import com.t2307m.group1.prjsem2backend.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,16 +17,21 @@ import java.util.Optional;
 @Service
 public class AccountService {
     private final AccountRepository accountRepository;
-
+    private final OrderRepository orderRepository;
     //DI = Dependency Injection
     @Autowired
-    public AccountService( AccountRepository accountRepository) {
+    public AccountService( AccountRepository accountRepository, OrderRepository orderRepository) {
         this.accountRepository = accountRepository;
+        this.orderRepository = orderRepository;
     }
 
     public Account registerCustomer(Account account){
         account.setPassword(account.getPassword());
-        return accountRepository.save(account);
+        Order order = new Order();
+        order.setAccount(account);
+        Account newAcc = accountRepository.save(account);
+        orderRepository.save(order);
+        return newAcc;
     }
     //role can use this function: admin
     public Account createStaff(Account account){

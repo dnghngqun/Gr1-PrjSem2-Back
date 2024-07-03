@@ -11,6 +11,9 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "paymentId",nullable = false)
+    private String paymentId; //giá trị này được paypal trả về
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @JoinColumn(name = "userId", nullable = false)
@@ -22,15 +25,26 @@ public class Payment {
     @JoinColumn(name = "orderDetailId", nullable = false)
     private OrderDetail orderDetail;
 
-
-    private String paymentMethod = "'Visa', 'MasterCard', 'COD'";
+    @Column(name = "paymentMethod")
+    private String paymentMethod = "'Visa/MasterCard', 'PayPal', 'QRCode'";
+    @Column(name = "amount")
     private double amount;
+    @Column(name = "paymentDate")
     private Timestamp paymentDate;
+    @Column(name = "status")
     private int status;
     @Transient //giá trị này không được ánh xạ vào database
     private Timestamp createdAt;
     @Transient
     private Timestamp updateAt;
+
+    public String getPaymentId() {
+        return paymentId;
+    }
+
+    public void setPaymentId(String paymentId) {
+        this.paymentId = paymentId;
+    }
 
     public Timestamp getCreatedAt() {
         return createdAt;
@@ -51,7 +65,8 @@ public class Payment {
     public Payment() {
     }
 
-    public Payment(Account account, OrderDetail orderDetail, String paymentMethod, double amount, Timestamp paymentDate, int status) {
+    public Payment(String paymentId, Account account, OrderDetail orderDetail, String paymentMethod, double amount, Timestamp paymentDate, int status) {
+        this.paymentId = paymentId;
         this.account = account;
         this.orderDetail = orderDetail;
         this.paymentMethod = paymentMethod;

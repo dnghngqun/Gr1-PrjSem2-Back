@@ -19,7 +19,6 @@ public class OrderDetail {
     //chỉ định rằng thuộc tính này chỉ được sử dụng khi ghi (serialization), không khi đọc (deserialization).
     @JoinColumn(name = "courseId",nullable = false)
     // chỉ định rằng cột courseId trong bảng OrderDetail sẽ lưu trữ khóa ngoại tham chiếu đến Course.
-
     private Course course;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -32,7 +31,6 @@ public class OrderDetail {
 
 
     private double discount;
-    private int quantity;
     private double totalAmount;
     @Transient //giá trị này không được ánh xạ vào database
     private Timestamp createdAt;
@@ -59,10 +57,9 @@ public class OrderDetail {
     public OrderDetail() {
     }
 
-    public OrderDetail(Order order, double discount, int quantity, double totalAmount, Course course, int status) {
+    public OrderDetail(Order order, double discount, double totalAmount, Course course, int status) {
         this.order = order;
         this.discount = discount;
-        this.quantity = quantity;
         this.totalAmount = totalAmount;
         this.course = course;
         this.status = status;
@@ -98,14 +95,6 @@ public class OrderDetail {
 
     public void setDiscount(double discount) {
         this.discount = discount;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public double getTotalAmount() {

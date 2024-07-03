@@ -36,6 +36,7 @@ public class OrderDetailsController {
         }
     }
 
+
     @PutMapping("/{id}")
     public ResponseEntity<ResponseObject> updateOrderDetail(@PathVariable int id, @RequestBody OrderDetail orderDetailUpdate) {
         try {
@@ -85,5 +86,18 @@ public class OrderDetailsController {
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(
                         new ResponseObject("Failed", "Order detail not found", "")
                 ));
+    }
+
+    @PutMapping("/updateStatus/{id}")
+    public ResponseEntity<ResponseObject> updateStatus(@PathVariable int id, @RequestParam int status) {
+        OrderDetail updateStatus = orderDetailService.updateStatus(id, status);
+        if (updateStatus != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(
+                    new ResponseObject("ok", "Update status successfully!", updateStatus)
+            );
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                new ResponseObject("Failed", "Update status error!", "")
+        );
     }
 }

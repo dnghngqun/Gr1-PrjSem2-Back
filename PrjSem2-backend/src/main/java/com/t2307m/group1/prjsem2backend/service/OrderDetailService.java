@@ -36,6 +36,16 @@ public class OrderDetailService {
         return orderDetailRepository.save(orderDetail);
     }
 
+    public OrderDetail updateStatus(int id, int status) {
+        Optional<OrderDetail> orderDetail = orderDetailRepository.findById(id);
+        if (orderDetail.isPresent()) {
+            orderDetail.get().setStatus(status);
+            return orderDetailRepository.save(orderDetail.get());
+        }else {
+            return null;
+        }
+    }
+
     @Transactional
     public OrderDetail updateOrderDetail(int id, OrderDetail orderDetailUpdate) {
         Optional<OrderDetail> orderDetailOpt = orderDetailRepository.findById(id);
@@ -44,7 +54,6 @@ public class OrderDetailService {
 
         OrderDetail orderDetail = orderDetailOpt.get();
         orderDetail.setDiscount(orderDetailUpdate.getDiscount());
-        orderDetail.setQuantity(orderDetailUpdate.getQuantity());
         orderDetail.setTotalAmount(orderDetailUpdate.getTotalAmount());
         orderDetail.setStatus(orderDetailUpdate.getStatus());
         return orderDetailRepository.save(orderDetail);
@@ -56,5 +65,6 @@ public class OrderDetailService {
 
         orderDetailRepository.deleteById(id);
     }
+
 
 }

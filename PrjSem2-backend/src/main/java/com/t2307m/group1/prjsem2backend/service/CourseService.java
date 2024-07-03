@@ -23,7 +23,7 @@ public class CourseService {
          //Optional xu ly du lieu 1  cac an toan (no co the co hoac ko)
      }
      public Course addCourse(Course course) {
-
+         course.setStatus(0);
          return courseRepository.save(course);
          //nhan 1 obj course va luu vao csdl
      }
