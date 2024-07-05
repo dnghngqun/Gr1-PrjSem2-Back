@@ -2,9 +2,12 @@ package com.t2307m.group1.prjsem2backend.controllers;
 
 import com.t2307m.group1.prjsem2backend.model.Account;
 import com.t2307m.group1.prjsem2backend.model.LoginRequest;
+import com.t2307m.group1.prjsem2backend.model.PasswordResetToken;
 import com.t2307m.group1.prjsem2backend.model.ResponseObject;
 import com.t2307m.group1.prjsem2backend.repositories.AccountRepository;
+import com.t2307m.group1.prjsem2backend.repositories.PasswordResetTokenRepository;
 import com.t2307m.group1.prjsem2backend.service.AccountService;
+import com.t2307m.group1.prjsem2backend.service.EmailService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,16 +18,57 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController//báo cho spring biết đây là controller
 @RequestMapping("/api/v1/accounts")// connect to api = this link
 public class AccountController {
     private final AccountService accountService;
+    private final EmailService emailService;
+    private final PasswordResetTokenRepository tokenRepository;
     @Autowired
-    public AccountController(AccountService accountService, AccountRepository accountRepository) {
+    public AccountController(AccountService accountService,EmailService emailService, PasswordResetTokenRepository tokenRepository) {
         this.accountService = accountService;
+        this.emailService = emailService;
+        this.tokenRepository = tokenRepository;
     }
 
+    @PostMapping("/forgot-password")
+    public ResponseEntity<ResponseObject> forgotPassword(@RequestParam String email){
+        Optional<Account> optionalAccount = accountService.findByEmail(email);
+        if(optionalAccount.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+              new ResponseObject("failed", "User not found!", "")
+            );
+        }
+        String token = UUID.randomUUID().toString();
+        PasswordResetToken resetToken = new PasswordResetToken(token, optionalAccount.get());
+        tokenRepository.save(resetToken);//post to db
+        emailService.sendPasswordResetToken(email, token);
+
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject("ok", "Password reset token sent to your email!", "")
+        );
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<ResponseObject> resetPassword(@RequestParam String token, @RequestParam String newPassword){
+        Optional<PasswordResetToken> optionalToken = tokenRepository.findByToken(token);
+
+        if(optionalToken.isEmpty() || optionalToken.get().isExpired()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                    new ResponseObject("failed", "Invalid or exprired token","")
+            );
+        }
+
+        Account account = optionalToken.get().getAccount();
+        account.setPassword(newPassword);
+        accountService.save(account);
+
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject("ok", "Password has been reset!", "")
+        );
+    }
     @PostMapping("/register")
     public ResponseEntity<ResponseObject> registerCustomer(@RequestBody Account account){
         try {
@@ -151,4 +195,6 @@ public class AccountController {
                 new ResponseObject("failed", "Update Information Failed!","")
         ));
     }
+
+
 }

@@ -112,7 +112,13 @@ public class AccountService {
         return false;
     }
 
+    public Optional<Account> findByEmail(String email){
+        return accountRepository.findByEmail(email);
+    }
 
+    public Account save(Account account){
+        return accountRepository.save(account);
+    }
 
 
 
