@@ -1,6 +1,5 @@
 CREATE DATABASE CourseManagement;
 use CourseManagement;
-
 CREATE TABLE Course(
     id INT AUTO_INCREMENT PRIMARY KEY ,
     name varchar(255) not null ,
@@ -24,9 +23,10 @@ CREATE TABLE Category(
 CREATE TABLE Instructor (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
+    gender varchar(255) not null ,
     bio TEXT, # mô tả về giáo viên
-    email VARCHAR(255) NOT NULL,
-    phoneNumber VARCHAR(255),
+    email VARCHAR(255) NOT NULL unique ,
+    phoneNumber VARCHAR(255) unique ,
     createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
     updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -188,3 +188,34 @@ CREATE TABLE password_reset_tokens (
     expiration_date TIMESTAMP NOT NULL,
     FOREIGN KEY (account_id) REFERENCES Account(id)
 );
+INSERT INTO Account(username, password, fullname, birthday, email, phonenumber, role) values ('hongquan', 123456, 'Dang Hong Quan', '1999-01-01','quandhth2304004@fpt.edu.vn','0383240511', 'customer');
+INSERT INTO Account(username, password, fullname, birthday, email, phonenumber, role) values ('phamhoang', 123456, 'Pham Nhat Hoang', '1999-01-01','hoangpnth2304021@fpt.edu.vn','0915298826', 'customer');
+INSERT INTO Account(username, password, fullname, birthday, email, phonenumber, role) values ('dothao', 123456, 'Do Thi Thao', '1999-01-01','thaodtth2304010@fpt.edu.vn','0348279942', 'customer');
+SELECT * FROM  Account;
+
+INSERT INTO Course(name, price, status) values ('Toeic Basic', 50, 0);
+INSERT INTO Course(name, price, status) values ('Toeic Pre', 100, 0);
+INSERT INTO Course(name, price, status) values ('Toeic A', 120, 0);
+
+SELECT * FROM Course;
+
+INSERT INTO Order_(userId, status) values(1,0);
+INSERT INTO Order_(userId, status) values(2,0);
+INSERT INTO Order_(userId, status) values(3,0);
+
+SELECT * FROM Order_;
+
+INSERT INTO Instructor(name, bio, email, gender, phoneNumber) values ('Nguyễn Cẩm Tú', '900 TOEIC Người giáo viên khơi dậy niềm đam mê với việc học Tiếng Anh trong các em. Sở thích: Nghe nhạc và xem phim tiếng Anh','instructor1@gmail.com', 'female', '0123456765');
+INSERT INTO Instructor(name, bio, email, gender, phoneNumber) values ('Nguyễn Khánh Linh', '960 TOEIC Cô giáo năng động và tràn đầy nhiệt huyết với nghề Cô có phong cách giảng dạy vô cùng cuốn hút','instructor2@gmail.com', 'female', '0126456765');
+INSERT INTO Instructor(name, bio, email, gender, phoneNumber) values ('Lê Hoài Anh', '930 TOEIC Sinh và lớn lên ở thành phố biển Hạ Long ','instructor3@gmail.com', 'male', '0153456765');
+
+SELECT * FROM Instructor;
+
+INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (1,1,'P301 14h30-16h', '2024-08-11','2024-10-05', 0);
+INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (2,1,'P303 17h-18h30', '2024-08-11','2024-10-05', 0);
+INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (2,2,'P301 17h-18h30', '2024-08-12','2024-10-07', 0);
+INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (3,2,'P401 9h-10h30', '2024-07-11','2024-10-05', 0);
+INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (2,3,'P201 17h-18h30', '2024-08-05','2024-10-01', 0);
+INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (3,3,'P301 17h-18h30', '2024-06-16','2024-09-05', 0);
+
+select * FROM Class;
