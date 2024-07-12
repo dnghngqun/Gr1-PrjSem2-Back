@@ -33,6 +33,8 @@ public class CourseService {
          course.setName(courseDetails.getName());
          course.setPrice(courseDetails.getPrice());
          course.setStatus(courseDetails.getStatus());
+         course.setClassify(courseDetails.getClassify());
+         course.setImgLink(course.getImgLink());
          //courseDetails là đối tượng chứa dữ liệu mới được gửi từ client hoặc người dùng để cập nhật.
          // nên dt course sẽ dc update theo cac trg của courseDetails ( nó là dữ liêu phải yc chỉnh sửa từ phía client)
          return courseRepository.save(course);

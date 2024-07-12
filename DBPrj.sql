@@ -1,3 +1,4 @@
+drop database CourseManagement;
 CREATE DATABASE CourseManagement;
 use CourseManagement;
 
@@ -5,6 +6,8 @@ CREATE TABLE Course(
     id INT AUTO_INCREMENT PRIMARY KEY ,
     name varchar(255) not null ,
     price decimal,
+    imgLink varchar(255),
+    classify varchar(255),
     status TINYINT,
     createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
     updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE  CURRENT_TIMESTAMP
@@ -22,14 +25,6 @@ CREATE TABLE Category(
     FOREIGN KEY (courseId) REFERENCES Course(id)
 );
 
-Create Table ImageAccount(
-	id INT AUTO_INCREMENT PRIMARY KEY,
-	userId int,
-	imageLink varchar(255),
-	createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
-    updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE  CURRENT_TIMESTAMP,
-    FOREIGN KEY (userId) REFERENCES Account(id)
-);
 
 CREATE TABLE Instructor (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -55,6 +50,14 @@ CREATE TABLE Account(
     role enum('admin', 'customer', 'staff') not null
 );
 
+Create Table ImageAccount(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	userId int,
+	imageLink varchar(255),
+	createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
+    updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE  CURRENT_TIMESTAMP,
+    FOREIGN KEY (userId) REFERENCES Account(id)
+);
 
 
 CREATE TABLE Review (
@@ -154,14 +157,6 @@ CREATE TABLE Payment (
 );
 
 
-CREATE TABLE ImageCourse(
-    id INT AUTO_INCREMENT PRIMARY KEY ,
-    courseId INT,
-    path varchar(255),
-    createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
-    updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (courseId) REFERENCES Course(id)
-);
 
 SELECT * FROM Account;
 
@@ -204,9 +199,20 @@ INSERT INTO Account(username, password, fullname, birthday, email, phonenumber, 
 INSERT INTO Account(username, password, fullname, birthday, email, phonenumber, role) values ('dothao', 123456, 'Do Thi Thao', '1999-01-01','thaodtth2304010@fpt.edu.vn','0348279942', 'customer');
 SELECT * FROM  Account;
 
-INSERT INTO Course(name, price, status) values ('Toeic Basic', 50, 0);
-INSERT INTO Course(name, price, status) values ('Toeic Pre', 100, 0);
-INSERT INTO Course(name, price, status) values ('Toeic A', 120, 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Basic', 50,"https://i.imgur.com/ODfI54z.png","TOEIC2", 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Pre', 100,"https://i.imgur.com/8dpJvLe.png","TOEIC2", 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic A', 120,"https://i.imgur.com/OdYAIsW.png","TOEIC2", 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Basic', 50,"https://i.imgur.com/CEUHoyL.png","IELTS", 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Pre', 100,"https://i.imgur.com/22AovQJ.png","IELTS", 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic A', 120,"https://i.imgur.com/OdYAIsW.png","TOEIC2", 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Basic', 50,"https://i.imgur.com/CEUHoyL.png","IELTS", 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Pre', 100,"https://i.imgur.com/22AovQJ.png","IELTS", 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic A', 120,"https://i.imgur.com/OdYAIsW.png","TOEIC2", 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Basic', 50,"https://i.imgur.com/CEUHoyL.png","IELTS", 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Pre', 100,"https://i.imgur.com/22AovQJ.png","IELTS", 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic A', 120,"https://i.imgur.com/OdYAIsW.png","TOEIC2", 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Basic', 50,"https://i.imgur.com/CEUHoyL.png","IELTS", 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Pre', 100,"https://i.imgur.com/22AovQJ.png","IELTS", 0);
 
 SELECT * FROM Course;
 

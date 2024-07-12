@@ -11,6 +11,8 @@ public class Course {
     private int id;
     private String name;
     private double price;
+    private String imgLink;
+    private String classify;
     private int status;
     @Transient //giá trị này không được ánh xạ vào database
     private Timestamp createdAt;
@@ -40,10 +42,28 @@ public class Course {
     public Course() {
     }
 
-    public Course(String name, double price, int status) {
+    public String getImgLink() {
+        return imgLink;
+    }
+
+    public void setImgLink(String imgLink) {
+        this.imgLink = imgLink;
+    }
+
+    public Course(String name, double price, String imgLink, String classify, int status) {
         this.name = name;
         this.price = price;
+        this.imgLink = imgLink;
+        this.classify = classify;
         this.status = status;
+    }
+
+    public String getClassify() {
+        return classify;
+    }
+
+    public void setClassify(String classify) {
+        this.classify = classify;
     }
 
     public int getId() {
