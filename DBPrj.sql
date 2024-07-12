@@ -1,5 +1,6 @@
 CREATE DATABASE CourseManagement;
 use CourseManagement;
+
 CREATE TABLE Course(
     id INT AUTO_INCREMENT PRIMARY KEY ,
     name varchar(255) not null ,
@@ -8,6 +9,8 @@ CREATE TABLE Course(
     createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
     updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE  CURRENT_TIMESTAMP
 );
+
+
 
 CREATE TABLE Category(
     id INT AUTO_INCREMENT PRIMARY KEY ,
@@ -19,6 +22,14 @@ CREATE TABLE Category(
     FOREIGN KEY (courseId) REFERENCES Course(id)
 );
 
+Create Table ImageAccount(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	userId int,
+	imageLink varchar(255),
+	createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
+    updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE  CURRENT_TIMESTAMP,
+    FOREIGN KEY (userId) REFERENCES Account(id)
+);
 
 CREATE TABLE Instructor (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -131,7 +142,7 @@ CREATE TABLE Payment (
     id INT PRIMARY KEY AUTO_INCREMENT,
     paymentId VARCHAR(255) NOT NULL,
     userId INT,
-    paymentMethod ENUM('Visa/MasterCard', 'PayPal', 'QRCode'),
+    paymentMethod varchar(255),
     orderDetailId INT NOT NULL,
     amount DECIMAL,
     paymentDate TIMESTAMP,
@@ -219,3 +230,5 @@ INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) 
 INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (3,3,'P301 17h-18h30', '2024-06-16','2024-09-05', 0);
 
 select * FROM Class;
+
+SELECT  * FROM Payment ;

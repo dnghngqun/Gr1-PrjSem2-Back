@@ -26,7 +26,7 @@ public class Payment {
     private OrderDetail orderDetail;
 
     @Column(name = "paymentMethod")
-    private String paymentMethod = "'Visa/MasterCard', 'PayPal', 'QRCode'";
+    private String paymentMethod;
     @Column(name = "amount")
     private double amount;
     @Column(name = "paymentDate")

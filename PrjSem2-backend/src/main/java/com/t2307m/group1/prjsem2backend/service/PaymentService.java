@@ -63,6 +63,7 @@ public class PaymentService {
     @Transactional
     public Payment executePayment(Payment payment) {
         // Thực hiện lưu thông tin thanh toán vào cơ sở dữ liệu
+        payment.setPaymentMethod(payment.getPaymentMethod());
         payment.setPaymentDate(new Timestamp(System.currentTimeMillis())); // Thiết lập ngày thanh toán
         payment.setStatus(1); // Đánh dấu thanh toán thành công
 

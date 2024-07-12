@@ -4,7 +4,6 @@ import com.t2307m.group1.prjsem2backend.model.Account;
 import com.t2307m.group1.prjsem2backend.model.LoginRequest;
 import com.t2307m.group1.prjsem2backend.model.PasswordResetToken;
 import com.t2307m.group1.prjsem2backend.model.ResponseObject;
-import com.t2307m.group1.prjsem2backend.repositories.AccountRepository;
 import com.t2307m.group1.prjsem2backend.repositories.PasswordResetTokenRepository;
 import com.t2307m.group1.prjsem2backend.service.AccountService;
 import com.t2307m.group1.prjsem2backend.service.EmailService;
