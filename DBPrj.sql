@@ -23,7 +23,7 @@ CREATE TABLE Section (
     introduce VARCHAR(255),
     contentIntroduce TEXT,
     details VARCHAR(500),
-    contentDetails TEXT
+    contentDetails TEXT,
     countLessons varchar(255),
     durationLesson varchar(255),
     supportTime Text,
@@ -216,21 +216,11 @@ INSERT INTO Account(username, password, fullname, birthday, email, phonenumber, 
 INSERT INTO Account(username, password, fullname, birthday, email, phonenumber, role) values ('dothao', 123456, 'Do Thi Thao', '1999-01-01','thaodtth2304010@fpt.edu.vn','0348279942', 'customer');
 SELECT * FROM  Account;
 
-INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Basic', 50,"https://i.imgur.com/ODfI54z.png","TOEIC2", 0);
-INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Pre', 100,"https://i.imgur.com/8dpJvLe.png","TOEIC2", 0);
-INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic A', 120,"https://i.imgur.com/OdYAIsW.png","TOEIC2", 0);
-INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Basic', 50,"https://i.imgur.com/CEUHoyL.png","IELTS", 0);
-INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Pre', 100,"https://i.imgur.com/22AovQJ.png","IELTS", 0);
-INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic A', 120,"https://i.imgur.com/OdYAIsW.png","TOEIC2", 0);
-INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Basic', 50,"https://i.imgur.com/CEUHoyL.png","IELTS", 0);
-INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Pre', 100,"https://i.imgur.com/22AovQJ.png","IELTS", 0);
-INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic A', 120,"https://i.imgur.com/OdYAIsW.png","TOEIC2", 0);
-INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Basic', 50,"https://i.imgur.com/CEUHoyL.png","IELTS", 0);
-INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Pre', 100,"https://i.imgur.com/22AovQJ.png","IELTS", 0);
-INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic A', 120,"https://i.imgur.com/OdYAIsW.png","TOEIC2", 0);
-INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Basic', 50,"https://i.imgur.com/CEUHoyL.png","IELTS", 0);
-INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Pre', 100,"https://i.imgur.com/22AovQJ.png","IELTS", 0);
-
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Basic', 50,'https://i.imgur.com/ODfI54z.png','TOEIC2', 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Pre', 100,'https://i.imgur.com/8dpJvLe.png','TOEIC2', 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic A', 120,'https://i.imgur.com/OdYAIsW.png','TOEIC2', 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Basic', 50,'https://i.imgur.com/CEUHoyL.png','IELTS', 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Pre', 100,'https://i.imgur.com/22AovQJ.png','IELTS', 0);
 SELECT * FROM Course;
 
 INSERT INTO Order_(userId, status) values(1,0);
@@ -245,31 +235,22 @@ INSERT INTO Instructor(name, bio, email, gender, phoneNumber) values ('Lê Hoài
 
 SELECT * FROM Instructor;
 
-INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (1,1,'P301 14h30-16h', '2024-08-11','2024-10-05', 0);
-INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (2,1,'P303 17h-18h30', '2024-08-11','2024-10-05', 0);
-INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (2,2,'P301 17h-18h30', '2024-08-12','2024-10-07', 0);
-INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (3,2,'P401 9h-10h30', '2024-07-11','2024-10-05', 0);
-INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (2,3,'P201 17h-18h30', '2024-08-05','2024-10-01', 0);
-INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (3,3,'P301 17h-18h30', '2024-06-16','2024-09-05', 0);
+INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (1,1,'14h30-16h', '2024-08-11','2024-10-05', 0);
+INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (1,2,'14h30-16h', '2024-08-11','2024-10-05', 0);
+INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (2,3,'14h30-16h', '2024-08-11','2024-10-05', 0);
+INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (1,1,'17h-18h30', '2024-08-11','2024-10-05', 0);
+INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (3,2,'17h-18h30', '2024-08-12','2024-10-07', 0);
+INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (1,2,'9h-10h30', '2024-07-11','2024-10-05', 0);
+INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (2,3,'17h-18h30', '2024-08-05','2024-10-01', 0);
+INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (3,3,'17h-18h30', '2024-06-16','2024-09-05', 0);
 
 select * FROM Class;
 
 SELECT  * FROM Payment ;
--- Goal section
-INSERT INTO Section (course_id, title, content) 
-VALUES (1, 'Goal', 'Goal: 550+ TOEIC Listening & Reading\nStudents will obtain a TOEIC certificate at 110 within 2 months after the course ends (to ensure sufficient knowledge retention for the exam, a free 100% retake is offered if the result is below 550). Additionally, students must meet the attendance and assignment requirements as per the class regulations.');
 
 -- Course description section
-INSERT INTO Section (course_id, title, content) 
-VALUES (1, 'Course Description', 'This course is for those who have a foundation but have never studied TOEIC or have studied but scored below 600.\nThe course will focus on essential TOEIC tasks, covering all listening sections (part 1-2-3-4), while simultaneously reviewing basic grammar and introducing fundamental reading sections. With over 15 vocabulary topics through FLASHCARDS, students will quickly expand their vocabulary. After the course, students typically achieve a score of 550+. This vocabulary set is compiled from ETS TOEIC exam materials to facilitate learning.');
-
--- Course Details section
-INSERT INTO Section (course_id, title, content) 
-VALUES (1, 'Course Details', '27 lessons (2 months a week)\nComplete all listening sections (part 1-2-3-4)\nReview basic grammar\nFamiliarize with basic reading sections');
-
--- Class Size and Schedule section
-INSERT INTO Section (course_id, title, content) 
-VALUES (1, 'Class Size and Schedule', '3 lessons per week\n1.5 hours per lesson\nShift 1: 18:00-18:30, Shift 2: 20:00-21:30 on evenings of Monday, Wednesday, Friday or Tuesday, Thursday, Saturday\nClass Size: 23-25 students\nThe classroom is equipped with air conditioning and a large screen TV.');
+INSERT INTO Section(course_id, goalTitle, contentGoal, introduce, contentIntroduce, details, contentDetails, countLessons, durationLesson, supportTime, classSize, contentClassSize)
+values (1, 'Goal: 550+ TOEIC Listening & Reading', 'Students will obtain a TOEIC certificate at 110 within 2 months after the course ends (to ensure sufficient knowledge retention for the exam, a free 100% retake is offered if the result is below 550).\n Additionally, students must meet the attendance and assignment requirements as per the class regulations.','This course is for those who have a foundation but have never studied TOEIC or have studied but scored below 600.','The course will focus on essential TOEIC tasks, covering all listening sections (part 1-2-3-4), while simultaneously reviewing basic grammar and introducing fundamental reading sections. With over 15 vocabulary topics through FLASHCARDS, students will quickly expand their vocabulary. After the course, students typically achieve a score of 550+. This vocabulary set is compiled from ETS TOEIC exam materials to facilitate learning.', '27 lessons \n(2 months a week)','Complete all listening sections (part 1-2-3-4)\nReview basic grammar\nFamiliarize with basic reading sections','3 lessons per week','1.5 hours per lesson','Shift 1: 18:00-18:30, Shift 2: 20:00-21:30 on evenings of Monday, Wednesday, Friday or Tuesday, Thursday, Saturday','23-25 students','The classroom is equipped with air conditioning and a large screen TV.');
 
 -- Lesson 1 - Lesson 3
 INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome) 

@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import org.antlr.v4.runtime.misc.NotNull;
 
 import java.sql.Timestamp;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 public class Class {
@@ -14,13 +14,11 @@ public class Class {
     private int id;
     // cấu hìnhh để id tự  đông tăng theo kiểu identity trong cơ sở dữ liệu
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "courseId", nullable = false)
     private Course course;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "instructorId", nullable = false)
     private Instructor instructor;
 

@@ -148,9 +148,9 @@ public class CourseController {
     }
 
     @GetMapping("/{courseId}/sections")
-    public ResponseEntity<List<Section>> getSectionsByCourseId(@PathVariable int courseId) {
-        List<Section> sections = courseService.getSectionsByCourseId(courseId);
-        return ResponseEntity.ok(sections);
+    public ResponseEntity<Section> getSectionsByCourseId(@PathVariable int courseId) {
+        Optional<Section> sections = courseService.getSectionByCourseId(courseId);
+        return ResponseEntity.ok(sections.get());
     }
 
     @DeleteMapping("/sections/{id}")

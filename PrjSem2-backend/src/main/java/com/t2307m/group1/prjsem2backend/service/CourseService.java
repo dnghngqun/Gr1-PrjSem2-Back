@@ -111,10 +111,8 @@ public class CourseService {
          return sectionRepository.findById(id);
      }
 
-     public List<Section> getSectionsByCourseId(int courseId) {
-         return sectionRepository.findAll().stream()
-                 .filter(section -> section.getCourse().getId() == courseId)
-                 .toList();
+     public Optional<Section> getSectionByCourseId(int courseId) {
+         return sectionRepository.findByCourseId(courseId);
      }
 
      public void deleteSectionById(int id) {

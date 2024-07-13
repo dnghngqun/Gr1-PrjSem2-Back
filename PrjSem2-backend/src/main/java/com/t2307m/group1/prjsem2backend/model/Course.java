@@ -12,6 +12,7 @@ public class Course {
     private String name;
     private double price;
     private String imgLink;
+    @Column(name = "classify")
     private String classify;
     private int status;
     @Transient //giá trị này không được ánh xạ vào database

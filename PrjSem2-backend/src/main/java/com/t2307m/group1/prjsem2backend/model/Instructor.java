@@ -12,6 +12,7 @@ public class Instructor {
     private String name;
     private String bio;
     private String email;
+    private String gender;
     private String phoneNumber;
     @Transient //giá trị này không được ánh xạ vào database
     private Timestamp createdAt;
@@ -38,11 +39,20 @@ public class Instructor {
         this.updateAt = updateAt;
     }
 
-    public Instructor(String name, String bio, String email, String phoneNumber) {
+    public Instructor(String name, String bio, String email, String gender, String phoneNumber) {
         this.name = name;
         this.bio = bio;
         this.email = email;
+        this.gender = gender;
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public Instructor() {

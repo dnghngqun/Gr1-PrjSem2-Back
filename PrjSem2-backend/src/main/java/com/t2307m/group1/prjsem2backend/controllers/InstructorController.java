@@ -7,10 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/instructors")
+@RequestMapping("/api/v1/instructors")
 public class InstructorController {
     // tạo 1 instructorService
 
@@ -48,5 +49,11 @@ public class InstructorController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("")
+    public ResponseEntity<List<Instructor>> getAllInstructors() {
+        List<Instructor> instructors = instructorService.getAllInstructor();
+        return ResponseEntity.ok(instructors);
     }
 }
