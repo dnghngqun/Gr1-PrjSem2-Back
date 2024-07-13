@@ -15,15 +15,32 @@ CREATE TABLE Course(
 
 
 
-CREATE TABLE Category(
-    id INT AUTO_INCREMENT PRIMARY KEY ,
-    categoryName varchar(255),
-    courseId int,
-    description varchar(255),
-    createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
-    updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE  CURRENT_TIMESTAMP,
-    FOREIGN KEY (courseId) REFERENCES Course(id)
+CREATE TABLE Section (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    course_id INT,
+    goalTitle VARCHAR(255),
+    contentGoal TEXT,
+    introduce VARCHAR(255),
+    contentIntroduce TEXT,
+    details VARCHAR(500),
+    contentDetails TEXT
+    countLessons varchar(255),
+    durationLesson varchar(255),
+    supportTime Text,
+    classSize varchar(255),
+    contentClassSize Text,
+    FOREIGN KEY (course_id) REFERENCES Course(id)
 );
+
+CREATE TABLE Lesson (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    course_id INT,
+    lesson_number VARCHAR(255) NOT NULL,
+    topics_covered TEXT,
+    outcome TEXT,
+    FOREIGN KEY (course_id) REFERENCES Course(id)
+);
+
 
 
 CREATE TABLE Instructor (
@@ -238,3 +255,38 @@ INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) 
 select * FROM Class;
 
 SELECT  * FROM Payment ;
+-- Goal section
+INSERT INTO Section (course_id, title, content) 
+VALUES (1, 'Goal', 'Goal: 550+ TOEIC Listening & Reading\nStudents will obtain a TOEIC certificate at 110 within 2 months after the course ends (to ensure sufficient knowledge retention for the exam, a free 100% retake is offered if the result is below 550). Additionally, students must meet the attendance and assignment requirements as per the class regulations.');
+
+-- Course description section
+INSERT INTO Section (course_id, title, content) 
+VALUES (1, 'Course Description', 'This course is for those who have a foundation but have never studied TOEIC or have studied but scored below 600.\nThe course will focus on essential TOEIC tasks, covering all listening sections (part 1-2-3-4), while simultaneously reviewing basic grammar and introducing fundamental reading sections. With over 15 vocabulary topics through FLASHCARDS, students will quickly expand their vocabulary. After the course, students typically achieve a score of 550+. This vocabulary set is compiled from ETS TOEIC exam materials to facilitate learning.');
+
+-- Course Details section
+INSERT INTO Section (course_id, title, content) 
+VALUES (1, 'Course Details', '27 lessons (2 months a week)\nComplete all listening sections (part 1-2-3-4)\nReview basic grammar\nFamiliarize with basic reading sections');
+
+-- Class Size and Schedule section
+INSERT INTO Section (course_id, title, content) 
+VALUES (1, 'Class Size and Schedule', '3 lessons per week\n1.5 hours per lesson\nShift 1: 18:00-18:30, Shift 2: 20:00-21:30 on evenings of Monday, Wednesday, Friday or Tuesday, Thursday, Saturday\nClass Size: 23-25 students\nThe classroom is equipped with air conditioning and a large screen TV.');
+
+-- Lesson 1 - Lesson 3
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome) 
+VALUES (1, 'Lesson 1 - Lesson 3', 'Practice part 1\nPeople description pictures\nObject description pictures\nMixed pictures', 'Ability to describe situations related to people, including appearance, emotional states, and daily activities.\nCapability to describe and identify common objects through images, such as utensils, everyday items, and more.');
+
+-- Lesson 4 - Lesson 8
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome) 
+VALUES (1, 'Lesson 4 - Lesson 8', 'Practice Part 2', 'Learn about everyday communication situations, including discussing work and daily life. Expand vocabulary related to topics such as travel, shopping, and entertainment. Practice listening skills and understanding content from simple and useful dialogues.');
+
+-- Lesson 9 - Lesson 19
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome) 
+VALUES (1, 'Lesson 9 - Lesson 19', 'Practice Part 3\nGrammar Part 5-6', 'Study basic grammar structures such as present simple, past simple, and conditional sentences. Apply grammar rules to enhance accuracy and confidence in speaking and writing English.');
+
+-- Lesson 20 - Lesson 26
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome) 
+VALUES (1, 'Lesson 20 - Lesson 26', 'Practice part 4\nGrammar Part 5-6\nPractice tests', 'Develop the ability to synthesize and apply learned knowledge in real-life situations. Familiarize yourself with high-applicability exercises, such as reading and evaluating information from short passages and articles.');
+
+-- Lesson 27
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome) 
+VALUES (1, 'Lesson 27', 'Final test', 'Comprehensive assessment of listening, reading, speaking, and writing skills in the TOEIC exam format. Evaluate personal progress and determine readiness for the actual exam.');

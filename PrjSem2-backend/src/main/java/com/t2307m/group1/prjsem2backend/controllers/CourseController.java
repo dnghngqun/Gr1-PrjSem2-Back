@@ -2,6 +2,8 @@
 package com.t2307m.group1.prjsem2backend.controllers;
 
 import com.t2307m.group1.prjsem2backend.model.Course;
+import com.t2307m.group1.prjsem2backend.model.Lesson;
+import com.t2307m.group1.prjsem2backend.model.Section;
 import com.t2307m.group1.prjsem2backend.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,8 +17,13 @@ import java.util.Optional;
 @RequestMapping("/api/v1/courses")
 public class CourseController {
 
+
+    private final CourseService courseService;
     @Autowired
-    private CourseService courseService;
+    public CourseController(CourseService courseService) {
+        this.courseService = courseService;
+    }
+
 
     @GetMapping
     // Ánh xạ các yêu cầu http GET với /api/courses
@@ -98,5 +105,57 @@ public class CourseController {
         Optional<List<Course>> courses = courseService.getCoursesByNameAndStatus(name, status);
         return courses.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    // Lesson Endpoints
+    @PostMapping("/lessons")
+    public ResponseEntity<Lesson> createLesson(@RequestBody Lesson lesson) {
+        Lesson createdLesson = courseService.saveLesson(lesson);
+        return ResponseEntity.ok(createdLesson);
+    }
+
+    @GetMapping("/lessons/{id}")
+    public ResponseEntity<Lesson> getLesson(@PathVariable int id) {
+        return courseService.getLessonById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/{courseId}/lessons")
+    public ResponseEntity<List<Lesson>> getLessonsByCourseId(@PathVariable int courseId) {
+        List<Lesson> lessons = courseService.getLessonsByCourseId(courseId);
+        return ResponseEntity.ok(lessons);
+    }
+
+    @DeleteMapping("/lessons/{id}")
+    public ResponseEntity<Void> deleteLesson(@PathVariable int id) {
+        courseService.deleteLessonById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    // Section Endpoints
+    @PostMapping("/sections")
+    public ResponseEntity<Section> createSection(@RequestBody Section section) {
+        Section createdSection = courseService.saveSection(section);
+        return ResponseEntity.ok(createdSection);
+    }
+
+    @GetMapping("/sections/{id}")
+    public ResponseEntity<Section> getSection(@PathVariable int id) {
+        return courseService.getSectionById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/{courseId}/sections")
+    public ResponseEntity<List<Section>> getSectionsByCourseId(@PathVariable int courseId) {
+        List<Section> sections = courseService.getSectionsByCourseId(courseId);
+        return ResponseEntity.ok(sections);
+    }
+
+    @DeleteMapping("/sections/{id}")
+    public ResponseEntity<Void> deleteSection(@PathVariable int id) {
+        courseService.deleteSectionById(id);
+        return ResponseEntity.noContent().build();
     }
 }
