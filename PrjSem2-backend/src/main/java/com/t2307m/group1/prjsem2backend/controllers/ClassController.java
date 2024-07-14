@@ -1,6 +1,6 @@
 package com.t2307m.group1.prjsem2backend.controllers;
 
-import com.t2307m.group1.prjsem2backend.model.Class;
+import com.t2307m.group1.prjsem2backend.model.AClass;
 import com.t2307m.group1.prjsem2backend.model.ResponseObject;
 import com.t2307m.group1.prjsem2backend.service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +22,11 @@ public class ClassController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<ResponseObject> addClass(@RequestBody Class aClass){
+    public ResponseEntity<ResponseObject> addClass(@RequestBody AClass aClass){
         try {
-            Class newClass = classService.addClass(aClass);
+            AClass newAClass = classService.addClass(aClass);
             return ResponseEntity.status(HttpStatus.OK).body(
-                    new ResponseObject("ok", "Add Class Successfully!", newClass)
+                    new ResponseObject("ok", "Add Class Successfully!", newAClass)
             );
         }catch (Exception e){
             System.err.println("Exception: " + e);
@@ -37,11 +37,11 @@ public class ClassController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ResponseObject> updateClass(@PathVariable int id, @RequestBody Class classUpdate){
+    public ResponseEntity<ResponseObject> updateClass(@PathVariable int id, @RequestBody AClass aClassUpdate){
         try{
-            Class updateClass = classService.updateClass(id, classUpdate);
+            AClass updateAClass = classService.updateClass(id, aClassUpdate);
             return ResponseEntity.status(HttpStatus.OK).body(
-                    new ResponseObject("ok", "Update Class Successfully!", updateClass)
+                    new ResponseObject("ok", "Update Class Successfully!", updateAClass)
             );
         }catch (RuntimeException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
@@ -53,9 +53,9 @@ public class ClassController {
     @GetMapping("/")
     public ResponseEntity<ResponseObject> getAllClass(){
         try {
-            List<Class> allClass = classService.getAllClass();
+            List<AClass> allAClasses = classService.getAllClass();
             return ResponseEntity.status(HttpStatus.OK).body(
-                    new ResponseObject("ok", "Get all class successfully!", allClass)
+                    new ResponseObject("ok", "Get all class successfully!", allAClasses)
             );
         }catch (Exception e){
             System.err.println("Exception: " + e);
@@ -81,7 +81,7 @@ public class ClassController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ResponseObject> findClassById(@PathVariable int id){
-        Optional<Class> classOptional = classService.findClassById(id);
+        Optional<AClass> classOptional = classService.findClassById(id);
         return classOptional.map(value -> ResponseEntity.status(HttpStatus.OK).body(
                 new ResponseObject("ok", "Find class by id successfully!", value)
         )).orElseGet(() -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(

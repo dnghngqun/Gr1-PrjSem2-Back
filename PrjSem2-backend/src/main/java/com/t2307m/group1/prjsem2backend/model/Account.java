@@ -3,7 +3,7 @@ package com.t2307m.group1.prjsem2backend.model;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 public class Account implements Serializable {

@@ -1,11 +1,7 @@
 package com.t2307m.group1.prjsem2backend.service;
 
-import com.t2307m.group1.prjsem2backend.model.Class;
-import com.t2307m.group1.prjsem2backend.model.Course;
-import com.t2307m.group1.prjsem2backend.model.Instructor;
+import com.t2307m.group1.prjsem2backend.model.AClass;
 import com.t2307m.group1.prjsem2backend.repositories.ClassRepository;
-import com.t2307m.group1.prjsem2backend.repositories.CourseRepository;
-import com.t2307m.group1.prjsem2backend.repositories.InstructorRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,20 +19,20 @@ public class ClassService {
     }
 
     @Transactional
-    public Class addClass(Class aClass){
+    public AClass addClass(AClass aClass){
         return classRepository.save(aClass);
     }
 
     @Transactional
-    public Class updateClass(int id, Class classUpdate){
-        Optional<Class> classOpt = classRepository.findById(id);
+    public AClass updateClass(int id, AClass aClassUpdate){
+        Optional<AClass> classOpt = classRepository.findById(id);
         if (classOpt.isPresent()){
-            Class aClass = classOpt.get();
-            aClass.setCourse(classUpdate.getCourse());
-            aClass.setInstructor(classUpdate.getInstructor());
-            aClass.setLocation(classUpdate.getLocation());
-            aClass.setStartDate(classUpdate.getStartDate());
-            aClass.setEndDate(classUpdate.getEndDate());
+            AClass aClass = classOpt.get();
+            aClass.setCourse(aClassUpdate.getCourse());
+            aClass.setInstructor(aClassUpdate.getInstructor());
+            aClass.setLocation(aClassUpdate.getLocation());
+            aClass.setStartDate(aClassUpdate.getStartDate());
+            aClass.setEndDate(aClassUpdate.getEndDate());
             return classRepository.save(aClass);
         }else {
             throw new RuntimeException("Class not found");
@@ -49,11 +45,11 @@ public class ClassService {
         classRepository.deleteById(id);
     }
 
-    public List<Class> getAllClass(){
+    public List<AClass> getAllClass(){
         return classRepository.findAll();
     }
 
-    public Optional<Class> findClassById(int id){
+    public Optional<AClass> findClassById(int id){
         return classRepository.findById(id);
     }
 

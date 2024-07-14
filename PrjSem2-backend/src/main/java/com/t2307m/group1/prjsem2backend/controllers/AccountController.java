@@ -186,13 +186,23 @@ public class AccountController {
     }
 
     @PutMapping("/updateInformation/{id}")
-    public ResponseEntity<ResponseObject> updateInformation(@PathVariable int id, @RequestBody Account account){
+    public ResponseEntity<ResponseObject> updateInformation(@PathVariable int id, @RequestBody Account account, HttpSession session){
         Optional<Account> updateInformation = accountService.updateAccount(id, account);
-        return updateInformation.map(value -> ResponseEntity.status(HttpStatus.OK).body(
-                new ResponseObject("ok", "Update Information Success!", value)
-        )).orElseGet(() -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
-                new ResponseObject("failed", "Update Information Failed!","")
-        ));
+        if (updateInformation.isPresent()) {
+            // Lấy thông tin người dùng đã được cập nhật
+            Account updatedAccount = updateInformation.get();
+
+            // Cập nhật lại session với thông tin người dùng mới
+            session.setAttribute("user", updatedAccount);
+
+            return ResponseEntity.status(HttpStatus.OK).body(
+                    new ResponseObject("ok", "Update Information Success!", updatedAccount)
+            );
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
+                    new ResponseObject("failed", "Update Information Failed!","")
+            );
+        }
     }
 
 

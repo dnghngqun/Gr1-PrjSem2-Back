@@ -2,12 +2,12 @@ package com.t2307m.group1.prjsem2backend.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import org.antlr.v4.runtime.misc.NotNull;
 
 import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
+@Table(name = "Enrollment")
 public class Enrollment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,20 +16,24 @@ public class Enrollment {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @JoinColumn(name = "classId", nullable = false)
-    private Class aClass;
+    private AClass aClass;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @JoinColumn(name = "userId", nullable = false)
     private Account account;
 
-    private Date enrollmentDate;
-
+    private Timestamp enrollmentDate = new Timestamp(new Date().getTime());
+    private String progress;
     private int status;
     @Transient //giá trị này không được ánh xạ vào database
     private Timestamp createdAt;
     @Transient
     private Timestamp updateAt;
+
+    public Timestamp getEnrollmentDate() {
+        return enrollmentDate;
+    }
 
     public Timestamp getCreatedAt() {
         return createdAt;
@@ -50,11 +54,23 @@ public class Enrollment {
     public Enrollment() {
     }
 
-    public Enrollment(Class aClass, Account account, Date enrollmentDate, int status) {
+    public Enrollment(AClass aClass, Account account, String progress, int status) {
         this.aClass = aClass;
         this.account = account;
-        this.enrollmentDate = enrollmentDate;
+        this.progress = progress;
         this.status = status;
+    }
+
+    public void setEnrollmentDate(Timestamp enrollmentDate) {
+        this.enrollmentDate = enrollmentDate;
+    }
+
+    public String getProgress() {
+        return progress;
+    }
+
+    public void setProgress(String progress) {
+        this.progress = progress;
     }
 
     public int getId() {
@@ -65,11 +81,11 @@ public class Enrollment {
         this.id = id;
     }
 
-    public Class getaClass() {
+    public AClass getaClass() {
         return aClass;
     }
 
-    public void setaClass(Class aClass) {
+    public void setaClass(AClass aClass) {
         this.aClass = aClass;
     }
 
@@ -81,13 +97,6 @@ public class Enrollment {
         this.account = account;
     }
 
-    public Date getEnrollmentDate() {
-        return enrollmentDate;
-    }
-
-    public void setEnrollmentDate(Date enrollmentDate) {
-        this.enrollmentDate = enrollmentDate;
-    }
     public int getStatus() {return status;}
     public void setStatus(int status ){this.status = status;}
 }

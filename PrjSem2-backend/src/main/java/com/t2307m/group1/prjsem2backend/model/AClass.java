@@ -1,14 +1,13 @@
 package com.t2307m.group1.prjsem2backend.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import org.antlr.v4.runtime.misc.NotNull;
 
 import java.sql.Timestamp;
 import java.sql.Date;
 
 @Entity
-public class Class {
+@Table(name = "Class")
+public class AClass {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -31,7 +30,7 @@ public class Class {
     private Timestamp createdAt;
     @Transient
     private Timestamp updateAt;
-    public Class() {
+    public AClass() {
     }
 
     public Timestamp getCreatedAt() {
@@ -50,7 +49,7 @@ public class Class {
         this.updateAt = updateAt;
     }
 
-    public Class(Course course, Instructor instructor, String location, Date startDate, Date endDate, int status) {
+    public AClass(Course course, Instructor instructor, String location, Date startDate, Date endDate, int status) {
         this.course = course;
         this.instructor = instructor;
         this.location = location;

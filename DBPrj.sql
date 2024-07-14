@@ -22,7 +22,7 @@ CREATE TABLE Section (
     contentGoal TEXT,
     introduce VARCHAR(255),
     contentIntroduce TEXT,
-    details VARCHAR(500),
+    details int,
     contentDetails TEXT,
     countLessons varchar(255),
     durationLesson varchar(255),
@@ -110,7 +110,8 @@ CREATE TABLE Enrollment (
     id INT AUTO_INCREMENT PRIMARY KEY,
     classId INT NOT NULL,
     userId INT NOT NULL,
-    enrollmentDate DATE,
+    enrollmentDate TIMESTAMP,
+    progress varchar(255),
     status TINYINT,
     createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
     updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -250,8 +251,15 @@ SELECT  * FROM Payment ;
 
 -- Course description section
 INSERT INTO Section(course_id, goalTitle, contentGoal, introduce, contentIntroduce, details, contentDetails, countLessons, durationLesson, supportTime, classSize, contentClassSize)
-values (1, 'Goal: 550+ TOEIC Listening & Reading', 'Students will obtain a TOEIC certificate at 110 within 2 months after the course ends (to ensure sufficient knowledge retention for the exam, a free 100% retake is offered if the result is below 550).\n Additionally, students must meet the attendance and assignment requirements as per the class regulations.','This course is for those who have a foundation but have never studied TOEIC or have studied but scored below 600.','The course will focus on essential TOEIC tasks, covering all listening sections (part 1-2-3-4), while simultaneously reviewing basic grammar and introducing fundamental reading sections. With over 15 vocabulary topics through FLASHCARDS, students will quickly expand their vocabulary. After the course, students typically achieve a score of 550+. This vocabulary set is compiled from ETS TOEIC exam materials to facilitate learning.', '27 lessons \n(2 months a week)','Complete all listening sections (part 1-2-3-4)\nReview basic grammar\nFamiliarize with basic reading sections','3 lessons per week','1.5 hours per lesson','Shift 1: 18:00-18:30, Shift 2: 20:00-21:30 on evenings of Monday, Wednesday, Friday or Tuesday, Thursday, Saturday','23-25 students','The classroom is equipped with air conditioning and a large screen TV.');
-
+values (1, 'Goal: 550+ TOEIC Listening & Reading',
+'Students will obtain a TOEIC certificate at 110 within 2 months after the course ends (to ensure sufficient knowledge retention for the exam, a free 100% retake is offered if the result is below 550).\n Additionally, students must meet the attendance and assignment requirements as per the class regulations.',
+'This course is for those who have a foundation but have never studied TOEIC or have studied but scored below 600.',
+'The course will focus on essential TOEIC tasks, covering all listening sections (part 1-2-3-4), while simultaneously reviewing basic grammar and introducing fundamental reading sections. With over 15 vocabulary topics through FLASHCARDS, students will quickly expand their vocabulary. After the course, students typically achieve a score of 550+. This vocabulary set is compiled from ETS TOEIC exam materials to facilitate learning.', 
+27,
+'Complete all listening sections (part 1-2-3-4)\nReview basic grammar\nFamiliarize with basic reading sections',
+'3 lessons per week','1.5 hours per lesson',
+'Shift 1: 18:00-18:30, Shift 2: 20:00-21:30 on evenings of Monday, Wednesday, Friday or Tuesday, Thursday, Saturday','23-25 students','The classroom is equipped with air conditioning and a large screen TV.');
+SELECT * FROM `Section` s ;
 -- Lesson 1 - Lesson 3
 INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome) 
 VALUES (1, 'Lesson 1 - Lesson 3', 'Practice part 1\nPeople description pictures\nObject description pictures\nMixed pictures', 'Ability to describe situations related to people, including appearance, emotional states, and daily activities.\nCapability to describe and identify common objects through images, such as utensils, everyday items, and more.');
@@ -271,3 +279,5 @@ VALUES (1, 'Lesson 20 - Lesson 26', 'Practice part 4\nGrammar Part 5-6\nPractice
 -- Lesson 27
 INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome) 
 VALUES (1, 'Lesson 27', 'Final test', 'Comprehensive assessment of listening, reading, speaking, and writing skills in the TOEIC exam format. Evaluate personal progress and determine readiness for the actual exam.');
+
+SELECT * FROM Enrollment e ;
