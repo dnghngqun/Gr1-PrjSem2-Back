@@ -30,8 +30,8 @@ public class OrderDetail {
     private Order order;
 
 
-    private double discount;
-    private double totalAmount;
+    private Double discount;
+    private Double totalAmount;
     @Transient //giá trị này không được ánh xạ vào database
     private Timestamp createdAt;
     @Transient
@@ -57,7 +57,7 @@ public class OrderDetail {
     public OrderDetail() {
     }
 
-    public OrderDetail(Order order, double discount, double totalAmount, Course course, int status) {
+    public OrderDetail(Order order, Double discount, Double totalAmount, Course course, Integer status) {
         this.order = order;
         this.discount = discount;
         this.totalAmount = totalAmount;
@@ -89,24 +89,24 @@ public class OrderDetail {
         this.order = order;
     }
 
-    public double getDiscount() {
+    public Double getDiscount() {
         return discount;
     }
 
-    public void setDiscount(double discount) {
+    public void setDiscount(Double discount) {
         this.discount = discount;
     }
 
-    public double getTotalAmount() {
+    public Double getTotalAmount() {
         return totalAmount;
     }
 
-    public void setTotalAmount(double totalAmount) {
+    public void setTotalAmount(Double totalAmount) {
         this.totalAmount = totalAmount;
     }
 
-    public void setStatus(int status) {this.status = status;}
+    public void setStatus(Integer status) {this.status = status;}
 
-    public int getStatus() {return status;}
+    public Integer getStatus() {return status;}
 
 }

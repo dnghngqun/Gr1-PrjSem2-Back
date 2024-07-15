@@ -20,6 +20,8 @@ public class Account implements Serializable {
     private String phoneNumber;// this field require regex
     @Column(name = "fullName", nullable = false)
     private String fullName;
+    @Column(name = "imageAccount")
+    private String imageAccount = "https://i.imgur.com/jvskbNg.jpg";//default image account
     @Column(name = "birthday", nullable = false)
     private Date birthday;
     private String role = "customer"; //default customer, if admin or staff, ghi de
@@ -49,13 +51,23 @@ public class Account implements Serializable {
     }
 
 
-    public Account(String userName, String email, String password, String phoneNumber, String fullName, Date birthday) {
+    public Account(String userName, String email, String password, String phoneNumber, String fullName, String imageAccount, Date birthday, String role) {
         this.userName = userName;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.fullName = fullName;
+        this.imageAccount = imageAccount;
         this.birthday = birthday;
+        this.role = role;
+    }
+
+    public String getImageAccount() {
+        return imageAccount;
+    }
+
+    public void setImageAccount(String imageAccount) {
+        this.imageAccount = imageAccount;
     }
 
     public String getFullName() {

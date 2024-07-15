@@ -62,18 +62,10 @@ CREATE TABLE Account(
     birthday DATE not null ,
     email varchar(255) not null,
     phoneNumber varchar(255) not null,
+    imageAccount varchar(255), 
     createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
     updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     role enum('admin', 'customer', 'staff') not null
-);
-
-Create Table ImageAccount(
-	id INT AUTO_INCREMENT PRIMARY KEY,
-	userId int,
-	imageLink varchar(255),
-	createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
-    updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE  CURRENT_TIMESTAMP,
-    FOREIGN KEY (userId) REFERENCES Account(id)
 );
 
 
@@ -212,9 +204,9 @@ CREATE TABLE password_reset_tokens (
     expiration_date TIMESTAMP NOT NULL,
     FOREIGN KEY (account_id) REFERENCES Account(id)
 );
-INSERT INTO Account(username, password, fullname, birthday, email, phonenumber, role) values ('hongquan', 123456, 'Dang Hong Quan', '1999-01-01','quandhth2304004@fpt.edu.vn','0383240511', 'customer');
-INSERT INTO Account(username, password, fullname, birthday, email, phonenumber, role) values ('phamhoang', 123456, 'Pham Nhat Hoang', '1999-01-01','hoangpnth2304021@fpt.edu.vn','0915298826', 'customer');
-INSERT INTO Account(username, password, fullname, birthday, email, phonenumber, role) values ('dothao', 123456, 'Do Thi Thao', '1999-01-01','thaodtth2304010@fpt.edu.vn','0348279942', 'customer');
+INSERT INTO Account(username, password, fullname,imageAccount, birthday, email, phonenumber, role) values ('hongquan', 123456, 'Dang Hong Quan','https://i.imgur.com/jvskbNg.jpg', '1999-01-01','quandhth2304004@fpt.edu.vn','0383240511', 'customer');
+INSERT INTO Account(username, password, fullname,imageAccount ,birthday, email, phonenumber, role) values ('phamhoang', 123456, 'Pham Nhat Hoang','https://i.imgur.com/jvskbNg.jpg', '1999-01-01','hoangpnth2304021@fpt.edu.vn','0915298826', 'customer');
+INSERT INTO Account(username, password, fullname,imageAccount, birthday, email, phonenumber, role) values ('dothao', 123456, 'Do Thi Thao','https://i.imgur.com/jvskbNg.jpg', '1999-01-01','thaodtth2304010@fpt.edu.vn','0348279942', 'customer');
 SELECT * FROM  Account;
 
 INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Basic', 50,'https://i.imgur.com/ODfI54z.png','TOEIC2', 0);

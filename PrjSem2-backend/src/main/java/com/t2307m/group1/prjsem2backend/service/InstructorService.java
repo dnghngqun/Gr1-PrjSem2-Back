@@ -26,16 +26,31 @@ public class InstructorService {
         return instructorOptional;
     }
 
-    public boolean updateInstructor(String email,Instructor instructor){
-        if (findIntructorByEmail(email).isEmpty()) return false;
-        Instructor newInstructor = findIntructorByEmail(email).get();
-        newInstructor.setName(instructor.getName());
-        newInstructor.setBio(instructor.getBio());
-        newInstructor.setGender(instructor.getGender());
-        newInstructor.setPhoneNumber(instructor.getPhoneNumber());
+    public boolean updateInstructor(String email, Instructor instructor) {
+        Optional<Instructor> instructorOpt = findIntructorByEmail(email);
+        if (instructorOpt.isEmpty()) {
+            return false;
+        }
+
+        Instructor newInstructor = instructorOpt.get();
+
+        if (instructor.getName() != null) {
+            newInstructor.setName(instructor.getName());
+        }
+        if (instructor.getBio() != null) {
+            newInstructor.setBio(instructor.getBio());
+        }
+        if (instructor.getGender() != null) {
+            newInstructor.setGender(instructor.getGender());
+        }
+        if (instructor.getPhoneNumber() != null) {
+            newInstructor.setPhoneNumber(instructor.getPhoneNumber());
+        }
+
         instructorRepository.save(newInstructor);
         return true;
     }
+
 
     public List<Instructor> getAllInstructor(){
         return instructorRepository.findAll();

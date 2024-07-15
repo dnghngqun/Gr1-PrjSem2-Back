@@ -32,9 +32,16 @@ public class OrderService {
         if (orderOpt.isEmpty()) {
             throw new RuntimeException("Order not found");
         }
+
         Order order = orderOpt.get();
-        order.setTotalPrice(orderUpdate.getTotalPrice());
-        order.setStatus(orderUpdate.getStatus());
+
+        if (orderUpdate.getTotalPrice() != null) {
+            order.setTotalPrice(orderUpdate.getTotalPrice());
+        }
+        if (orderUpdate.getStatus() != null) {
+            order.setStatus(orderUpdate.getStatus());
+        }
+
         return orderRepository.save(order);
     }
 

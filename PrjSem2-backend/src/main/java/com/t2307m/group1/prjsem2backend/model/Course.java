@@ -10,11 +10,11 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private double price;
+    private Double price;
     private String imgLink;
     @Column(name = "classify")
     private String classify;
-    private int status;
+    private Integer status;
     @Transient //giá trị này không được ánh xạ vào database
     private Timestamp createdAt;
     @Transient
@@ -36,7 +36,7 @@ public class Course {
         this.createdAt = createdAt;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
@@ -51,7 +51,7 @@ public class Course {
         this.imgLink = imgLink;
     }
 
-    public Course(String name, double price, String imgLink, String classify, int status) {
+    public Course(String name, Double price, String imgLink, String classify, Integer status) {
         this.name = name;
         this.price = price;
         this.imgLink = imgLink;
@@ -83,15 +83,15 @@ public class Course {
         this.name = name;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 

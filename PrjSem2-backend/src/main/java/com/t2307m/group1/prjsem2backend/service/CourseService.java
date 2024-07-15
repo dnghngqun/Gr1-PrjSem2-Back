@@ -40,18 +40,28 @@ public class CourseService {
          return courseRepository.save(course);
          //nhan 1 obj course va luu vao csdl
      }
-     public Course updateCourse(int id,Course courseDetails){
-       // courseDetails  là một đối tượng của class Course chứa các thông tin mới sẽ được cập nhật vào khóa học hiện có.
-         Course course=courseRepository.findById(id).orElseThrow(()->new RuntimeException("Course not found"));
-         course.setName(courseDetails.getName());
-         course.setPrice(courseDetails.getPrice());
-         course.setStatus(courseDetails.getStatus());
-         course.setClassify(courseDetails.getClassify());
-         course.setImgLink(course.getImgLink());
-         //courseDetails là đối tượng chứa dữ liệu mới được gửi từ client hoặc người dùng để cập nhật.
-         // nên dt course sẽ dc update theo cac trg của courseDetails ( nó là dữ liêu phải yc chỉnh sửa từ phía client)
+     public Course updateCourse(int id, Course courseDetails) {
+         Course course = courseRepository.findById(id).orElseThrow(() -> new RuntimeException("Course not found"));
+
+         if (courseDetails.getName() != null) {
+             course.setName(courseDetails.getName());
+         }
+         if (courseDetails.getPrice() != null) {
+             course.setPrice(courseDetails.getPrice());
+         }
+         if (courseDetails.getStatus() != null) {
+             course.setStatus(courseDetails.getStatus());
+         }
+         if (courseDetails.getClassify() != null) {
+             course.setClassify(courseDetails.getClassify());
+         }
+         if (courseDetails.getImgLink() != null) {
+             course.setImgLink(courseDetails.getImgLink());
+         }
+
          return courseRepository.save(course);
      }
+
      public void deleteCourse(int id) {
          Course course = courseRepository.findById(id).orElseThrow(() -> new RuntimeException("Course not found"));
          courseRepository.delete(course);

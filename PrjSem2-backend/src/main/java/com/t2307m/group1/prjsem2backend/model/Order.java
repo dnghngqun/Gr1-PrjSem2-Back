@@ -16,8 +16,8 @@ public class Order{
     @JoinColumn(name = "userId", nullable = false)
     private Account account;
 
-    private double totalPrice;
-    private int status;
+    private Double totalPrice;
+    private Integer status;
     @Transient //giá trị này không được ánh xạ vào database
     private Timestamp createdAt;
     @Transient
@@ -41,7 +41,7 @@ public class Order{
 
 
 
-    public Order(Account account, double totalPrice, int status) {
+    public Order(Account account, Double totalPrice, Integer status) {
         this.account = account;
         this.totalPrice = totalPrice;
         this.status = status;
@@ -66,19 +66,19 @@ public class Order{
         this.account = account;
     }
 
-    public double getTotalPrice() {
+    public Double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(double totalPrice) {
+    public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

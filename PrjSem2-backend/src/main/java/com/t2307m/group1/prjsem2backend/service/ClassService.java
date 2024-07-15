@@ -24,20 +24,33 @@ public class ClassService {
     }
 
     @Transactional
-    public AClass updateClass(int id, AClass aClassUpdate){
+    public AClass updateClass(int id, AClass aClassUpdate) {
         Optional<AClass> classOpt = classRepository.findById(id);
-        if (classOpt.isPresent()){
+        if (classOpt.isPresent()) {
             AClass aClass = classOpt.get();
-            aClass.setCourse(aClassUpdate.getCourse());
-            aClass.setInstructor(aClassUpdate.getInstructor());
-            aClass.setLocation(aClassUpdate.getLocation());
-            aClass.setStartDate(aClassUpdate.getStartDate());
-            aClass.setEndDate(aClassUpdate.getEndDate());
+
+            if (aClassUpdate.getCourse() != null) {
+                aClass.setCourse(aClassUpdate.getCourse());
+            }
+            if (aClassUpdate.getInstructor() != null) {
+                aClass.setInstructor(aClassUpdate.getInstructor());
+            }
+            if (aClassUpdate.getLocation() != null) {
+                aClass.setLocation(aClassUpdate.getLocation());
+            }
+            if (aClassUpdate.getStartDate() != null) {
+                aClass.setStartDate(aClassUpdate.getStartDate());
+            }
+            if (aClassUpdate.getEndDate() != null) {
+                aClass.setEndDate(aClassUpdate.getEndDate());
+            }
+
             return classRepository.save(aClass);
-        }else {
+        } else {
             throw new RuntimeException("Class not found");
         }
     }
+
 
     @Transactional
     public void deleteClass(int id){

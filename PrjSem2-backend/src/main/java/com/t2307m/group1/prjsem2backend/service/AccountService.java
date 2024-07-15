@@ -70,14 +70,28 @@ public class AccountService {
         return Optional.empty();//return empty optional
     }
 
-    public Optional<Account> updateAccount(int id, Account account){
+    public Optional<Account> updateAccount(int id, Account account) {
         Optional<Account> accountOpt = accountRepository.findById(id);
-        if (accountOpt.isEmpty()) throw new RuntimeException("not found account");
+        if (accountOpt.isEmpty()) throw new RuntimeException("Account not found");
+
         Account newAccount = accountOpt.get();
-        newAccount.setFullName(account.getFullName());
-        newAccount.setBirthday(account.getBirthday());
-        newAccount.setEmail(account.getEmail());
-        newAccount.setPhoneNumber(account.getPhoneNumber());
+
+        if (account.getFullName() != null) {
+            newAccount.setFullName(account.getFullName());
+        }
+        if (account.getBirthday() != null) {
+            newAccount.setBirthday(account.getBirthday());
+        }
+        if (account.getEmail() != null) {
+            newAccount.setEmail(account.getEmail());
+        }
+        if (account.getPhoneNumber() != null) {
+            newAccount.setPhoneNumber(account.getPhoneNumber());
+        }
+        if (account.getImageAccount() != null) {
+            newAccount.setImageAccount(account.getImageAccount());
+        }
+
         accountRepository.save(newAccount);
         return Optional.of(newAccount);
     }

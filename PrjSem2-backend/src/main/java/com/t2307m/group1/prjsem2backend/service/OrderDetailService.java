@@ -49,15 +49,25 @@ public class OrderDetailService {
     @Transactional
     public OrderDetail updateOrderDetail(int id, OrderDetail orderDetailUpdate) {
         Optional<OrderDetail> orderDetailOpt = orderDetailRepository.findById(id);
-        if (orderDetailOpt.isEmpty()) throw new RuntimeException("Order detail not found");
-
+        if (orderDetailOpt.isEmpty()) {
+            throw new RuntimeException("Order detail not found");
+        }
 
         OrderDetail orderDetail = orderDetailOpt.get();
-        orderDetail.setDiscount(orderDetailUpdate.getDiscount());
-        orderDetail.setTotalAmount(orderDetailUpdate.getTotalAmount());
-        orderDetail.setStatus(orderDetailUpdate.getStatus());
+
+        if (orderDetailUpdate.getDiscount() != null) {
+            orderDetail.setDiscount(orderDetailUpdate.getDiscount());
+        }
+        if (orderDetailUpdate.getTotalAmount() != null) {
+            orderDetail.setTotalAmount(orderDetailUpdate.getTotalAmount());
+        }
+        if (orderDetailUpdate.getStatus() != null) {
+            orderDetail.setStatus(orderDetailUpdate.getStatus());
+        }
+
         return orderDetailRepository.save(orderDetail);
     }
+
 
     @Transactional
     public void deleteOrderDetail(int id) {

@@ -39,17 +39,32 @@ public class PaymentService {
         Optional<Payment> existingPaymentOptional = paymentRepository.findByPaymentId(paymentId);
         if (existingPaymentOptional.isPresent()) {
             Payment existingPayment = existingPaymentOptional.get();
-            existingPayment.setAccount(updatedPayment.getAccount());
-            existingPayment.setOrderDetail(updatedPayment.getOrderDetail());
-            existingPayment.setPaymentMethod(updatedPayment.getPaymentMethod());
-            existingPayment.setAmount(updatedPayment.getAmount());
-            existingPayment.setPaymentDate(updatedPayment.getPaymentDate());
-            existingPayment.setStatus(updatedPayment.getStatus());
+
+            if (updatedPayment.getAccount() != null) {
+                existingPayment.setAccount(updatedPayment.getAccount());
+            }
+            if (updatedPayment.getOrderDetail() != null) {
+                existingPayment.setOrderDetail(updatedPayment.getOrderDetail());
+            }
+            if (updatedPayment.getPaymentMethod() != null) {
+                existingPayment.setPaymentMethod(updatedPayment.getPaymentMethod());
+            }
+            if (updatedPayment.getAmount() != null) {
+                existingPayment.setAmount(updatedPayment.getAmount());
+            }
+            if (updatedPayment.getPaymentDate() != null) {
+                existingPayment.setPaymentDate(updatedPayment.getPaymentDate());
+            }
+            if (updatedPayment.getStatus() != null) {
+                existingPayment.setStatus(updatedPayment.getStatus());
+            }
+
             return paymentRepository.save(existingPayment);
         } else {
-            return null; // hoặc có thể ném một exception tùy theo logic ứng dụng
+            throw new RuntimeException("Payment not found with paymentId: " + paymentId);
         }
     }
+
 
     public boolean deletePayment(String paymentId) {
         Optional<Payment> paymentOptional = paymentRepository.findByPaymentId(paymentId);

@@ -28,11 +28,11 @@ public class Payment {
     @Column(name = "paymentMethod")
     private String paymentMethod;
     @Column(name = "amount")
-    private double amount;
+    private Double amount;
     @Column(name = "paymentDate")
     private Timestamp paymentDate;
     @Column(name = "status")
-    private int status;
+    private Integer status;
     @Transient //giá trị này không được ánh xạ vào database
     private Timestamp createdAt;
     @Transient
@@ -65,7 +65,7 @@ public class Payment {
     public Payment() {
     }
 
-    public Payment(String paymentId, Account account, OrderDetail orderDetail, String paymentMethod, double amount, Timestamp paymentDate, int status) {
+    public Payment(String paymentId, Account account, OrderDetail orderDetail, String paymentMethod, Double amount, Timestamp paymentDate, Integer status) {
         this.paymentId = paymentId;
         this.account = account;
         this.orderDetail = orderDetail;
@@ -107,11 +107,11 @@ public class Payment {
         this.paymentMethod = paymentMethod;
     }
 
-    public double getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
@@ -123,11 +123,11 @@ public class Payment {
         this.paymentDate = paymentDate;
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 }
