@@ -207,14 +207,14 @@ CREATE TABLE password_reset_tokens (
                                        expiration_date TIMESTAMP NOT NULL,
                                        FOREIGN KEY (account_id) REFERENCES Account(id)
 );
-INSERT INTO Account(username, password, fullname,imageAccount, birthday, email, phonenumber, role) values ('hongquan', 123456, 'Dang Hong Quan','https://i.imgur.com/jvskbNg.jpg', '1999-01-01','quandhth2304004@fpt.edu.vn','0383240511', 'customer');
-INSERT INTO Account(username, password, fullname,imageAccount ,birthday, email, phonenumber, role) values ('phamhoang', 123456, 'Pham Nhat Hoang','https://i.imgur.com/jvskbNg.jpg', '1999-01-01','hoangpnth2304021@fpt.edu.vn','0915298826', 'customer');
-INSERT INTO Account(username, password, fullname,imageAccount, birthday, email, phonenumber, role) values ('dothao', 123456, 'Do Thi Thao','https://i.imgur.com/jvskbNg.jpg', '1999-01-01','thaodtth2304010@fpt.edu.vn','0348279942', 'customer');
+INSERT INTO Account(username, password, fullname,imageAccount, birthday, email, phonenumber, role) values ('hongquan', 123456, 'Dang Hong Quan','https://i.imgur.com/1BhEejF.jpeg', '1999-01-01','quandhth2304004@fpt.edu.vn','0383240511', 'customer');
+INSERT INTO Account(username, password, fullname,imageAccount ,birthday, email, phonenumber, role) values ('phamhoang', 123456, 'Pham Nhat Hoang','https://i.imgur.com/1BhEejF.jpeg', '1999-01-01','hoangpnth2304021@fpt.edu.vn','0915298826', 'customer');
+INSERT INTO Account(username, password, fullname,imageAccount, birthday, email, phonenumber, role) values ('dothao', 123456, 'Do Thi Thao','https://i.imgur.com/1BhEejF.jpeg', '1999-01-01','thaodtth2304010@fpt.edu.vn','0348279942', 'customer');
 SELECT * FROM  Account;
 
 -- course TOEIC 2 Skills
 INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Basic', 50,'https://i.imgur.com/8nitwKO.png','TOEIC2', 0);
-INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Pre', 100,'https://i.imgur.com/t2E1PTy.png','TOEIC2', 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Pre', 100,'https://i.imgur.com/k16v1W1.png','TOEIC2', 0);
 INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic A', 120,'https://i.imgur.com/5OziSxj.png','TOEIC2', 0);
 INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic B', 150,'https://i.imgur.com/QEeFSXO.png','IOEIC2', 0);
 INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Practice',80,'https://i.imgur.com/N0IJ9R4.png','TOECT2', 0);
