@@ -243,7 +243,8 @@ SELECT  * FROM Payment ;
 
 -- Course description section
 INSERT INTO Section(course_id, goalTitle, contentGoal, introduce, contentIntroduce, details, contentDetails, countLessons, durationLesson, supportTime, classSize, contentClassSize)
-values (1, 'Goal: 550+ TOEIC Listening & Reading',
+values (1,
+'Goal: 550+ TOEIC Listening & Reading',
 'Students will obtain a TOEIC certificate at 110 within 2 months after the course ends (to ensure sufficient knowledge retention for the exam, a free 100% retake is offered if the result is below 550).\n Additionally, students must meet the attendance and assignment requirements as per the class regulations.',
 'This course is for those who have a foundation but have never studied TOEIC or have studied but scored below 600.',
 'The course will focus on essential TOEIC tasks, covering all listening sections (part 1-2-3-4), while simultaneously reviewing basic grammar and introducing fundamental reading sections. With over 15 vocabulary topics through FLASHCARDS, students will quickly expand their vocabulary. After the course, students typically achieve a score of 550+. This vocabulary set is compiled from ETS TOEIC exam materials to facilitate learning.', 
