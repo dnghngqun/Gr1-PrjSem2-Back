@@ -1,4 +1,6 @@
 
+
+
 drop database CourseManagement;
 CREATE DATABASE CourseManagement;
 use CourseManagement;
@@ -265,10 +267,10 @@ select * FROM Class;
 
 SELECT  * FROM Payment ;
 
--- Course description section
+-- TOEIC 2 Skills:Basic
 INSERT INTO Section(course_id, goalTitle, contentGoal, introduce, contentIntroduce, details, contentDetails, countLessons, durationLesson, supportTime, classSize, contentClassSize)
 values (1,
-        'Goal: 550+ TOEIC Listening & Reading',
+        'Goal: 250+ TOEIC Basic',
         'Students will obtain a TOEIC certificate at 110 within 2 months after the course ends (to ensure sufficient knowledge retention for the exam, a free 100% retake is offered if the result is below 550).\n Additionally, students must meet the attendance and assignment requirements as per the class regulations.',
         'This course is for those who have a foundation but have never studied TOEIC or have studied but scored below 600.',
         'The course will focus on essential TOEIC tasks, covering all listening sections (part 1-2-3-4), while simultaneously reviewing basic grammar and introducing fundamental reading sections. With over 15 vocabulary topics through FLASHCARDS, students will quickly expand their vocabulary. After the course, students typically achieve a score of 550+. This vocabulary set is compiled from ETS TOEIC exam materials to facilitate learning.',
@@ -298,11 +300,11 @@ INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
 VALUES (1, 'Lesson 27', 'Final test', 'Comprehensive assessment of listening, reading, speaking, and writing skills in the TOEIC exam format. Evaluate personal progress and determine readiness for the actual exam.');
 
 
-
--- Course description section
+-- TOEIC 2 skills: TOEIC PRE
+-- Course description section TOEIC pre
 INSERT INTO Section(course_id, goalTitle, contentGoal, introduce, contentIntroduce, details, contentDetails, countLessons, durationLesson, supportTime, classSize, contentClassSize)
-values (1,
-        'Goal: 550+ TOEIC Listening & Reading',
+values (2,
+        'Goal: 350+ TOEIC PRE',
         'Students will obtain a TOEIC certificate at 110 within 2 months after the course ends (to ensure sufficient knowledge retention for the exam, a free 100% retake is offered if the result is below 550).\n Additionally, students must meet the attendance and assignment requirements as per the class regulations.',
         'This course is for those who have a foundation but have never studied TOEIC or have studied but scored below 600.',
         'The course will focus on essential TOEIC tasks, covering all listening sections (part 1-2-3-4), while simultaneously reviewing basic grammar and introducing fundamental reading sections. With over 15 vocabulary topics through FLASHCARDS, students will quickly expand their vocabulary. After the course, students typically achieve a score of 550+. This vocabulary set is compiled from ETS TOEIC exam materials to facilitate learning.',
@@ -313,30 +315,30 @@ values (1,
 SELECT * FROM `Section` s ;
 -- Lesson 1 - Lesson 3
 INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
-VALUES (1, 'Lesson 1 - Lesson 3', 'Practice part 1\nPeople description pictures\nObject description pictures\nMixed pictures', 'Ability to describe situations related to people, including appearance, emotional states, and daily activities.\nCapability to describe and identify common objects through images, such as utensils, everyday items, and more.');
+VALUES (2, 'Lesson 1 - Lesson 3', 'Practice part 1\nPeople description pictures\nObject description pictures\nMixed pictures', 'Ability to describe situations related to people, including appearance, emotional states, and daily activities.\nCapability to describe and identify common objects through images, such as utensils, everyday items, and more.');
 
 -- Lesson 4 - Lesson 8
 INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
-VALUES (1, 'Lesson 4 - Lesson 8', 'Practice Part 2', 'Learn about everyday communication situations, including discussing work and daily life. Expand vocabulary related to topics such as travel, shopping, and entertainment. Practice listening skills and understanding content from simple and useful dialogues.');
+VALUES (2, 'Lesson 4 - Lesson 8', 'Practice Part 2', 'Learn about everyday communication situations, including discussing work and daily life. Expand vocabulary related to topics such as travel, shopping, and entertainment. Practice listening skills and understanding content from simple and useful dialogues.');
 
 -- Lesson 9 - Lesson 19
 INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
-VALUES (1, 'Lesson 9 - Lesson 19', 'Practice Part 3\nGrammar Part 5-6', 'Study basic grammar structures such as present simple, past simple, and conditional sentences. Apply grammar rules to enhance accuracy and confidence in speaking and writing English.');
+VALUES (2, 'Lesson 9 - Lesson 19', 'Practice Part 3\nGrammar Part 5-6', 'Study basic grammar structures such as present simple, past simple, and conditional sentences. Apply grammar rules to enhance accuracy and confidence in speaking and writing English.');
 
 -- Lesson 20 - Lesson 26
 INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
-VALUES (1, 'Lesson 20 - Lesson 26', 'Practice part 4\nGrammar Part 5-6\nPractice tests', 'Develop the ability to synthesize and apply learned knowledge in real-life situations. Familiarize yourself with high-applicability exercises, such as reading and evaluating information from short passages and articles.');
+VALUES (2, 'Lesson 20 - Lesson 26', 'Practice part 4\nGrammar Part 5-6\nPractice tests', 'Develop the ability to synthesize and apply learned knowledge in real-life situations. Familiarize yourself with high-applicability exercises, such as reading and evaluating information from short passages and articles.');
 
 -- Lesson 27
 INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
-VALUES (1, 'Lesson 27', 'Final test', 'Comprehensive assessment of listening, reading, speaking, and writing skills in the TOEIC exam format. Evaluate personal progress and determine readiness for the actual exam.');
+VALUES (2, 'Lesson 27', 'Final test', 'Comprehensive assessment of listening, reading, speaking, and writing skills in the TOEIC exam format. Evaluate personal progress and determine readiness for the actual exam.');
 
 
 
--- Course description section
+-- TOEIC A 2skills: TOEIC A
 INSERT INTO Section(course_id, goalTitle, contentGoal, introduce, contentIntroduce, details, contentDetails, countLessons, durationLesson, supportTime, classSize, contentClassSize)
-values (1,
-        'Goal: 550+ TOEIC Listening & Reading',
+values (3,
+        'Goal: 500+ TOEIC A',
         'Students will obtain a TOEIC certificate at 110 within 2 months after the course ends (to ensure sufficient knowledge retention for the exam, a free 100% retake is offered if the result is below 550).\n Additionally, students must meet the attendance and assignment requirements as per the class regulations.',
         'This course is for those who have a foundation but have never studied TOEIC or have studied but scored below 600.',
         'The course will focus on essential TOEIC tasks, covering all listening sections (part 1-2-3-4), while simultaneously reviewing basic grammar and introducing fundamental reading sections. With over 15 vocabulary topics through FLASHCARDS, students will quickly expand their vocabulary. After the course, students typically achieve a score of 550+. This vocabulary set is compiled from ETS TOEIC exam materials to facilitate learning.',
@@ -347,22 +349,553 @@ values (1,
 SELECT * FROM `Section` s ;
 -- Lesson 1 - Lesson 3
 INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
-VALUES (1, 'Lesson 1 - Lesson 3', 'Practice part 1\nPeople description pictures\nObject description pictures\nMixed pictures', 'Ability to describe situations related to people, including appearance, emotional states, and daily activities.\nCapability to describe and identify common objects through images, such as utensils, everyday items, and more.');
+VALUES (3, 'Lesson 1 - Lesson 3', 'Practice part 1\nPeople description pictures\nObject description pictures\nMixed pictures', 'Ability to describe situations related to people, including appearance, emotional states, and daily activities.\nCapability to describe and identify common objects through images, such as utensils, everyday items, and more.');
 
 -- Lesson 4 - Lesson 8
 INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
-VALUES (1, 'Lesson 4 - Lesson 8', 'Practice Part 2', 'Learn about everyday communication situations, including discussing work and daily life. Expand vocabulary related to topics such as travel, shopping, and entertainment. Practice listening skills and understanding content from simple and useful dialogues.');
+VALUES (3, 'Lesson 4 - Lesson 8', 'Practice Part 2', 'Learn about everyday communication situations, including discussing work and daily life. Expand vocabulary related to topics such as travel, shopping, and entertainment. Practice listening skills and understanding content from simple and useful dialogues.');
 
 -- Lesson 9 - Lesson 19
 INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
-VALUES (1, 'Lesson 9 - Lesson 19', 'Practice Part 3\nGrammar Part 5-6', 'Study basic grammar structures such as present simple, past simple, and conditional sentences. Apply grammar rules to enhance accuracy and confidence in speaking and writing English.');
+VALUES (3, 'Lesson 9 - Lesson 19', 'Practice Part 3\nGrammar Part 5-6', 'Study basic grammar structures such as present simple, past simple, and conditional sentences. Apply grammar rules to enhance accuracy and confidence in speaking and writing English.');
 
 -- Lesson 20 - Lesson 26
 INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
-VALUES (1, 'Lesson 20 - Lesson 26', 'Practice part 4\nGrammar Part 5-6\nPractice tests', 'Develop the ability to synthesize and apply learned knowledge in real-life situations. Familiarize yourself with high-applicability exercises, such as reading and evaluating information from short passages and articles.');
+VALUES (3, 'Lesson 20 - Lesson 26', 'Practice part 4\nGrammar Part 5-6\nPractice tests', 'Develop the ability to synthesize and apply learned knowledge in real-life situations. Familiarize yourself with high-applicability exercises, such as reading and evaluating information from short passages and articles.');
 
 -- Lesson 27
 INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
-VALUES (1, 'Lesson 27', 'Final test', 'Comprehensive assessment of listening, reading, speaking, and writing skills in the TOEIC exam format. Evaluate personal progress and determine readiness for the actual exam.');
+VALUES (3, 'Lesson 27', 'Final test', 'Comprehensive assessment of listening, reading, speaking, and writing skills in the TOEIC exam format. Evaluate personal progress and determine readiness for the actual exam.');
+
+-- TOECIC B 2 skills
+INSERT INTO Section(course_id, goalTitle, contentGoal, introduce, contentIntroduce, details, contentDetails, countLessons, durationLesson, supportTime, classSize, contentClassSize)
+values (4,
+        'Goal: 650+ TOEIC B',
+        'Students will obtain a TOEIC certificate at 110 within 2 months after the course ends (to ensure sufficient knowledge retention for the exam, a free 100% retake is offered if the result is below 550).\n Additionally, students must meet the attendance and assignment requirements as per the class regulations.',
+        'This course is for those who have a foundation but have never studied TOEIC or have studied but scored below 600.',
+        'The course will focus on essential TOEIC tasks, covering all listening sections (part 1-2-3-4), while simultaneously reviewing basic grammar and introducing fundamental reading sections. With over 15 vocabulary topics through FLASHCARDS, students will quickly expand their vocabulary. After the course, students typically achieve a score of 550+. This vocabulary set is compiled from ETS TOEIC exam materials to facilitate learning.',
+        27,
+        'Complete all listening sections (part 1-2-3-4)\nReview basic grammar\nFamiliarize with basic reading sections',
+        '3 lessons per week','1.5 hours per lesson',
+        'Shift 1: 18:00-18:30, Shift 2: 20:00-21:30 on evenings of Monday, Wednesday, Friday or Tuesday, Thursday, Saturday','23-25 students','The classroom is equipped with air conditioning and a large screen TV.');
+SELECT * FROM `Section` s ;
+-- Lesson 1 - Lesson 3
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (4, 'Lesson 1 - Lesson 3', 'Practice part 1\nPeople description pictures\nObject description pictures\nMixed pictures', 'Ability to describe situations related to people, including appearance, emotional states, and daily activities.\nCapability to describe and identify common objects through images, such as utensils, everyday items, and more.');
+
+-- Lesson 4 - Lesson 8
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (4, 'Lesson 4 - Lesson 8', 'Practice Part 2', 'Learn about everyday communication situations, including discussing work and daily life. Expand vocabulary related to topics such as travel, shopping, and entertainment. Practice listening skills and understanding content from simple and useful dialogues.');
+
+-- Lesson 9 - Lesson 19
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (4, 'Lesson 9 - Lesson 19', 'Practice Part 3\nGrammar Part 5-6', 'Study basic grammar structures such as present simple, past simple, and conditional sentences. Apply grammar rules to enhance accuracy and confidence in speaking and writing English.');
+
+-- Lesson 20 - Lesson 26
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (4, 'Lesson 20 - Lesson 26', 'Practice part 4\nGrammar Part 5-6\nPractice tests', 'Develop the ability to synthesize and apply learned knowledge in real-life situations. Familiarize yourself with high-applicability exercises, such as reading and evaluating information from short passages and articles.');
+
+-- Lesson 27
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (4, 'Lesson 27', 'Final test', 'Comprehensive assessment of listening, reading, speaking, and writing skills in the TOEIC exam format. Evaluate personal progress and determine readiness for the actual exam.');
+
+-- TOEIC PRACTICE 2 skills
+INSERT INTO Section(course_id, goalTitle, contentGoal, introduce, contentIntroduce, details, contentDetails, countLessons, durationLesson, supportTime, classSize, contentClassSize)
+values (5,
+        'Goal: Redouble 50-70 Toeic pratice',
+        'Students will obtain a TOEIC certificate at 110 within 2 months after the course ends (to ensure sufficient knowledge retention for the exam, a free 100% retake is offered if the result is below 550).\n Additionally, students must meet the attendance and assignment requirements as per the class regulations.',
+        'This course is for those who have a foundation but have never studied TOEIC or have studied but scored below 600.',
+        'The course will focus on essential TOEIC tasks, covering all listening sections (part 1-2-3-4), while simultaneously reviewing basic grammar and introducing fundamental reading sections. With over 15 vocabulary topics through FLASHCARDS, students will quickly expand their vocabulary. After the course, students typically achieve a score of 550+. This vocabulary set is compiled from ETS TOEIC exam materials to facilitate learning.',
+        27,
+        'Complete all listening sections (part 1-2-3-4)\nReview basic grammar\nFamiliarize with basic reading sections',
+        '3 lessons per week','1.5 hours per lesson',
+        'Shift 1: 18:00-18:30, Shift 2: 20:00-21:30 on evenings of Monday, Wednesday, Friday or Tuesday, Thursday, Saturday','23-25 students','The classroom is equipped with air conditioning and a large screen TV.');
+SELECT * FROM `Section` s ;
+-- Lesson 1 - Lesson 3
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (5, 'Lesson 1 - Lesson 3', 'Practice part 1\nPeople description pictures\nObject description pictures\nMixed pictures', 'Ability to describe situations related to people, including appearance, emotional states, and daily activities.\nCapability to describe and identify common objects through images, such as utensils, everyday items, and more.');
+
+-- Lesson 4 - Lesson 8
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (5, 'Lesson 4 - Lesson 8', 'Practice Part 2', 'Learn about everyday communication situations, including discussing work and daily life. Expand vocabulary related to topics such as travel, shopping, and entertainment. Practice listening skills and understanding content from simple and useful dialogues.');
+
+-- Lesson 9 - Lesson 19
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (5, 'Lesson 9 - Lesson 19', 'Practice Part 3\nGrammar Part 5-6', 'Study basic grammar structures such as present simple, past simple, and conditional sentences. Apply grammar rules to enhance accuracy and confidence in speaking and writing English.');
+
+-- Lesson 20 - Lesson 26
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (5, 'Lesson 20 - Lesson 26', 'Practice part 4\nGrammar Part 5-6\nPractice tests', 'Develop the ability to synthesize and apply learned knowledge in real-life situations. Familiarize yourself with high-applicability exercises, such as reading and evaluating information from short passages and articles.');
+
+-- Lesson 27
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (5, 'Lesson 27', 'Final test', 'Comprehensive assessment of listening, reading, speaking, and writing skills in the TOEIC exam format. Evaluate personal progress and determine readiness for the actual exam.');
+
+-- TOEIC 4 Skills: Toeic Basic
+INSERT INTO Section(course_id, goalTitle, contentGoal, introduce, contentIntroduce, details, contentDetails, countLessons, durationLesson, supportTime, classSize, contentClassSize)
+VALUES (6,
+        'Goal: 250+ TOEIC Basic',
+        'Students will obtain a TOEIC certificate at 110 within 2 months after the course ends (to ensure sufficient knowledge retention for the exam, a free 100% retake is offered if the result is below 550).\n Additionally, students must meet the attendance and assignment requirements as per the class regulations.',
+        'This course is for those who have a foundation but have never studied TOEIC or have studied but scored below 600.',
+        'The course will focus on essential TOEIC tasks, covering all listening sections (part 1-2-3-4), while simultaneously reviewing basic grammar and introducing fundamental reading sections. With over 15 vocabulary topics through FLASHCARDS, students will quickly expand their vocabulary. After the course, students typically achieve a score of 550+. This vocabulary set is compiled from ETS TOEIC exam materials to facilitate learning.',
+        27,
+        'Complete all listening sections (part 1-2-3-4)\nReview basic grammar\nFamiliarize with basic reading sections',
+        '3 lessons per week','1.5 hours per lesson',
+        'Shift 1: 18:00-18:30, Shift 2: 20:00-21:30 on evenings of Monday, Wednesday, Friday or Tuesday, Thursday, Saturday','23-25 students','The classroom is equipped with air conditioning and a large screen TV.');
+
+-- Lessons for TOEIC Basic 4 Skills
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (6, 'Lesson 1 - Lesson 3', 'Practice part 1\nPeople description pictures\nObject description pictures\nMixed pictures', 'Ability to describe situations related to people, including appearance, emotional states, and daily activities.\nCapability to describe and identify common objects through images, such as utensils, everyday items, and more.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (6, 'Lesson 4 - Lesson 8', 'Practice Part 2', 'Learn about everyday communication situations, including discussing work and daily life. Expand vocabulary related to topics such as travel, shopping, and entertainment. Practice listening skills and understanding content from simple and useful dialogues.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (6, 'Lesson 9 - Lesson 19', 'Practice Part 3\nGrammar Part 5-6', 'Study basic grammar structures such as present simple, past simple, and conditional sentences. Apply grammar rules to enhance accuracy and confidence in speaking and writing English.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (6, 'Lesson 20 - Lesson 26', 'Practice part 4\nGrammar Part 5-6\nPractice tests', 'Develop the ability to synthesize and apply learned knowledge in real-life situations. Familiarize yourself with high-applicability exercises, such as reading and evaluating information from short passages and articles.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (6, 'Lesson 27', 'Final test', 'Comprehensive assessment of listening, reading, speaking, and writing skills in the TOEIC exam format. Evaluate personal progress and determine readiness for the actual exam.');
+
+-- TOEIC 4 Skills: Toeic Pre
+INSERT INTO Section(course_id, goalTitle, contentGoal, introduce, contentIntroduce, details, contentDetails, countLessons, durationLesson, supportTime, classSize, contentClassSize)
+VALUES (7,
+        'Goal: 350+ TOEIC PRE',
+        'Students will obtain a TOEIC certificate at 110 within 2 months after the course ends (to ensure sufficient knowledge retention for the exam, a free 100% retake is offered if the result is below 550).\n Additionally, students must meet the attendance and assignment requirements as per the class regulations.',
+        'This course is for those who have a foundation but have never studied TOEIC or have studied but scored below 600.',
+        'The course will focus on essential TOEIC tasks, covering all listening sections (part 1-2-3-4), while simultaneously reviewing basic grammar and introducing fundamental reading sections. With over 15 vocabulary topics through FLASHCARDS, students will quickly expand their vocabulary. After the course, students typically achieve a score of 550+. This vocabulary set is compiled from ETS TOEIC exam materials to facilitate learning.',
+        27,
+        'Complete all listening sections (part 1-2-3-4)\nReview basic grammar\nFamiliarize with basic reading sections',
+        '3 lessons per week','1.5 hours per lesson',
+        'Shift 1: 18:00-18:30, Shift 2: 20:00-21:30 on evenings of Monday, Wednesday, Friday or Tuesday, Thursday, Saturday','23-25 students','The classroom is equipped with air conditioning and a large screen TV.');
+
+-- Lessons for TOEIC Pre 4 Skills
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (7, 'Lesson 1 - Lesson 3', 'Practice part 1\nPeople description pictures\nObject description pictures\nMixed pictures', 'Ability to describe situations related to people, including appearance, emotional states, and daily activities.\nCapability to describe and identify common objects through images, such as utensils, everyday items, and more.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (7, 'Lesson 4 - Lesson 8', 'Practice Part 2', 'Learn about everyday communication situations, including discussing work and daily life. Expand vocabulary related to topics such as travel, shopping, and entertainment. Practice listening skills and understanding content from simple and useful dialogues.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (7, 'Lesson 9 - Lesson 19', 'Practice Part 3\nGrammar Part 5-6', 'Study basic grammar structures such as present simple, past simple, and conditional sentences. Apply grammar rules to enhance accuracy and confidence in speaking and writing English.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (7, 'Lesson 20 - Lesson 26', 'Practice part 4\nGrammar Part 5-6\nPractice tests', 'Develop the ability to synthesize and apply learned knowledge in real-life situations. Familiarize yourself with high-applicability exercises, such as reading and evaluating information from short passages and articles.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (7, 'Lesson 27', 'Final test', 'Comprehensive assessment of listening, reading, speaking, and writing skills in the TOEIC exam format. Evaluate personal progress and determine readiness for the actual exam.');
+
+-- TOEIC 4 Skills: Toeic A
+INSERT INTO Section(course_id, goalTitle, contentGoal, introduce, contentIntroduce, details, contentDetails, countLessons, durationLesson, supportTime, classSize, contentClassSize)
+VALUES (8,
+        'Goal: 500+ TOEIC A',
+        'Students will obtain a TOEIC certificate at 110 within 2 months after the course ends (to ensure sufficient knowledge retention for the exam, a free 100% retake is offered if the result is below 550).\n Additionally, students must meet the attendance and assignment requirements as per the class regulations.',
+        'This course is for those who have a foundation but have never studied TOEIC or have studied but scored below 600.',
+        'The course will focus on essential TOEIC tasks, covering all listening sections (part 1-2-3-4), while simultaneously reviewing basic grammar and introducing fundamental reading sections. With over 15 vocabulary topics through FLASHCARDS, students will quickly expand their vocabulary. After the course, students typically achieve a score of 550+. This vocabulary set is compiled from ETS TOEIC exam materials to facilitate learning.',
+        27,
+        'Complete all listening sections (part 1-2-3-4)\nReview basic grammar\nFamiliarize with basic reading sections',
+        '3 lessons per week','1.5 hours per lesson',
+        'Shift 1: 18:00-18:30, Shift 2: 20:00-21:30 on evenings of Monday, Wednesday, Friday or Tuesday, Thursday, Saturday','23-25 students','The classroom is equipped with air conditioning and a large screen TV.');
+
+-- Lessons for TOEIC A 4 Skills
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (8, 'Lesson 1 - Lesson 3', 'Practice part 1\nPeople description pictures\nObject description pictures\nMixed pictures', 'Ability to describe situations related to people, including appearance, emotional states, and daily activities.\nCapability to describe and identify common objects through images, such as utensils, everyday items, and more.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (8, 'Lesson 4 - Lesson 8', 'Practice Part 2', 'Learn about everyday communication situations, including discussing work and daily life. Expand vocabulary related to topics such as travel, shopping, and entertainment. Practice listening skills and understanding content from simple and useful dialogues.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (8, 'Lesson 9 - Lesson 19', 'Practice Part 3\nGrammar Part 5-6', 'Study basic grammar structures such as present simple, past simple, and conditional sentences. Apply grammar rules to enhance accuracy and confidence in speaking and writing English.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (8, 'Lesson 20 - Lesson 26', 'Practice part 4\nGrammar Part 5-6\nPractice tests', 'Develop the ability to synthesize and apply learned knowledge in real-life situations. Familiarize yourself with high-applicability exercises, such as reading and evaluating information from short passages and articles.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (8, 'Lesson 27', 'Final test', 'Comprehensive assessment of listening, reading, speaking, and writing skills in the TOEIC exam format. Evaluate personal progress and determine readiness for the actual exam.');
+
+-- TOEIC 4 Skills: Toeic A+
+INSERT INTO Section(course_id, goalTitle, contentGoal, introduce, contentIntroduce, details, contentDetails, countLessons, durationLesson, supportTime, classSize, contentClassSize)
+VALUES (9,
+        'Goal: 70-110/200 Writing&Speaking + TOEIC A+',
+        'Students will obtain a TOEIC certificate at 110 within 2 months after the course ends (to ensure sufficient knowledge retention for the exam, a free 100% retake is offered if the result is below 550).\n Additionally, students must meet the attendance and assignment requirements as per the class regulations.',
+        'This course is for those who have a foundation but have never studied TOEIC or have studied but scored below 600.',
+        'The course will focus on essential TOEIC tasks, covering all listening sections (part 1-2-3-4), while simultaneously reviewing basic grammar and introducing fundamental reading sections. With over 15 vocabulary topics through FLASHCARDS, students will quickly expand their vocabulary. After the course, students typically achieve a score of 550+. This vocabulary set is compiled from ETS TOEIC exam materials to facilitate learning.',
+        27,
+        'Complete all listening sections (part 1-2-3-4)\nReview basic grammar\nFamiliarize with basic reading sections',
+        '3 lessons per week','1.5 hours per lesson',
+        'Shift 1: 18:00-18:30, Shift 2: 20:00-21:30 on evenings of Monday, Wednesday, Friday or Tuesday, Thursday, Saturday','23-25 students','The classroom is equipped with air conditioning and a large screen TV.');
+
+-- Lessons for TOEIC A+ 4 Skills
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (9, 'Lesson 1 - Lesson 3', 'Practice part 1\nPeople description pictures\nObject description pictures\nMixed pictures', 'Ability to describe situations related to people, including appearance, emotional states, and daily activities.\nCapability to describe and identify common objects through images, such as utensils, everyday items, and more.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (9, 'Lesson 4 - Lesson 8', 'Practice Part 2', 'Learn about everyday communication situations, including discussing work and daily life. Expand vocabulary related to topics such as travel, shopping, and entertainment. Practice listening skills and understanding content from simple and useful dialogues.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (9, 'Lesson 9 - Lesson 19', 'Practice Part 3\nGrammar Part 5-6', 'Study basic grammar structures such as present simple, past simple, and conditional sentences. Apply grammar rules to enhance accuracy and confidence in speaking and writing English.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (9, 'Lesson 20 - Lesson 26', 'Practice part 4\nGrammar Part 5-6\nPractice tests', 'Develop the ability to synthesize and apply learned knowledge in real-life situations. Familiarize yourself with high-applicability exercises, such as reading and evaluating information from short passages and articles.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (9, 'Lesson 27', 'Final test', 'Comprehensive assessment of listening, reading, speaking, and writing skills in the TOEIC exam format. Evaluate personal progress and determine readiness for the actual exam.');
+
+-- TOEIC 4 Skills: Toeic B
+INSERT INTO Section(course_id, goalTitle, contentGoal, introduce, contentIntroduce, details, contentDetails, countLessons, durationLesson, supportTime, classSize, contentClassSize)
+VALUES (10,
+        'Goal: 650+ TOEIC B',
+        'Students will obtain a TOEIC certificate at 110 within 2 months after the course ends (to ensure sufficient knowledge retention for the exam, a free 100% retake is offered if the result is below 550).\n Additionally, students must meet the attendance and assignment requirements as per the class regulations.',
+        'This course is for those who have a foundation but have never studied TOEIC or have studied but scored below 600.',
+        'The course will focus on essential TOEIC tasks, covering all listening sections (part 1-2-3-4), while simultaneously reviewing basic grammar and introducing fundamental reading sections. With over 15 vocabulary topics through FLASHCARDS, students will quickly expand their vocabulary. After the course, students typically achieve a score of 550+. This vocabulary set is compiled from ETS TOEIC exam materials to facilitate learning.',
+        27,
+        'Complete all listening sections (part 1-2-3-4)\nReview basic grammar\nFamiliarize with basic reading sections',
+        '3 lessons per week','1.5 hours per lesson',
+        'Shift 1: 18:00-18:30, Shift 2: 20:00-21:30 on evenings of Monday, Wednesday, Friday or Tuesday, Thursday, Saturday','23-25 students','The classroom is equipped with air conditioning and a large screen TV.');
+
+-- Lessons for TOEIC B 4 Skills
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (10, 'Lesson 1 - Lesson 3', 'Practice part 1\nPeople description pictures\nObject description pictures\nMixed pictures', 'Ability to describe situations related to people, including appearance, emotional states, and daily activities.\nCapability to describe and identify common objects through images, such as utensils, everyday items, and more.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (10, 'Lesson 4 - Lesson 8', 'Practice Part 2', 'Learn about everyday communication situations, including discussing work and daily life. Expand vocabulary related to topics such as travel, shopping, and entertainment. Practice listening skills and understanding content from simple and useful dialogues.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (10, 'Lesson 9 - Lesson 19', 'Practice Part 3\nGrammar Part 5-6', 'Study basic grammar structures such as present simple, past simple, and conditional sentences. Apply grammar rules to enhance accuracy and confidence in speaking and writing English.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (10, 'Lesson 20 - Lesson 26', 'Practice part 4\nGrammar Part 5-6\nPractice tests', 'Develop the ability to synthesize and apply learned knowledge in real-life situations. Familiarize yourself with high-applicability exercises, such as reading and evaluating information from short passages and articles.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (10, 'Lesson 27', 'Final test', 'Comprehensive assessment of listening, reading, speaking, and writing skills in the TOEIC exam format. Evaluate personal progress and determine readiness for the actual exam.');
+
+-- TOEIC 4 Skills: Toeic B+
+INSERT INTO Section(course_id, goalTitle, contentGoal, introduce, contentIntroduce, details, contentDetails, countLessons, durationLesson, supportTime, classSize, contentClassSize)
+VALUES (11,
+        'Goal: 110/150/200 TOEIC B+',
+        'Students will obtain a TOEIC certificate at 110 within 2 months after the course ends (to ensure sufficient knowledge retention for the exam, a free 100% retake is offered if the result is below 550).\n Additionally, students must meet the attendance and assignment requirements as per the class regulations.',
+        'This course is for those who have a foundation but have never studied TOEIC or have studied but scored below 600.',
+        'The course will focus on essential TOEIC tasks, covering all listening sections (part 1-2-3-4), while simultaneously reviewing basic grammar and introducing fundamental reading sections. With over 15 vocabulary topics through FLASHCARDS, students will quickly expand their vocabulary. After the course, students typically achieve a score of 550+. This vocabulary set is compiled from ETS TOEIC exam materials to facilitate learning.',
+        27,
+        'Complete all listening sections (part 1-2-3-4)\nReview basic grammar\nFamiliarize with basic reading sections',
+        '3 lessons per week','1.5 hours per lesson',
+        'Shift 1: 18:00-18:30, Shift 2: 20:00-21:30 on evenings of Monday, Wednesday, Friday or Tuesday, Thursday, Saturday','23-25 students','The classroom is equipped with air conditioning and a large screen TV.');
+
+-- Lessons for TOEIC B+ 4 Skills
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (11, 'Lesson 1 - Lesson 3', 'Practice part 1\nPeople description pictures\nObject description pictures\nMixed pictures', 'Ability to describe situations related to people, including appearance, emotional states, and daily activities.\nCapability to describe and identify common objects through images, such as utensils, everyday items, and more.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (11, 'Lesson 4 - Lesson 8', 'Practice Part 2', 'Learn about everyday communication situations, including discussing work and daily life. Expand vocabulary related to topics such as travel, shopping, and entertainment. Practice listening skills and understanding content from simple and useful dialogues.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (11, 'Lesson 9 - Lesson 19', 'Practice Part 3\nGrammar Part 5-6', 'Study basic grammar structures such as present simple, past simple, and conditional sentences. Apply grammar rules to enhance accuracy and confidence in speaking and writing English.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (11, 'Lesson 20 - Lesson 26', 'Practice part 4\nGrammar Part 5-6\nPractice tests', 'Develop the ability to synthesize and apply learned knowledge in real-life situations. Familiarize yourself with high-applicability exercises, such as reading and evaluating information from short passages and articles.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (11, 'Lesson 27', 'Final test', 'Comprehensive assessment of listening, reading, speaking, and writing skills in the TOEIC exam format. Evaluate personal progress and determine readiness for the actual exam.');
+
+-- TOEIC 4 Skills: Toeic Training
+INSERT INTO Section(course_id, goalTitle, contentGoal, introduce, contentIntroduce, details, contentDetails, countLessons, durationLesson, supportTime, classSize, contentClassSize)
+VALUES (12,
+        'Goal: Redouble 50-70 TOEIC Training',
+        'Students will obtain a TOEIC certificate at 110 within 2 months after the course ends (to ensure sufficient knowledge retention for the exam, a free 100% retake is offered if the result is below 550).\n Additionally, students must meet the attendance and assignment requirements as per the class regulations.',
+        'This course is for those who have a foundation but have never studied TOEIC or have studied but scored below 600.',
+        'The course will focus on essential TOEIC tasks, covering all listening sections (part 1-2-3-4), while simultaneously reviewing basic grammar and introducing fundamental reading sections. With over 15 vocabulary topics through FLASHCARDS, students will quickly expand their vocabulary. After the course, students typically achieve a score of 550+. This vocabulary set is compiled from ETS TOEIC exam materials to facilitate learning.',
+        27,
+        'Complete all listening sections (part 1-2-3-4)\nReview basic grammar\nFamiliarize with basic reading sections',
+        '3 lessons per week','1.5 hours per lesson',
+        'Shift 1: 18:00-18:30, Shift 2: 20:00-21:30 on evenings of Monday, Wednesday, Friday or Tuesday, Thursday, Saturday','23-25 students','The classroom is equipped with air conditioning and a large screen TV.');
+
+-- Lessons for TOEIC Training 4 Skills
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (12, 'Lesson 1 - Lesson 3', 'Practice part 1\nPeople description pictures\nObject description pictures\nMixed pictures', 'Ability to describe situations related to people, including appearance, emotional states, and daily activities.\nCapability to describe and identify common objects through images, such as utensils, everyday items, and more.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (12, 'Lesson 4 - Lesson 8', 'Practice Part 2', 'Learn about everyday communication situations, including discussing work and daily life. Expand vocabulary related to topics such as travel, shopping, and entertainment. Practice listening skills and understanding content from simple and useful dialogues.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (12, 'Lesson 9 - Lesson 19', 'Practice Part 3\nGrammar Part 5-6', 'Study basic grammar structures such as present simple, past simple, and conditional sentences. Apply grammar rules to enhance accuracy and confidence in speaking and writing English.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (12, 'Lesson 20 - Lesson 26', 'Practice part 4\nGrammar Part 5-6\nPractice tests', 'Develop the ability to synthesize and apply learned knowledge in real-life situations. Familiarize yourself with high-applicability exercises, such as reading and evaluating information from short passages and articles.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (12, 'Lesson 27', 'Final test', 'Comprehensive assessment of listening, reading, speaking, and writing skills in the TOEIC exam format. Evaluate personal progress and determine readiness for the actual exam.');
+
+-- IELTS: Ielts Basic
+INSERT INTO Section(course_id, goalTitle, contentGoal, introduce, contentIntroduce, details, contentDetails, countLessons, durationLesson, supportTime, classSize, contentClassSize)
+VALUES (13,
+        'Goal: IELTS 2.5+',
+        'Students will achieve a basic understanding of the IELTS test format and essential strategies to approach each section of the exam.',
+        'This course is designed for students who are new to IELTS or have a very basic understanding of English.',
+        'The course focuses on fundamental skills in listening, reading, writing, and speaking. Vocabulary building and grammar review are integral parts of the course, providing a solid foundation for further study.',
+        20,
+        'Basic skills in listening, reading, writing, and speaking\nVocabulary building\nGrammar review',
+        '2 lessons per week','1.5 hours per lesson',
+        'Shift 1: 18:00-19:30, Shift 2: 20:00-21:30 on Monday and Wednesday or Tuesday and Thursday','20-22 students','Classroom is equipped with air conditioning and a projector.');
+
+-- Lessons for Ielts Basic
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (13, 'Lesson 1 - Lesson 5', 'Introduction to IELTS\nListening Basics\nReading Basics', 'Understand the structure of the IELTS test and basic strategies for listening and reading sections.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (13, 'Lesson 6 - Lesson 10', 'Writing Basics\nSpeaking Basics', 'Learn fundamental writing techniques and speaking skills for the IELTS test.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (13, 'Lesson 11 - Lesson 15', 'Vocabulary Building\nGrammar Review', 'Enhance vocabulary and review essential grammar points for the IELTS test.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (13, 'Lesson 16 - Lesson 20', 'Practice Tests\nReview Sessions', 'Apply learned skills in practice tests and receive feedback to improve.');
+
+-- IELTS: Ielts Pre
+INSERT INTO Section(course_id, goalTitle, contentGoal, introduce, contentIntroduce, details, contentDetails, countLessons, durationLesson, supportTime, classSize, contentClassSize)
+VALUES (14,
+        'Goal: IELTS 3.5+',
+        'Students will improve their English proficiency and develop intermediate strategies for each section of the IELTS test.',
+        'This course is suitable for students who have a basic understanding of English and aim to score around 5.0 in the IELTS test.',
+        'The course covers intermediate skills in listening, reading, writing, and speaking. It includes extensive practice sessions and mock tests to build confidence and exam readiness.',
+        25,
+        'Intermediate skills in listening, reading, writing, and speaking\nExtensive practice sessions\nMock tests',
+        '3 lessons per week','1.5 hours per lesson',
+        'Shift 1: 18:00-19:30, Shift 2: 20:00-21:30 on Monday, Wednesday, Friday or Tuesday, Thursday, Saturday','20-22 students','Classroom is equipped with air conditioning and a projector.');
+
+-- Lessons for Ielts Pre
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (14, 'Lesson 1 - Lesson 5', 'Listening Intermediate\nReading Intermediate', 'Develop intermediate listening and reading skills for the IELTS test.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (14, 'Lesson 6 - Lesson 10', 'Writing Intermediate\nSpeaking Intermediate', 'Enhance writing and speaking skills with a focus on intermediate-level tasks.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (14, 'Lesson 11 - Lesson 15', 'Vocabulary Expansion\nGrammar Improvement', 'Expand vocabulary and improve grammar knowledge for better performance in the IELTS test.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (14, 'Lesson 16 - Lesson 20', 'Mock Tests\nFeedback Sessions', 'Take mock tests and receive detailed feedback to identify areas of improvement.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (14, 'Lesson 21 - Lesson 25', 'Final Practice\nExam Strategies', 'Focus on final practice sessions and learn effective exam strategies for the IELTS test.');
+
+-- IELTS: Ielts Pre Foundation
+INSERT INTO Section(course_id, goalTitle, contentGoal, introduce, contentIntroduce, details, contentDetails, countLessons, durationLesson, supportTime, classSize, contentClassSize)
+VALUES (15,
+        'Goal: IELTS 4.5+',
+        'Students will gain advanced skills and strategies needed to achieve a higher score in the IELTS test.',
+        'This course is designed for students who have an intermediate understanding of English and aim to score around 6.0 in the IELTS test.',
+        'The course covers advanced skills in listening, reading, writing, and speaking. It includes intensive practice and personalized feedback to address individual weaknesses.',
+        30,
+        'Advanced skills in listening, reading, writing, and speaking\nIntensive practice\nPersonalized feedback',
+        '3 lessons per week','1.5 hours per lesson',
+        'Shift 1: 18:00-19:30, Shift 2: 20:00-21:30 on Monday, Wednesday, Friday or Tuesday, Thursday, Saturday','18-20 students','Classroom is equipped with air conditioning and a projector.');
+
+-- Lessons for Ielts Pre Foundation
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (15, 'Lesson 1 - Lesson 5', 'Advanced Listening\nAdvanced Reading', 'Master advanced listening and reading skills for the IELTS test.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (15, 'Lesson 6 - Lesson 10', 'Advanced Writing\nAdvanced Speaking', 'Develop advanced writing and speaking skills for the IELTS test.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (15, 'Lesson 11 - Lesson 15', 'Intensive Vocabulary\nGrammar Mastery', 'Expand advanced vocabulary and achieve grammar mastery for the IELTS test.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (15, 'Lesson 16 - Lesson 20', 'Practice Sessions\nMock Tests', 'Engage in intensive practice sessions and take mock tests with detailed feedback.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (15, 'Lesson 21 - Lesson 25', 'Targeted Feedback\nWeakness Improvement', 'Receive targeted feedback and work on improving individual weaknesses.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (15, 'Lesson 26 - Lesson 30', 'Final Preparation\nExam Techniques', 'Prepare for the final exam with focused practice and learn essential exam techniques.');
+
+-- IELTS: Ielts Foundation
+INSERT INTO Section(course_id, goalTitle, contentGoal, introduce, contentIntroduce, details, contentDetails, countLessons, durationLesson, supportTime, classSize, contentClassSize)
+VALUES (16,
+        'Goal: IELTS 5.5+',
+        'Students will build upon their existing knowledge to achieve a score of 6.5 or higher in the IELTS test.',
+        'This course is suitable for students who have a good understanding of English and aim to score around 6.5 in the IELTS test.',
+        'The course includes comprehensive training in all four skills, with a strong emphasis on practice and application of advanced techniques.',
+        35,
+        'Comprehensive training in listening, reading, writing, and speaking\nAdvanced techniques\nExtensive practice',
+        '3 lessons per week','1.5 hours per lesson',
+        'Shift 1: 18:00-19:30, Shift 2: 20:00-21:30 on Monday, Wednesday, Friday or Tuesday, Thursday, Saturday','18-20 students','Classroom is equipped with air conditioning and a projector.');
+
+-- Lessons for Ielts Foundation
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (16, 'Lesson 1 - Lesson 5', 'Listening Techniques\nReading Techniques', 'Acquire advanced techniques for the listening and reading sections of the IELTS test.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (16, 'Lesson 6 - Lesson 10', 'Writing Techniques\nSpeaking Techniques', 'Master advanced techniques for the writing and speaking sections of the IELTS test.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (16, 'Lesson 11 - Lesson 15', 'Intensive Grammar\nAdvanced Vocabulary', 'Achieve a high level of grammar accuracy and expand advanced vocabulary for the IELTS test.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (16, 'Lesson 16 - Lesson 20', 'Practice Sessions\nMock Tests', 'Engage in extensive practice sessions and take mock tests with personalized feedback.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (16, 'Lesson 21 - Lesson 25', 'Individual Feedback\nFocus Areas', 'Receive individual feedback and focus on improving specific areas of weakness.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (16, 'Lesson 26 - Lesson 30', 'Final Preparation\nExam Techniques', 'Finalize exam preparation with targeted practice and learn essential exam techniques.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (16, 'Lesson 31 - Lesson 35', 'Final Mock Test\nReview', 'Take a final mock test and review all sections to ensure readiness for the actual exam.');
+
+-- IELTS: Ielts Speaking/Writing A
+INSERT INTO Section(course_id, goalTitle, contentGoal, introduce, contentIntroduce, details, contentDetails, countLessons, durationLesson, supportTime, classSize, contentClassSize)
+VALUES (17,
+        'Goal: Improve Speaking and Writing Skills',
+        'Students will develop specific strategies and techniques to excel in the speaking and writing sections of the IELTS test.',
+        'This course is designed for students who need focused practice in speaking and writing to achieve a higher score in these sections.',
+        'The course includes intensive practice sessions, personalized feedback, and targeted skill development in speaking and writing.',
+        20,
+        'Focused practice in speaking and writing\nPersonalized feedback\nTargeted skill development',
+        '2 lessons per week','1.5 hours per lesson',
+        'Shift 1: 18:00-19:30, Shift 2: 20:00-21:30 on Monday and Wednesday or Tuesday and Thursday','15-18 students','Classroom is equipped with air conditioning and a projector.');
+
+-- Lessons for Ielts Speaking/Writing A
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (17, 'Lesson 1 - Lesson 5', 'Speaking Techniques\nPractice Sessions', 'Learn and practice advanced speaking techniques for the IELTS test.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (17, 'Lesson 6 - Lesson 10', 'Writing Techniques\nPractice Sessions', 'Develop advanced writing techniques and practice writing tasks for the IELTS test.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (17, 'Lesson 11 - Lesson 15', 'Mock Tests\nFeedback Sessions', 'Engage in mock tests for speaking and writing and receive personalized feedback.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (17, 'Lesson 16 - Lesson 20', 'Final Practice\nExam Techniques', 'Focus on final practice sessions and learn essential exam techniques for speaking and writing.');
+
+-- IELTS: Ielts A
+INSERT INTO Section(course_id, goalTitle, contentGoal, introduce, contentIntroduce, details, contentDetails, countLessons, durationLesson, supportTime, classSize, contentClassSize)
+VALUES (18,
+        'Goal: IELTS 6.5+',
+        'Students will aim to achieve a score of 7.0 or higher in the IELTS test with comprehensive training in all four skills.',
+        'This course is designed for students who have a strong understanding of English and aim to score around 7.0 in the IELTS test.',
+        'The course includes advanced training, intensive practice, and personalized feedback to ensure a high level of exam readiness.',
+        40,
+        'Advanced training in listening, reading, writing, and speaking\nIntensive practice\nPersonalized feedback',
+        '3 lessons per week','1.5 hours per lesson',
+        'Shift 1: 18:00-19:30, Shift 2: 20:00-21:30 on Monday, Wednesday, Friday or Tuesday, Thursday, Saturday','15-18 students','Classroom is equipped with air conditioning and a projector.');
+
+-- Lessons for Ielts A
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (18, 'Lesson 1 - Lesson 5', 'Listening Strategies\nReading Strategies', 'Master advanced listening and reading strategies for the IELTS test.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (18, 'Lesson 6 - Lesson 10', 'Writing Strategies\nSpeaking Strategies', 'Develop advanced writing and speaking strategies for the IELTS test.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (18, 'Lesson 11 - Lesson 15', 'Grammar Review\nVocabulary Expansion', 'Review advanced grammar and expand vocabulary for the IELTS test.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (18, 'Lesson 16 - Lesson 20', 'Practice Sessions\nMock Tests', 'Engage in extensive practice sessions and take mock tests with personalized feedback.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (18, 'Lesson 21 - Lesson 25', 'Targeted Feedback\nFocus Areas', 'Receive targeted feedback and work on improving specific areas of weakness.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (18, 'Lesson 26 - Lesson 30', 'Final Preparation\nExam Techniques', 'Finalize exam preparation with targeted practice and learn essential exam techniques.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (18, 'Lesson 31 - Lesson 35', 'Final Mock Test\nReview', 'Take a final mock test and review all sections to ensure readiness for the actual exam.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (18, 'Lesson 36 - Lesson 40', 'Exam Day Preparation', 'Prepare for the exam day with focused practice and final tips.');
+
+-- IELTS: Ielts Speaking/Writing B
+INSERT INTO Section(course_id, goalTitle, contentGoal, introduce, contentIntroduce, details, contentDetails, countLessons, durationLesson, supportTime, classSize, contentClassSize)
+VALUES (19,
+        'Goal: Improve Speaking and Writing Skills',
+        'Students will further develop specific strategies and techniques to excel in the speaking and writing sections of the IELTS test.',
+        'This course is designed for students who need additional focused practice in speaking and writing to achieve a higher score in these sections.',
+        'The course includes more intensive practice sessions, personalized feedback, and targeted skill development in speaking and writing.',
+        20,
+        'Focused practice in speaking and writing\nPersonalized feedback\nTargeted skill development',
+        '2 lessons per week','1.5 hours per lesson',
+        'Shift 1: 18:00-19:30, Shift 2: 20:00-21:30 on Monday and Wednesday or Tuesday and Thursday','15-18 students','Classroom is equipped with air conditioning and a projector.');
+
+-- Lessons for Ielts Speaking/Writing B
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (19, 'Lesson 1 - Lesson 5', 'Advanced Speaking Techniques\nPractice Sessions', 'Learn and practice advanced speaking techniques for the IELTS test.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (19, 'Lesson 6 - Lesson 10', 'Advanced Writing Techniques\nPractice Sessions', 'Develop advanced writing techniques and practice writing tasks for the IELTS test.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (19, 'Lesson 11 - Lesson 15', 'Mock Tests\nDetailed Feedback', 'Engage in mock tests for speaking and writing and receive personalized feedback.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (19, 'Lesson 16 - Lesson 20', 'Final Practice\nExam Techniques', 'Focus on final practice sessions and learn essential exam techniques for speaking and writing.');
+
+-- IELTS: Ielts B
+INSERT INTO Section(course_id, goalTitle, contentGoal, introduce, contentIntroduce, details, contentDetails, countLessons, durationLesson, supportTime, classSize, contentClassSize)
+VALUES (20,
+        'Goal: IELTS 7+',
+        'Students will aim to achieve a score of 7.5 or higher in the IELTS test with comprehensive training in all four skills.',
+        'This course is designed for students who have an advanced understanding of English and aim to score around 7.5 in the IELTS test.',
+        'The course includes highly advanced training, extensive practice, and personalized feedback to ensure a high level of exam readiness.',
+        40,
+        'Highly advanced training in listening, reading, writing, and speaking\nExtensive practice\nPersonalized feedback',
+        '3 lessons per week','1.5 hours per lesson',
+        'Shift 1: 18:00-19:30, Shift 2: 20:00-21:30 on Monday, Wednesday, Friday or Tuesday, Thursday, Saturday','15-18 students','Classroom is equipped with air conditioning and a projector.');
+
+-- Lessons for Ielts B
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (20, 'Lesson 1 - Lesson 5', 'Advanced Listening Strategies\nAdvanced Reading Strategies', 'Master highly advanced listening and reading strategies for the IELTS test.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (20, 'Lesson 6 - Lesson 10', 'Advanced Writing Strategies\nAdvanced Speaking Strategies', 'Develop highly advanced writing and speaking strategies for the IELTS test.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (20, 'Lesson 11 - Lesson 15', 'Grammar Mastery\nVocabulary Expansion', 'Achieve mastery in advanced grammar and expand advanced vocabulary for the IELTS test.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (20, 'Lesson 16 - Lesson 20', 'Practice Sessions\nMock Tests', 'Engage in extensive practice sessions and take mock tests with personalized feedback.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (20, 'Lesson 21 - Lesson 25', 'Targeted Feedback\nFocus Areas', 'Receive targeted feedback and work on improving specific areas of weakness.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (20, 'Lesson 26 - Lesson 30', 'Final Preparation\nExam Techniques', 'Finalize exam preparation with targeted practice and learn essential exam techniques.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (20, 'Lesson 31 - Lesson 35', 'Final Mock Test\nReview', 'Take a final mock test and review all sections to ensure readiness for the actual exam.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (20, 'Lesson 36 - Lesson 40', 'Exam Day Preparation', 'Prepare for the exam day with focused practice and final tips.');
+
+-- IELTS: Ielts Total Review
+INSERT INTO Section(course_id, goalTitle, contentGoal, introduce, contentIntroduce, details, contentDetails, countLessons, durationLesson, supportTime, classSize, contentClassSize)
+VALUES (21,
+        'Goal: Comprehensive IELTS Review',
+        'Students will review and consolidate all necessary skills to achieve their target IELTS score.',
+        'This course is designed for students who have completed their IELTS preparation and need a comprehensive review before taking the test.',
+        'The course includes detailed reviews of all four skills, practice tests, and personalized feedback to ensure thorough preparation.',
+        25,
+        'Comprehensive review of listening, reading, writing, and speaking\nPractice tests\nPersonalized feedback',
+        '2 lessons per week','2 hours per lesson',
+        'Shift 1: 18:00-20:00, Shift 2: 20:00-22:00 on Monday and Wednesday or Tuesday and Thursday','15-18 students','Classroom is equipped with air conditioning and a projector.');
+
+-- Lessons for Ielts Total Review
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (21, 'Lesson 1 - Lesson 5', 'Listening Review\nReading Review', 'Review and practice listening and reading sections for the IELTS test.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (21, 'Lesson 6 - Lesson 10', 'Writing Review\nSpeaking Review', 'Review and practice writing and speaking sections for the IELTS test.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (21, 'Lesson 11 - Lesson 15', 'Mock Tests\nFeedback Sessions', 'Take mock tests and receive detailed feedback to identify areas of improvement.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (21, 'Lesson 16 - Lesson 20', 'Final Practice\nReview Sessions', 'Engage in final practice sessions and review all sections to ensure readiness.');
+
+INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
+VALUES (21, 'Lesson 21 - Lesson 25', 'Exam Techniques\nFinal Tips', 'Learn effective exam techniques and receive final tips for the IELTS test.');
+
 
 SELECT * FROM Enrollment e ;
