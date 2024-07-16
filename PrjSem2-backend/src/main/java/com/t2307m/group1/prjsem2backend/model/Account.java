@@ -21,7 +21,7 @@ public class Account implements Serializable {
     @Column(name = "fullName", nullable = false)
     private String fullName;
     @Column(name = "imageAccount")
-    private String imageAccount = "https://i.imgur.com/jvskbNg.jpg";//default image account
+    private String imageAccount = "https://i.imgur.com/1BhEejF.jpeg";//default image account
     @Column(name = "birthday", nullable = false)
     private Date birthday;
     private String role = "customer"; //default customer, if admin or staff, ghi de
