@@ -1,6 +1,3 @@
-
-
-
 drop database CourseManagement;
 CREATE DATABASE CourseManagement;
 use CourseManagement;
@@ -52,7 +49,9 @@ CREATE TABLE Instructor (
                             gender varchar(255) not null ,
                             bio TEXT, # mô tả về giáo viên
                             email VARCHAR(255) NOT NULL unique ,
+                            imageLink varchar(255),
                             phoneNumber VARCHAR(255) unique ,
+                            classify varchar(255),
                             createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
                             updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -216,15 +215,15 @@ SELECT * FROM  Account;
 INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Basic', 50,'https://i.imgur.com/8nitwKO.png','TOEIC2', 0);
 INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Pre', 100,'https://i.imgur.com/k16v1W1.png','TOEIC2', 0);
 INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic A', 120,'https://i.imgur.com/5OziSxj.png','TOEIC2', 0);
-INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic B', 150,'https://i.imgur.com/QEeFSXO.png','IOEIC2', 0);
-INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Practice',80,'https://i.imgur.com/N0IJ9R4.png','TOECT2', 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic B', 150,'https://i.imgur.com/QEeFSXO.png','TOEIC2', 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Practice',80,'https://i.imgur.com/N0IJ9R4.png','TOEIC2', 0);
 
 -- course TOEIC 4 skills
-INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Basic', 150,'https://i.imgur.com/8nitwKO.png','TOEIC4', 0);
-INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Pre', 120,'https://i.imgur.com/t2E1PTy.png','TOEIC4', 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Basic (4 Skill)', 150,'https://i.imgur.com/8nitwKO.png','TOEIC4', 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Pre', 120,'https://i.imgur.com/k16v1W1.png','TOEIC4', 0);
 INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic A', 100,'https://i.imgur.com/5OziSxj.png','TOEIC4', 0);
-INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic A+', 120,'https://i.imgur.com/xKUk4uC.png','IOEIC4', 0);
-INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic B',100,'https://i.imgur.com/QEeFSXO.png','TOECT4', 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic A+', 120,'https://i.imgur.com/xKUk4uC.png','TOEIC4', 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic B',100,'https://i.imgur.com/QEeFSXO.png','TOEIC4', 0);
 INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic B+', 120,'https://i.imgur.com/sW2wxFM.png','TOEIC4', 0);
 INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Training', 200,'https://i.imgur.com/N0IJ9R4.png','TOEIC4', 0);
 
@@ -233,9 +232,9 @@ INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Basic', 
 INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Pre', 100,'https://i.imgur.com/VYSM6rM.png','IELTS', 0);
 INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Pre Foundation', 120,'https://i.imgur.com/YEfAhkp.png','IELTS', 0);
 INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts  Foundation', 150,'https://i.imgur.com/UEmY8an.png','IELTS', 0);
-INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Speaking/WritingA', 170,'https://i.imgur.com/dSWJbYG.png','IELTS', 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Speaking/Writing A', 170,'https://i.imgur.com/dSWJbYG.png','IELTS', 0);
 INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts  A', 150,'https://i.imgur.com/I5R0sYs.png','IELTS', 0);
-INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Speaking/WritingB', 120,'https://i.imgur.com/22AovQJ.png','IELTS', 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Speaking/Writing B', 120,'https://i.imgur.com/22AovQJ.png','IELTS', 0);
 INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts B', 130,'https://i.imgur.com/xHHgR77.png','IELTS', 0);
 INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Total review', 160,'https://i.imgur.com/O44JfSB.png','IELTS', 0);
 
@@ -248,9 +247,19 @@ INSERT INTO Order_(userId, status) values(3,0);
 
 SELECT * FROM Order_;
 
-INSERT INTO Instructor(name, bio, email, gender, phoneNumber) values ('Nguyễn Cẩm Tú', '900 TOEIC Người giáo viên khơi dậy niềm đam mê với việc học Tiếng Anh trong các em. Sở thích: Nghe nhạc và xem phim tiếng Anh','instructor1@gmail.com', 'female', '0123456765');
-INSERT INTO Instructor(name, bio, email, gender, phoneNumber) values ('Nguyễn Khánh Linh', '960 TOEIC Cô giáo năng động và tràn đầy nhiệt huyết với nghề Cô có phong cách giảng dạy vô cùng cuốn hút','instructor2@gmail.com', 'female', '0126456765');
-INSERT INTO Instructor(name, bio, email, gender, phoneNumber) values ('Lê Hoài Anh', '930 TOEIC Sinh và lớn lên ở thành phố biển Hạ Long ','instructor3@gmail.com', 'male', '0153456765');
+INSERT INTO Instructor (name, gender, bio, email, phoneNumber,imageLink,classify)
+VALUES
+('John Smith', 'Male', 'IELTS instructor with 10 years of teaching and exam preparation experience.', 'johnsmith_ielts@example.com', '0123456789','https://i.imgur.com/TIuVvui.png?1','IELTS'),
+('Sarah Lee', 'Female', 'TOEIC instructor with 8 years of experience and effective teaching methods.', 'sarahlee_toeic@example.com', '0911222333','https://i.imgur.com/ADQUqCv.png?1','TOEIC'),
+('David Taylor', 'Male', 'TOEIC exam preparation specialist with many years of experience.', 'davidtaylor_toeic@example.com', '0933444555','https://i.imgur.com/TiY9PuH.jpg','TOEIC'),
+('Emily Johnson', 'Female', 'IELTS teacher with international certification and many years of experience.', 'emilyjohnson_ielts@example.com', '0987654321','https://i.imgur.com/tATWZoE.jpg','IELTS'),
+('Laura Martinez', 'Female', 'TOEIC teacher with high-quality lessons and students achieving high scores.', 'lauramartinez_toeic@example.com', '0944555666','https://i.imgur.com/jQjsgtw.jpg','TOEIC'),
+('Michael Brown', 'Male', 'IELTS specialist with modern teaching methods and extensive experience.', 'michaelbrown_ielts@example.com', '0123987654','https://i.imgur.com/yXleNYE.jpg','IELTS'),
+('Sophia Davis', 'Female', 'Master of Linguistics, specializing in IELTS exam preparation.', 'sophiadavis_ielts@example.com', '0987123456','https://i.imgur.com/vwx4lTP.jpg','IELTS'),
+('James Wilson', 'Male', 'IELTS instructor with many students achieving high scores.', 'jameswilson_ielts@example.com', '0912345678','https://i.imgur.com/us80Xxs.jpg','IELTS'),
+('Robert Anderson', 'Male', 'Master of Linguistics, specializing in TOEIC exam preparation.', 'robertanderson_toeic@example.com', '0955666777','https://i.imgur.com/qLfUpbC.jpg','TOEIC'),
+('Emma Thomas', 'Female', 'TOEIC instructor with many years of experience and advanced teaching methods.', 'emmathomas_toeic@example.com', '0966777888','https://i.imgur.com/LuXZpZA.jpg','TOEIC');
+
 
 SELECT * FROM Instructor;
 

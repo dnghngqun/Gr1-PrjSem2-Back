@@ -34,18 +34,12 @@ public class InstructorService {
 
         Instructor newInstructor = instructorOpt.get();
 
-        if (instructor.getName() != null) {
-            newInstructor.setName(instructor.getName());
-        }
-        if (instructor.getBio() != null) {
-            newInstructor.setBio(instructor.getBio());
-        }
-        if (instructor.getGender() != null) {
-            newInstructor.setGender(instructor.getGender());
-        }
-        if (instructor.getPhoneNumber() != null) {
-            newInstructor.setPhoneNumber(instructor.getPhoneNumber());
-        }
+        if (instructor.getName() != null) newInstructor.setName(instructor.getName());
+        if (instructor.getBio() != null) newInstructor.setBio(instructor.getBio());
+        if(instructor.getImageLink() != null) newInstructor.setImageLink(instructor.getImageLink());
+        if (instructor.getGender() != null) newInstructor.setGender(instructor.getGender());
+        if (instructor.getPhoneNumber() != null) newInstructor.setPhoneNumber(instructor.getPhoneNumber());
+        if(instructor.getClassify() != null) newInstructor.setClassify(instructor.getClassify());
 
         instructorRepository.save(newInstructor);
         return true;
