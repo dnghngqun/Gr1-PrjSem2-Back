@@ -13,4 +13,6 @@ public interface EnrollmentRepository extends JpaRepository<Enrollment, Integer>
 
     // Tìm kiếm các đăng ký học tập của một lớp học
     List<Enrollment> findByAClass(AClass aClass);
+
+    List<Enrollment> findByAccountId(int accountId);
 }

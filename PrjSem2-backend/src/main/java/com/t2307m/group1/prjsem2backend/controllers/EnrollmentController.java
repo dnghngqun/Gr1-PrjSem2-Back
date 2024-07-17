@@ -62,4 +62,17 @@ public class EnrollmentController {
                 new ResponseObject("ok", "Delete enrollment successfully!", "")
         );
     }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<ResponseObject> getEnrollmentByUserId(@PathVariable int id) {
+        List<Enrollment> enrollments = enrollmentService.getEnrollmentByAccountId(id);
+        if (enrollments.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    new ResponseObject("failed", "Enrollment not found!", "")
+            );
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject("ok", "Get enrollment by ID successfully!", enrollments)
+        );
+    }
 }

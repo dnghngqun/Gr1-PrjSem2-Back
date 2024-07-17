@@ -13,8 +13,7 @@ public class Enrollment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "classId", nullable = false)
     private AClass aClass;
 
@@ -24,7 +23,7 @@ public class Enrollment {
     private Account account;
 
     private Timestamp enrollmentDate = new Timestamp(new Date().getTime());
-    private String progress;
+    private int progress;
     private int status;
     @Transient //giá trị này không được ánh xạ vào database
     private Timestamp createdAt;
@@ -54,7 +53,7 @@ public class Enrollment {
     public Enrollment() {
     }
 
-    public Enrollment(AClass aClass, Account account, String progress, int status) {
+    public Enrollment(AClass aClass, Account account, int progress, int status) {
         this.aClass = aClass;
         this.account = account;
         this.progress = progress;
@@ -65,11 +64,11 @@ public class Enrollment {
         this.enrollmentDate = enrollmentDate;
     }
 
-    public String getProgress() {
+    public int getProgress() {
         return progress;
     }
 
-    public void setProgress(String progress) {
+    public void setProgress(int progress) {
         this.progress = progress;
     }
 

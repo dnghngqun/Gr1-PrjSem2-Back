@@ -105,7 +105,7 @@ CREATE TABLE Enrollment (
                             classId INT NOT NULL,
                             userId INT NOT NULL,
                             enrollmentDate TIMESTAMP,
-                            progress varchar(255),
+                            progress int,
                             status TINYINT,
                             createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
                             updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -168,7 +168,18 @@ CREATE TABLE Payment (
                          FOREIGN KEY (orderDetailId) REFERENCES OrderDetail(id)
 );
 
-
+-- bảng này để điểm danh
+CREATE TABLE Attendance (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    enrollmentId INT NOT NULL,
+    lessonNumber INT NOT NULL,
+    attendanceStatus ENUM('present', 'absent') DEFAULT 'absent',
+    attendanceDate DATE,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (enrollmentId) REFERENCES Enrollment(id)
+);
+select * from attendance a ;
 
 SELECT * FROM Account;
 

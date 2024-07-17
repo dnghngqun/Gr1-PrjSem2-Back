@@ -48,4 +48,9 @@ public class EnrollmentService {
     public void deleteEnrollment(int id) {
         enrollmentRepository.deleteById(id);
     }
+
+    public List<Enrollment> getEnrollmentByAccountId(int id) {
+        List<Enrollment> enrollments = enrollmentRepository.findByAccountId(id);
+        return  enrollments;
+    }
 }
