@@ -222,6 +222,12 @@ INSERT INTO Account(username, password, fullname,imageAccount ,birthday, email, 
 INSERT INTO Account(username, password, fullname,imageAccount, birthday, email, phonenumber, role) values ('dothao', 123456, 'Do Thi Thao','https://i.imgur.com/1BhEejF.jpeg', '1999-01-01','thaodtth2304010@fpt.edu.vn','0348279942', 'customer');
 SELECT * FROM  Account;
 
+-- create staff
+INSERT INTO Account(username, password, fullname,imageAccount, birthday, email, phonenumber, role) values ('staff', 123456, 'Dang Hong Quan','https://i.imgur.com/1BhEejF.jpeg', '1999-01-01','staff@gmail.com','0987654312', 'staff');
+-- create admin
+INSERT INTO Account(username, password, fullname,imageAccount, birthday, email, phonenumber, role) values ('admin', 123456, 'admin','https://i.imgur.com/1BhEejF.jpeg', '1999-01-01','admin@example.com','00000000000', 'admin');
+
+
 -- course TOEIC 2 Skills
 INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Basic', 50,'https://i.imgur.com/8nitwKO.png','TOEIC2', 0);
 INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Pre', 100,'https://i.imgur.com/k16v1W1.png','TOEIC2', 0);

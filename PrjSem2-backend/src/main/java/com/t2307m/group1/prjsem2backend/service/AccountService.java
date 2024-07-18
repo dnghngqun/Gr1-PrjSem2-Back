@@ -134,6 +134,9 @@ public class AccountService {
         return accountRepository.save(account);
     }
 
+    public Optional<Account> findById(int id){
+        return accountRepository.findById(id);
+    }
 
 
 

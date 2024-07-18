@@ -1,35 +1,93 @@
 package com.t2307m.group1.prjsem2backend.controllers;
 
-import com.t2307m.group1.prjsem2backend.model.Account;
-import com.t2307m.group1.prjsem2backend.model.LoginRequest;
-import com.t2307m.group1.prjsem2backend.model.PasswordResetToken;
-import com.t2307m.group1.prjsem2backend.model.ResponseObject;
+import com.t2307m.group1.prjsem2backend.model.*;
 import com.t2307m.group1.prjsem2backend.repositories.PasswordResetTokenRepository;
 import com.t2307m.group1.prjsem2backend.service.AccountService;
 import com.t2307m.group1.prjsem2backend.service.EmailService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
 
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
-
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 @RestController//báo cho spring biết đây là controller
 @RequestMapping("/api/v1/accounts")// connect to api = this link
 public class AccountController {
     private final AccountService accountService;
     private final EmailService emailService;
     private final PasswordResetTokenRepository tokenRepository;
+
+    @Value("${imgur.client.id}")
+    private String imgurClientId;
+
     @Autowired
     public AccountController(AccountService accountService,EmailService emailService, PasswordResetTokenRepository tokenRepository) {
         this.accountService = accountService;
         this.emailService = emailService;
         this.tokenRepository = tokenRepository;
+    }
+
+    @PutMapping("/{userId}/uploadAvatar")
+    public ResponseEntity<ResponseObject> uploadAvatar(@PathVariable int userId, @RequestParam("image") MultipartFile image,  HttpSession session) {
+        Optional<Account> accountOptional = accountService.findById(userId);
+        if (accountOptional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    new ResponseObject("failed", "User not found!", "")
+            );
+        }
+
+        Account account = accountOptional.get();
+        try {
+            String imageUrl = uploadImageToImgur(image);
+            account.setImageAccount(imageUrl);
+            accountService.save(account);
+
+            // Cập nhật session với thông tin tài khoản mới
+            session.setAttribute("user", account);
+
+            return ResponseEntity.status(HttpStatus.OK).body(
+                    new ResponseObject("ok", "Upload avatar successfully!", account)
+            );
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
+                    new ResponseObject("failed", "Upload avatar failed!", e.getMessage())
+            );
+        }
+    }
+
+    private String uploadImageToImgur(MultipartFile image) throws Exception {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+        headers.set("Authorization", "Client-ID " + imgurClientId);
+
+        MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+        body.add("image", new MultipartInputStreamFileResource(image.getInputStream(), image.getOriginalFilename()));
+
+        HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Map> response = restTemplate.postForEntity("https://api.imgur.com/3/upload", requestEntity, Map.class);
+
+        if (response.getStatusCode() == HttpStatus.OK) {
+            Map<String, Object> responseBody = response.getBody();
+            Map<String, Object> data = (Map<String, Object>) responseBody.get("data");
+            return (String) data.get("link");
+        } else {
+            throw new Exception("Failed to upload image to Imgur");
+        }
     }
 
     @PostMapping("/forgot-password")
