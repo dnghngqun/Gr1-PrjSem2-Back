@@ -17,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
@@ -261,6 +262,14 @@ public class AccountController {
                     new ResponseObject("failed", "Update Information Failed!","")
             );
         }
+    }
+
+    @GetMapping("/students")
+    public ResponseEntity<ResponseObject> getAllStudents() {
+        List<Account> students = accountService.getAllCustomers();
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject("ok", "Get all students successfully!", students)
+        );
     }
 
 

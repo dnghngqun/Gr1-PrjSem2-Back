@@ -96,6 +96,10 @@ public class AccountService {
         return Optional.of(newAccount);
     }
 
+    public List<Account> getAllCustomers() {
+        return accountRepository.findAllCustomers();
+    }
+
     public Optional<Account> login(String identify, String password) {
         // Giả sử Account có các thuộc tính: username, email, phoneNumber, password
         Optional<Account> account = accountRepository.findByUserName(identify);
