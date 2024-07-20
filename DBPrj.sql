@@ -70,7 +70,7 @@ CREATE TABLE Account(
                         role enum('admin', 'customer', 'staff') not null
 );
 
-
+select * from Account where role = 'customer';
 CREATE TABLE Review (
                         id INT AUTO_INCREMENT PRIMARY KEY,
                         courseId INT NOT NULL,
