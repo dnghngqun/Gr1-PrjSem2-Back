@@ -24,7 +24,7 @@ public class AClass {
     private String location;
     private Date startDate;
     private Date endDate;
-    private int status;
+    private Integer status;
 
     @Transient //giá trị này không được ánh xạ vào database
     private Timestamp createdAt;
@@ -49,7 +49,7 @@ public class AClass {
         this.updateAt = updateAt;
     }
 
-    public AClass(Course course, Instructor instructor, String location, Date startDate, Date endDate, int status) {
+    public AClass(Course course, Instructor instructor, String location, Date startDate, Date endDate, Integer status) {
         this.course = course;
         this.instructor = instructor;
         this.location = location;
@@ -106,11 +106,11 @@ public class AClass {
         this.endDate = endDate;
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 }

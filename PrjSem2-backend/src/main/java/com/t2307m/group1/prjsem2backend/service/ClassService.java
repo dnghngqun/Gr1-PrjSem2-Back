@@ -44,6 +44,9 @@ public class ClassService {
             if (aClassUpdate.getEndDate() != null) {
                 aClass.setEndDate(aClassUpdate.getEndDate());
             }
+            if(aClassUpdate.getStatus() != null){
+                aClass.setStatus(aClassUpdate.getStatus());
+            }
 
             return classRepository.save(aClass);
         } else {
