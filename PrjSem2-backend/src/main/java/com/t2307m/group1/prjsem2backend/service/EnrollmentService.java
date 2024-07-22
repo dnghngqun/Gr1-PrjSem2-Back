@@ -35,8 +35,8 @@ public class EnrollmentService {
     }
 
     // Lấy danh sách đăng ký học tập của một lớp học
-    public List<Enrollment> getEnrollmentsByClass(AClass aClass) {
-        return enrollmentRepository.findByAClass(aClass);
+    public List<Enrollment> getEnrollmentsByClassId(int id) {
+        return enrollmentRepository.findByAClassId(id);
     }
 
     // Lưu thông tin đăng ký học tập mới

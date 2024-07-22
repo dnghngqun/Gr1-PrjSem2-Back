@@ -69,4 +69,7 @@ public class ClassService {
         return classRepository.findById(id);
     }
 
+    public List<AClass> getClassByStatusIsStarted(){
+        return classRepository.getAClassByStatusIsStarted();
+    }
 }

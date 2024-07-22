@@ -88,4 +88,16 @@ public class ClassController {
                 new ResponseObject("Failed", "Find class by id error!","")
         ));
     }
+
+    @GetMapping("/status/started")
+    public ResponseEntity<ResponseObject> getClassByStatusIsStarted(){
+        List<AClass> classes = classService.getClassByStatusIsStarted();
+        if(classes.isEmpty())
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    new ResponseObject("failed", "Class not found!", "")
+            );
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject("ok", "Get class by status is started successfully!", classes)
+        );
+    }
 }

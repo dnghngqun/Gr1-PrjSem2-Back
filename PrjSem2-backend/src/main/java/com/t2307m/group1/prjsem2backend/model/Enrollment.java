@@ -17,8 +17,7 @@ public class Enrollment {
     @JoinColumn(name = "classId", nullable = false)
     private AClass aClass;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "userId", nullable = false)
     private Account account;
 

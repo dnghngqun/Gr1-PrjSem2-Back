@@ -113,6 +113,7 @@ CREATE TABLE Enrollment (
                             FOREIGN KEY (userId) REFERENCES Account(id)
 );
 
+
 -- Bảng lưu trữ thông tin thông báo
 CREATE TABLE Notification (
                               id INT AUTO_INCREMENT PRIMARY KEY,

@@ -4,6 +4,8 @@ import com.t2307m.group1.prjsem2backend.model.Account;
 import com.t2307m.group1.prjsem2backend.model.Enrollment;
 import com.t2307m.group1.prjsem2backend.model.AClass;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -12,7 +14,8 @@ public interface EnrollmentRepository extends JpaRepository<Enrollment, Integer>
     List<Enrollment> findByAccount(Account account);
 
     // Tìm kiếm các đăng ký học tập của một lớp học
-    List<Enrollment> findByAClass(AClass aClass);
+    @Query("SELECT e FROM Enrollment e WHERE e.aClass.id = :classId")
+    List<Enrollment> findByAClassId(@Param("classId") int id);
 
     List<Enrollment> findByAccountId(int accountId);
 }
