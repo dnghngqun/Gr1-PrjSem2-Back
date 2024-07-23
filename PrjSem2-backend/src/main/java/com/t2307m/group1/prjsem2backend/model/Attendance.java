@@ -1,44 +1,36 @@
 package com.t2307m.group1.prjsem2backend.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 
-import java.time.LocalDate;
 
 @Entity
-@Table(name = "attendance")
+@Table(name = "Attendance")
 public class Attendance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY,optional = false)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @JoinColumn(name = "enrollmentId")
     private Enrollment enrollment;
 
-    @Column(name = "lessonNumber")
-    private int lessonNumber;
+
+    @ManyToOne(fetch = FetchType.EAGER,optional = false)
+    @JoinColumn(name = "scheduleId")
+    private Schedule schedule;
+
 
     @Column(name = "attendanceStatus")
     private String attendanceStatus;
 
-    @Column(name = "attendanceDate")
-    private LocalDate attendanceDate;
-
-    @PrePersist
-    protected void onCreate() {
-        this.attendanceDate = LocalDate.now();
-    }
-    public Attendance(Enrollment enrollment, int lessonNumber, String attendanceStatus) {
-        this.enrollment = enrollment;
-        this.lessonNumber = lessonNumber;
-        this.attendanceStatus = attendanceStatus;
-        this.attendanceDate = LocalDate.now();
-    }
-
     public Attendance() {
+    }
+
+    public Attendance(Enrollment enrollment, Schedule schedule, String attendanceStatus) {
+        this.enrollment = enrollment;
+        this.schedule = schedule;
+        this.attendanceStatus = attendanceStatus;
     }
 
     public Long getId() {
@@ -49,7 +41,6 @@ public class Attendance {
         this.id = id;
     }
 
-
     public Enrollment getEnrollment() {
         return enrollment;
     }
@@ -58,12 +49,12 @@ public class Attendance {
         this.enrollment = enrollment;
     }
 
-    public int getLessonNumber() {
-        return lessonNumber;
+    public Schedule getSchedule() {
+        return schedule;
     }
 
-    public void setLessonNumber(int lessonNumber) {
-        this.lessonNumber = lessonNumber;
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
     }
 
     public String getAttendanceStatus() {
@@ -72,13 +63,5 @@ public class Attendance {
 
     public void setAttendanceStatus(String attendanceStatus) {
         this.attendanceStatus = attendanceStatus;
-    }
-
-    public LocalDate getAttendanceDate() {
-        return attendanceDate;
-    }
-
-    public void setAttendanceDate(LocalDate attendanceDate) {
-        this.attendanceDate = attendanceDate;
     }
 }

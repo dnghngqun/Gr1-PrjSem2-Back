@@ -2,6 +2,7 @@ package com.t2307m.group1.prjsem2backend.controllers;
 
 import com.t2307m.group1.prjsem2backend.model.Attendance;
 import com.t2307m.group1.prjsem2backend.model.ResponseObject;
+import com.t2307m.group1.prjsem2backend.model.Schedule;
 import com.t2307m.group1.prjsem2backend.service.AttendanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,9 +30,11 @@ public class AttendanceController {
 
     // Lưu thông tin điểm danh
     @PostMapping("/add")
-    public ResponseEntity<Attendance> addAttendance(@RequestBody Attendance attendance) {
-        Attendance addedAttendance = attendanceService.saveAttendance(attendance);
-        return ResponseEntity.status(HttpStatus.CREATED).body(addedAttendance);
+    public ResponseEntity<Attendance> addAttendance(@RequestParam Integer enrollmentId,
+                                                    @RequestParam Integer scheduleId,
+                                                    @RequestParam String status) {
+        Attendance addedAttendance = attendanceService.saveAttendance(enrollmentId,scheduleId,status);
+        return ResponseEntity.status(HttpStatus.OK).body(addedAttendance);
     }
 
     // Lấy thông tin điểm danh theo ID
@@ -53,6 +56,17 @@ public class AttendanceController {
         List<Attendance> attendances = attendanceService.getAttendanceByEnrollmentId(enrollmentId);
         return ResponseEntity.status(HttpStatus.OK).body(
                 new ResponseObject("ok", "find attendance by enrollment id",attendances)
+        );
+    }
+
+    @GetMapping("/schedule/class/{classId}")
+    public ResponseEntity<ResponseObject> getScheduleByClassId(@PathVariable int classId){
+        List<Schedule> schedules = attendanceService.findScheduleByClassId(classId);
+        if (schedules.isEmpty()) return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+          new ResponseObject("failed", "Schedule not found!", "")
+        );
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject("ok", "Find schedule by class id",schedules)
         );
     }
 }

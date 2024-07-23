@@ -272,5 +272,15 @@ public class AccountController {
         );
     }
 
+    @GetMapping("/email/{email}")
+    public ResponseEntity<ResponseObject> getAccountByEmail(@PathVariable String email){
+        Optional<Account> account = accountService.findByEmail(email);
+        return account.map(a -> ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject("ok", "get account by email successfully!", a)
+        )).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                new ResponseObject("failed", "Account not found!", "")
+        ));
+    }
+
 
 }
