@@ -1,14 +1,15 @@
 package com.t2307m.group1.prjsem2backend.controllers;
 
-import com.t2307m.group1.prjsem2backend.model.Attendance;
-import com.t2307m.group1.prjsem2backend.model.ResponseObject;
-import com.t2307m.group1.prjsem2backend.model.Schedule;
+import com.t2307m.group1.prjsem2backend.model.*;
 import com.t2307m.group1.prjsem2backend.service.AttendanceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +36,31 @@ public class AttendanceController {
                                                     @RequestParam String status) {
         Attendance addedAttendance = attendanceService.saveAttendance(enrollmentId,scheduleId,status);
         return ResponseEntity.status(HttpStatus.OK).body(addedAttendance);
+    }
+    @PostMapping("/add/bulk")
+    public ResponseEntity<ResponseObject> addBulkAttendance(@RequestBody List<AttendanceDTO> attendances){
+        List<Attendance> attendanceList =  attendanceService.saveBulkAttendance(attendances);
+        if(attendanceList.isEmpty()){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
+                    new ResponseObject("failed", "Error to save attendance", "")
+            );
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject("ok", "save attendance success!", attendanceList)
+        );
+    }
+
+    @PutMapping("/update/bulk")
+    public ResponseEntity<ResponseObject> updateBulkAttendance(@RequestBody List<AttendanceDTO> attendances){
+        List<Attendance> attendanceList = attendanceService.updateBulkAttendance(attendances);
+        if(attendanceList.isEmpty()){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
+                    new ResponseObject("failed", "Error to update attendance", "")
+            );
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject("ok", "update attendance success!", attendanceList)
+        );
     }
 
     // Lấy thông tin điểm danh theo ID
@@ -69,4 +95,37 @@ public class AttendanceController {
                 new ResponseObject("ok", "Find schedule by class id",schedules)
         );
     }
+
+
+    @GetMapping("/schedule/{classDate}")
+    public ResponseEntity<ResponseObject> getScheduleByClassDate(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate classDate){
+        List<Schedule> schedule = attendanceService.findScheduleByClassDate(Date.valueOf(classDate));
+        if(schedule.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    new ResponseObject("failed", "Not found schedule", "")
+            );
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject("ok", "Get schedule succesfully!", schedule)
+        );
+
+    }
+
+    @GetMapping("/class/{classId}/date/{classDate}")
+    public ResponseEntity<List<Attendance>> getAttendanceByClassIdAndDate(
+            @PathVariable int classId,
+            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate classDate) {
+
+        List<Attendance> attendances = attendanceService.getAttendanceByClassIdAndDate(classId, Date.valueOf(classDate));
+
+        if (attendances.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(attendances);
+        }
+
+        return ResponseEntity.ok(attendances);
+    }
+
+
 }
+

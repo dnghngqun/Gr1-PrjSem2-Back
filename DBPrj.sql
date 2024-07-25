@@ -71,18 +71,6 @@ CREATE TABLE Account(
 );
 
 select * from Account where role = 'customer';
-CREATE TABLE Review (
-                        id INT AUTO_INCREMENT PRIMARY KEY,
-                        courseId INT NOT NULL,
-                        userId INT NOT NULL,
-                        rating INT CHECK (rating >= 1 AND rating <= 5),
-                        comment TEXT,
-                        reviewDate TIMESTAMP,
-                        createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
-                        updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-                        FOREIGN KEY (courseId) REFERENCES Course(id),
-                        FOREIGN KEY (userId) REFERENCES Account(id)
-);
 
 -- Bảng lưu trữ thông tin lớp học
 CREATE TABLE Class (
@@ -192,6 +180,7 @@ CREATE TABLE Attendance (
     FOREIGN KEY (scheduleId) REFERENCES Schedule(id)
 );
 
+
 select * from Attendance a ;
 
 SELECT * FROM Account;
@@ -253,10 +242,10 @@ INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Practice
 
 -- course TOEIC 4 skills
 INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Basic (4 Skill)', 150,'https://i.imgur.com/8nitwKO.png','TOEIC4', 0);
-INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Pre', 120,'https://i.imgur.com/k16v1W1.png','TOEIC4', 0);
-INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic A', 100,'https://i.imgur.com/5OziSxj.png','TOEIC4', 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Pre (4 Skill)', 120,'https://i.imgur.com/k16v1W1.png','TOEIC4', 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic A (4 Skill)', 100,'https://i.imgur.com/5OziSxj.png','TOEIC4', 0);
 INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic A+', 120,'https://i.imgur.com/xKUk4uC.png','TOEIC4', 0);
-INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic B',100,'https://i.imgur.com/QEeFSXO.png','TOEIC4', 0);
+INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic B (4 Skill)',100,'https://i.imgur.com/QEeFSXO.png','TOEIC4', 0);
 INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic B+', 120,'https://i.imgur.com/sW2wxFM.png','TOEIC4', 0);
 INSERT INTO Course(name, price,imgLink,classify, status) values ('Toeic Training', 200,'https://i.imgur.com/N0IJ9R4.png','TOEIC4', 0);
 
@@ -298,7 +287,7 @@ SELECT * FROM Instructor;
 
 INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (1,1,'14h30-16h', '2024-08-06','2024-09-19', 0);
 INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (1,2,'14h30-16h', '2024-08-05','2024-09-18', 0);
-INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (2,3,'14h30-16h', '2024-08-08','2024-09-21', 0);
+INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (2,3,'14h30-16h', '2024-07-18','2024-08-31', 0);
 INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (1,1,'17h-18h30', '2024-08-06','2024-09-19', 0);
 INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (3,2,'17h-18h30', '2024-08-06','2024-09-19', 0);
 INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (1,2,'9h-10h30', '2024-07-30','2024-09-12', 0);
@@ -306,6 +295,7 @@ INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) 
 INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (3,3,'17h-18h30', '2024-06-16','2024-07-31', 0);
 
 select * FROM Class;
+
 
 -- thêm dữ liệu bảng schedule
 -- Lớp học với ID = 1 bắt đầu từ '2024-08-06', học vào thứ 3, 5, 7
@@ -353,26 +343,26 @@ INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 19, '2024-09-
 INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 20, '2024-09-18');
 
 -- Lớp học với ID = 3 bắt đầu từ '2024-08-08', học vào thứ 3, 5, 7
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 1, '2024-08-08');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 2, '2024-08-10');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 3, '2024-08-13');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 4, '2024-08-15');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 5, '2024-08-17');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 6, '2024-08-20');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 7, '2024-08-22');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 8, '2024-08-24');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 9, '2024-08-27');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 10, '2024-08-29');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 11, '2024-08-31');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 12, '2024-09-03');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 13, '2024-09-05');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 14, '2024-09-07');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 15, '2024-09-10');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 16, '2024-09-12');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 17, '2024-09-14');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 18, '2024-09-17');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 19, '2024-09-19');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 20, '2024-09-21');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 1, '2024-07-18'); -- Thứ 5
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 2, '2024-07-20'); -- Thứ 7
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 3, '2024-07-23'); -- Thứ 3
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 4, '2024-07-25'); -- Thứ 5
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 5, '2024-07-27'); -- Thứ 7
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 6, '2024-07-30'); -- Thứ 3
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 7, '2024-08-01'); -- Thứ 5
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 8, '2024-08-03'); -- Thứ 7
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 9, '2024-08-06'); -- Thứ 3
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 10, '2024-08-08'); -- Thứ 5
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 11, '2024-08-10'); -- Thứ 7
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 12, '2024-08-13'); -- Thứ 3
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 13, '2024-08-15'); -- Thứ 5
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 14, '2024-08-17'); -- Thứ 7
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 15, '2024-08-20'); -- Thứ 3
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 16, '2024-08-22'); -- Thứ 5
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 17, '2024-08-24'); -- Thứ 7
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 18, '2024-08-27'); -- Thứ 3
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 19, '2024-08-29'); -- Thứ 5
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 20, '2024-08-31'); -- Thứ 7
 
 -- Lớp học với ID = 4 bắt đầu từ '2024-08-06', học vào thứ 3, 5, 7
 INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 1, '2024-08-06');
