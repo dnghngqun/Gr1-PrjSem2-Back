@@ -14,8 +14,8 @@ public interface AttendanceRepository extends JpaRepository<Attendance,Long> {
 
     @Query("SELECT a FROM Attendance a " +
             "INNER JOIN Enrollment e ON a.enrollment.id = e.id " +
+            "INNER JOIN Schedule s ON a.schedule.id = s.id " +
             "INNER JOIN AClass ac ON e.aClass.id = ac.id " +
-            "INNER JOIN Schedule s ON s.aClass.id = ac.id " +
             "WHERE ac.id = :classId " +
             "AND s.classDate = :classDate")
     List<Attendance> findAttendanceByClassIdAndDate(@Param("classId") int classId, @Param("classDate") Date classDate);

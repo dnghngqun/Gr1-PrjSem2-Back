@@ -180,10 +180,16 @@ CREATE TABLE Attendance (
     FOREIGN KEY (scheduleId) REFERENCES Schedule(id)
 );
 
+SELECT * FROM  Attendance a;
 
-select * from Attendance a ;
+SELECT a.*
+FROM Attendance a
+INNER JOIN Enrollment e ON a.enrollmentId = e.id
+INNER JOIN Schedule s ON a.scheduleId = s.id
+INNER JOIN Class c ON e.classId = c.id
+WHERE c.id = 3
+AND s.classDate = '2024-07-27';
 
-SELECT * FROM Account;
 
 CREATE TABLE SPRING_SESSION (
                                 PRIMARY_ID CHAR(36) NOT NULL,
