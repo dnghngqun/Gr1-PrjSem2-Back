@@ -67,7 +67,7 @@ CREATE TABLE Account(
                         imageAccount varchar(255),
                         createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
                         updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-                        role enum('admin', 'customer', 'staff' , "instructor") not null
+                        role enum('admin', 'customer' , "instructor") not null
 );
 
 select * from Account where role = 'customer';
@@ -230,13 +230,38 @@ INSERT INTO Account(username, password, fullname,imageAccount ,birthday, email, 
 INSERT INTO Account(username, password, fullname,imageAccount, birthday, email, phonenumber, role) values ('dothao', 123456, 'Do Thi Thao','https://i.imgur.com/1BhEejF.jpeg', '1999-01-01','thaodtth2304010@fpt.edu.vn','0348279942', 'customer');
 SELECT * FROM  Account;
 
--- create staff
-INSERT INTO Account(username, password, fullname,imageAccount, birthday, email, phonenumber, role) values ('staff', 123456, 'Dang Hong Quan','https://i.imgur.com/1BhEejF.jpeg', '1999-01-01','staff@gmail.com','0987654312', 'staff');
 -- create admin
 INSERT INTO Account(username, password, fullname,imageAccount, birthday, email, phonenumber, role) values ('admin', 123456, 'admin','https://i.imgur.com/1BhEejF.jpeg', '1999-01-01','admin@example.com','00000000000', 'admin');
 
 -- create instructor
-INSERT INTO Account(username, password, fullname,imageAccount, birthday, email, phonenumber, role) values ('instructor', 123456, 'instructor','https://i.imgur.com/1BhEejF.jpeg', '1999-01-01','instructor@example.com','000000012300', 'instructor');
+INSERT INTO Account(username, password, fullname,imageAccount, birthday, email, phonenumber, role) 
+values 
+('johnsmith', 123456, 'John Smith','https://i.imgur.com/TIuVvui.png?1', '1999-01-01','johnsmith_ielts@example.com','0123456789', 'instructor'),
+('sarahlee', 123456, 'Sarah Lee','https://i.imgur.com/ADQUqCv.png?1', '1999-01-01','sarahlee_toeic@example.com','0911222333', 'instructor'),
+('davidtaylor', 123456, 'David Taylor','https://i.imgur.com/TiY9PuH.jpg', '1999-01-01','davidtaylor_toeic@example.com','0933444555', 'instructor'),
+('emilyjohnson', 123456, 'Emily Johnson','https://i.imgur.com/tATWZoE.jpg', '1999-01-01','emilyjohnson_ielts@example.com','0987654321', 'instructor'),
+('lauramartinez', 123456, 'Laura Martinez','https://i.imgur.com/jQjsgtw.jpg', '1999-01-01','lauramartinez_toeic@example.com','0944555666', 'instructor'),
+('michaelbrown', 123456, 'Michael Brown','https://i.imgur.com/yXleNYE.jpg', '1999-01-01','michaelbrown_ielts@example.com','0123987654', 'instructor'),
+('sophiadavis', 123456, 'Sophia Davis','https://i.imgur.com/vwx4lTP.jpg', '1999-01-01','sophiadavis_ielts@example.com','0987123456', 'instructor'),
+('jameswilson', 123456, 'James Wilson','https://i.imgur.com/us80Xxs.jpg', '1999-01-01','jameswilson_ielts@example.com','0912345678', 'instructor'),
+('robertanderson', 123456, 'Robert Anderson','https://i.imgur.com/qLfUpbC.jpg', '1999-01-01','robertanderson_toeic@example.com','0955666777', 'instructor'),
+('emmathomas', 123456, 'Emma Thomas','https://i.imgur.com/LuXZpZA.jpg', '1999-01-01','emmathomas_toeic@example.com','0966777888', 'instructor');
+
+INSERT INTO Instructor (name, gender, bio, email, phoneNumber,imageLink,classify)
+VALUES
+('John Smith', 'Male', 'IELTS instructor with 10 years of teaching and exam preparation experience.', 'johnsmith_ielts@example.com', '0123456789','https://i.imgur.com/TIuVvui.png?1','IELTS'),
+('Sarah Lee', 'Female', 'TOEIC instructor with 8 years of experience and effective teaching methods.', 'sarahlee_toeic@example.com', '0911222333','https://i.imgur.com/ADQUqCv.png?1','TOEIC'),
+('David Taylor', 'Male', 'TOEIC exam preparation specialist with many years of experience.', 'davidtaylor_toeic@example.com', '0933444555','https://i.imgur.com/TiY9PuH.jpg','TOEIC'),
+('Emily Johnson', 'Female', 'IELTS teacher with international certification and many years of experience.', 'emilyjohnson_ielts@example.com', '0987654321','https://i.imgur.com/tATWZoE.jpg','IELTS'),
+('Laura Martinez', 'Female', 'TOEIC teacher with high-quality lessons and students achieving high scores.', 'lauramartinez_toeic@example.com', '0944555666','https://i.imgur.com/jQjsgtw.jpg','TOEIC'),
+('Michael Brown', 'Male', 'IELTS specialist with modern teaching methods and extensive experience.', 'michaelbrown_ielts@example.com', '0123987654','https://i.imgur.com/yXleNYE.jpg','IELTS'),
+('Sophia Davis', 'Female', 'Master of Linguistics, specializing in IELTS exam preparation.', 'sophiadavis_ielts@example.com', '0987123456','https://i.imgur.com/vwx4lTP.jpg','IELTS'),
+('James Wilson', 'Male', 'IELTS instructor with many students achieving high scores.', 'jameswilson_ielts@example.com', '0912345678','https://i.imgur.com/us80Xxs.jpg','IELTS'),
+('Robert Anderson', 'Male', 'Master of Linguistics, specializing in TOEIC exam preparation.', 'robertanderson_toeic@example.com', '0955666777','https://i.imgur.com/qLfUpbC.jpg','TOEIC'),
+('Emma Thomas', 'Female', 'TOEIC instructor with many years of experience and advanced teaching methods.', 'emmathomas_toeic@example.com', '0966777888','https://i.imgur.com/LuXZpZA.jpg','TOEIC');
+
+
+SELECT * FROM Instructor;
 
 
 -- course TOEIC 2 Skills
@@ -274,22 +299,6 @@ INSERT INTO Order_(userId, status) values(2,0);
 INSERT INTO Order_(userId, status) values(3,0);
 
 SELECT * FROM Order_;
-
-INSERT INTO Instructor (name, gender, bio, email, phoneNumber,imageLink,classify)
-VALUES
-('John Smith', 'Male', 'IELTS instructor with 10 years of teaching and exam preparation experience.', 'johnsmith_ielts@example.com', '0123456789','https://i.imgur.com/TIuVvui.png?1','IELTS'),
-('Sarah Lee', 'Female', 'TOEIC instructor with 8 years of experience and effective teaching methods.', 'sarahlee_toeic@example.com', '0911222333','https://i.imgur.com/ADQUqCv.png?1','TOEIC'),
-('David Taylor', 'Male', 'TOEIC exam preparation specialist with many years of experience.', 'davidtaylor_toeic@example.com', '0933444555','https://i.imgur.com/TiY9PuH.jpg','TOEIC'),
-('Emily Johnson', 'Female', 'IELTS teacher with international certification and many years of experience.', 'emilyjohnson_ielts@example.com', '0987654321','https://i.imgur.com/tATWZoE.jpg','IELTS'),
-('Laura Martinez', 'Female', 'TOEIC teacher with high-quality lessons and students achieving high scores.', 'lauramartinez_toeic@example.com', '0944555666','https://i.imgur.com/jQjsgtw.jpg','TOEIC'),
-('Michael Brown', 'Male', 'IELTS specialist with modern teaching methods and extensive experience.', 'michaelbrown_ielts@example.com', '0123987654','https://i.imgur.com/yXleNYE.jpg','IELTS'),
-('Sophia Davis', 'Female', 'Master of Linguistics, specializing in IELTS exam preparation.', 'sophiadavis_ielts@example.com', '0987123456','https://i.imgur.com/vwx4lTP.jpg','IELTS'),
-('James Wilson', 'Male', 'IELTS instructor with many students achieving high scores.', 'jameswilson_ielts@example.com', '0912345678','https://i.imgur.com/us80Xxs.jpg','IELTS'),
-('Robert Anderson', 'Male', 'Master of Linguistics, specializing in TOEIC exam preparation.', 'robertanderson_toeic@example.com', '0955666777','https://i.imgur.com/qLfUpbC.jpg','TOEIC'),
-('Emma Thomas', 'Female', 'TOEIC instructor with many years of experience and advanced teaching methods.', 'emmathomas_toeic@example.com', '0966777888','https://i.imgur.com/LuXZpZA.jpg','TOEIC');
-
-
-SELECT * FROM Instructor;
 
 INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (1,1,'14h30-16h', '2024-08-06','2024-09-19', 0);
 INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (1,2,'14h30-16h', '2024-08-05','2024-09-18', 0);
