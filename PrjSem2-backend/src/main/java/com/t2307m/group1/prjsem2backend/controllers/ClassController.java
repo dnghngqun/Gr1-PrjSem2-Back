@@ -100,4 +100,16 @@ public class ClassController {
                 new ResponseObject("ok", "Get class by status is started successfully!", classes)
         );
     }
+    @GetMapping("/instructor/{email}")
+    public ResponseEntity<ResponseObject> getClassByInstructor(@PathVariable String email){
+        List<AClass> classes = classService.getClassByInstructorId(email);
+        if (classes.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    new ResponseObject("failed", "Class not found!", "")
+            );
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject("ok", "Get class by instructor successfully!", classes)
+        );
+    }
 }

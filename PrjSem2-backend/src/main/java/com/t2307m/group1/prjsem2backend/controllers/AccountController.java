@@ -17,10 +17,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
+
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -99,7 +97,9 @@ public class AccountController {
               new ResponseObject("failed", "User not found!", "")
             );
         }
-        String token = UUID.randomUUID().toString();
+        Random random = new Random();
+        int code = 100000 + random.nextInt(1000000);
+        String token = String.valueOf(code);
         PasswordResetToken resetToken = new PasswordResetToken(token, optionalAccount.get());
         tokenRepository.save(resetToken);//post to db
         emailService.sendPasswordResetToken(email, token);
@@ -182,9 +182,10 @@ public class AccountController {
     }
 
     @PutMapping("/changePassword")
-    public ResponseEntity<ResponseObject> changePassword(@RequestParam String identify,@RequestParam String oldPassword, @RequestParam String newPassword){
+    public ResponseEntity<ResponseObject> changePassword(@RequestParam String identify,@RequestParam String oldPassword, @RequestParam String newPassword, HttpSession session){
         Optional<Account> changePassword = accountService.changePassword(identify,oldPassword, newPassword);
         if (changePassword.isPresent()){
+            session.setAttribute("user", changePassword.get());
             return ResponseEntity.status(HttpStatus.OK).body(
                     new ResponseObject("ok", "change password successfully!", changePassword.get())
             );
@@ -232,7 +233,7 @@ public class AccountController {
 
     @GetMapping("/currentUser")
     public ResponseEntity<ResponseObject> getCurrentUser(HttpSession session){
-        Object user = session.getAttribute("user");
+        Account user = (Account) session.getAttribute("user");
         if (user != null){
             return ResponseEntity.status(HttpStatus.OK).body(
                     new ResponseObject("ok","Current user retrieved successfully",user)

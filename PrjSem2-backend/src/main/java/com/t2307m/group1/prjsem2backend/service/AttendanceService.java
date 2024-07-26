@@ -61,8 +61,9 @@ public class AttendanceService {
         return scheduleRepository.findScheduleByAClassId(classId);
     }
 
-    public List<Schedule> findScheduleByClassDate(Date classDate){
-        return scheduleRepository.findScheduleByClassDate(classDate);
+    public List<Schedule> findScheduleByClassDateAndInstructorId(Date classDate, int instructorId){
+
+        return scheduleRepository.findScheduleByClassDateAndInstructorId(classDate,instructorId);
     }
 
     public List<Schedule> findByClassDate (Date classDate){

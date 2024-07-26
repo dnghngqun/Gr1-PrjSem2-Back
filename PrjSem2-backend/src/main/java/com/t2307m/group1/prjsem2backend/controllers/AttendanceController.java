@@ -1,7 +1,10 @@
 package com.t2307m.group1.prjsem2backend.controllers;
 
 import com.t2307m.group1.prjsem2backend.model.*;
+import com.t2307m.group1.prjsem2backend.repositories.AccountRepository;
+import com.t2307m.group1.prjsem2backend.repositories.InstructorRepository;
 import com.t2307m.group1.prjsem2backend.service.AttendanceService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -17,9 +20,10 @@ import java.util.Optional;
 @RequestMapping("/api/v1/attendance")
 public class AttendanceController {
     private final AttendanceService attendanceService;
-
+    private final InstructorRepository instructorRepository;
     @Autowired
-    public AttendanceController(AttendanceService attendanceService) {
+    public AttendanceController(AttendanceService attendanceService, InstructorRepository instructorRepository) {
+        this.instructorRepository = instructorRepository;
         this.attendanceService = attendanceService;
     }
 
@@ -97,9 +101,17 @@ public class AttendanceController {
     }
 
 
-    @GetMapping("/schedule/{classDate}")
-    public ResponseEntity<ResponseObject> getScheduleByClassDate(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate classDate){
-        List<Schedule> schedule = attendanceService.findScheduleByClassDate(Date.valueOf(classDate));
+    @GetMapping("/schedule")
+    public ResponseEntity<ResponseObject> getScheduleByClassDate
+            (@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate classDate,
+             @RequestParam String email){
+        Optional<Instructor> instructorOpt = instructorRepository.findByEmail(email);
+        if(instructorOpt.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    new ResponseObject("failed", "Instructor not found!", "")
+            );
+        }
+        List<Schedule> schedule = attendanceService.findScheduleByClassDateAndInstructorId(Date.valueOf(classDate), instructorOpt.get().getId());
         if(schedule.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
                     new ResponseObject("failed", "Not found schedule", "")

@@ -13,7 +13,6 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     Optional<Account> findByEmail(String email);
     Optional<Account> findByPhoneNumber(String phoneNumber);
 
-
     @Query("SELECT a FROM Account a WHERE a.role = 'customer'")
     List<Account> findAllCustomers();
 }

@@ -9,4 +9,6 @@ import java.util.List;
 public interface ClassRepository extends JpaRepository<AClass, Integer> {
     @Query("SELECT c FROM AClass c WHERE c.status = 1")
     List<AClass> getAClassByStatusIsStarted();
+
+    List<AClass> getAClassByInstructorId(int instructorId);
 }

@@ -1,7 +1,9 @@
 package com.t2307m.group1.prjsem2backend.service;
 
 import com.t2307m.group1.prjsem2backend.model.AClass;
+import com.t2307m.group1.prjsem2backend.model.Instructor;
 import com.t2307m.group1.prjsem2backend.repositories.ClassRepository;
+import com.t2307m.group1.prjsem2backend.repositories.InstructorRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +14,11 @@ import java.util.Optional;
 @Service
 public class ClassService {
     private final ClassRepository classRepository;
-
+    private final InstructorRepository instructorRepository;
     @Autowired
-    public ClassService(ClassRepository classRepository) {
+    public ClassService(ClassRepository classRepository, InstructorRepository instructorRepository) {
         this.classRepository = classRepository;
+        this.instructorRepository = instructorRepository;
     }
 
     @Transactional
@@ -71,5 +74,14 @@ public class ClassService {
 
     public List<AClass> getClassByStatusIsStarted(){
         return classRepository.getAClassByStatusIsStarted();
+    }
+
+    public List<AClass> getClassByInstructorId(String email){
+        Optional<Instructor> instructor = instructorRepository.findByEmail(email);
+
+        if (instructor.isPresent()) {
+            return classRepository.getAClassByInstructorId(instructor.get().getId());
+        }
+        return null;
     }
 }

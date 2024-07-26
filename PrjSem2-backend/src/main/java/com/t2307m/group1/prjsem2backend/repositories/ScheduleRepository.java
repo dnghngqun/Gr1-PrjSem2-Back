@@ -12,7 +12,8 @@ import java.util.Optional;
 
 public interface ScheduleRepository extends JpaRepository<Schedule, Integer> {
     List<Schedule> findScheduleByAClassId(int aClassId);
-    @Query("SELECT s FROM AClass c JOIN Schedule s ON c.id = s.aClass.id WHERE s.classDate = :classDate AND c.status = 1")
-    List<Schedule> findScheduleByClassDate(@Param("classDate") Date date);
+    @Query("SELECT s FROM AClass c JOIN Schedule s ON c.id = s.aClass.id WHERE s.classDate = :classDate AND c.status = 1 AND c.instructor.id = :instructorId")
+    List<Schedule> findScheduleByClassDateAndInstructorId(@Param("classDate") Date date ,@Param("instructorId") int instructorId);
     List<Schedule> findByClassDate(Date date);
+
 }
