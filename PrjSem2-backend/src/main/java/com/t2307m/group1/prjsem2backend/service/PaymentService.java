@@ -58,6 +58,9 @@ public class PaymentService {
             if (updatedPayment.getStatus() != null) {
                 existingPayment.setStatus(updatedPayment.getStatus());
             }
+            if(updatedPayment.getDiscount() != null){
+                existingPayment.setDiscount(updatedPayment.getDiscount());
+            }
 
             return paymentRepository.save(existingPayment);
         } else {

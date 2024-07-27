@@ -25,10 +25,12 @@ public class Payment {
     @JoinColumn(name = "orderDetailId", nullable = false)
     private OrderDetail orderDetail;
 
-    @Column(name = "paymentMethod")
-    private String paymentMethod;
+    @Column(name = "discount")
+    private Integer discount;
     @Column(name = "amount")
     private Double amount;
+    @Column(name = "paymentMethod")
+    private String paymentMethod;
     @Column(name = "paymentDate")
     private Timestamp paymentDate;
     @Column(name = "status")
@@ -65,14 +67,23 @@ public class Payment {
     public Payment() {
     }
 
-    public Payment(String paymentId, Account account, OrderDetail orderDetail, String paymentMethod, Double amount, Timestamp paymentDate, Integer status) {
+    public Payment(String paymentId, Account account, OrderDetail orderDetail, Integer discount, Double amount, String paymentMethod, Timestamp paymentDate, Integer status) {
         this.paymentId = paymentId;
         this.account = account;
         this.orderDetail = orderDetail;
-        this.paymentMethod = paymentMethod;
+        this.discount = discount;
         this.amount = amount;
+        this.paymentMethod = paymentMethod;
         this.paymentDate = paymentDate;
         this.status = status;
+    }
+
+    public Integer getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Integer discount) {
+        this.discount = discount;
     }
 
     public int getId() {

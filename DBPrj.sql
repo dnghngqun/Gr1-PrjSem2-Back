@@ -146,6 +146,7 @@ CREATE TABLE Payment (
                          id INT PRIMARY KEY AUTO_INCREMENT,
                          paymentId VARCHAR(255) NOT NULL,
                          userId INT,
+                         discount Int,
                          paymentMethod varchar(255),
                          orderDetailId INT NOT NULL,
                          amount DECIMAL,
@@ -156,6 +157,22 @@ CREATE TABLE Payment (
                          FOREIGN KEY (userId) REFERENCES Account(id),
                          FOREIGN KEY (orderDetailId) REFERENCES OrderDetail(id)
 );
+
+Create Table Discount(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	code VARCHAR(255) NOT NULL,
+	value int default 0,
+	createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+INSERT INTO Discount(code,value) 
+VALUES
+("GIAMGIA10", 10),
+("GIAMGIA20", 20),
+("GIAMGIA30", 30),
+("GIAMGIA40", 40);
+
 -- bảng này lưu trữ lịch học
 CREATE TABLE Schedule (
     id INT AUTO_INCREMENT PRIMARY KEY,
