@@ -67,7 +67,7 @@ CREATE TABLE Account(
                         imageAccount varchar(255),
                         createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
                         updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-                        role enum('admin', 'customer' , "instructor") not null
+                        role enum('admin', 'customer' , 'instructor') not null
 );
 
 select * from Account where role = 'customer';
@@ -168,10 +168,10 @@ Create Table Discount(
 
 INSERT INTO Discount(code,value) 
 VALUES
-("GIAMGIA10", 10),
-("GIAMGIA20", 20),
-("GIAMGIA30", 30),
-("GIAMGIA40", 40);
+('GIAMGIA10', 10),
+('GIAMGIA20', 20),
+('GIAMGIA30', 30),
+('GIAMGIA40', 40);
 
 -- bảng này lưu trữ lịch học
 CREATE TABLE Schedule (
