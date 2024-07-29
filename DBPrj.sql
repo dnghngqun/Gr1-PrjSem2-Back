@@ -274,60 +274,62 @@ INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts B', 130,
 INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Total review', 160,'https://i.imgur.com/O44JfSB.png','IELTS', 0);
 
 SELECT * FROM Instructor i ;
-INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (1,1,'14h30-16h', '2024-08-06','2024-09-19', 0);
-INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (1,2,'14h30-16h', '2024-08-05','2024-09-18', 0);
+INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (1,1,'14h30-16h', '2024-07-30','2024-09-12', 0);
+INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (1,2,'14h30-16h', '2024-07-26','2024-09-09', 0);
 INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (2,3,'14h30-16h', '2024-07-18','2024-08-31', 0);
-INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (1,1,'17h-18h30', '2024-08-06','2024-09-19', 0);
-INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (3,2,'17h-18h30', '2024-08-06','2024-09-19', 0);
+INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (1,1,'17h-18h30', '2024-07-27','2024-09-12', 0);
+INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (3,2,'17h-18h30', '2024-07-30','2024-09-12', 0);
 INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (1,2,'9h-10h30', '2024-07-30','2024-09-12', 0);
-INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (2,3,'17h-18h30', '2024-08-07','2024-09-20', 0);
+INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (2,3,'17h-18h30', '2024-06-25','2024-08-27', 0);
 INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (3,3,'17h-18h30', '2024-06-16','2024-07-31', 0);
 
 
 -- thêm dữ liệu bảng schedule
--- Lớp học với ID = 1 bắt đầu từ '2024-08-06', học vào thứ 3, 5, 7
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 1, '2024-08-06');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 2, '2024-08-08');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 3, '2024-08-10');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 4, '2024-08-13');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 5, '2024-08-15');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 6, '2024-08-17');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 7, '2024-08-20');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 8, '2024-08-22');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 9, '2024-08-24');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 10, '2024-08-27');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 11, '2024-08-29');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 12, '2024-08-31');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 13, '2024-09-03');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 14, '2024-09-05');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 15, '2024-09-07');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 16, '2024-09-10');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 17, '2024-09-12');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 18, '2024-09-14');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 19, '2024-09-17');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 20, '2024-09-19');
+-- Lớp học với ID = 1 bắt đầu từ '2024-07-30', học vào thứ 3, 5, 7
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 1, '2024-07-30');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 2, '2024-08-01');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 3, '2024-08-03');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 4, '2024-08-06');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 5, '2024-08-08');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 6, '2024-08-10');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 7, '2024-08-13');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 8, '2024-08-15');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 9, '2024-08-17');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 10, '2024-08-20');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 11, '2024-08-22');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 12, '2024-08-24');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 13, '2024-08-27');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 14, '2024-08-29');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 15, '2024-08-31');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 16, '2024-09-03');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 17, '2024-09-05');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 18, '2024-09-07');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 19, '2024-09-10');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (1, 20, '2024-09-12');
 
--- Lớp học với ID = 2 bắt đầu từ '2024-08-05', học vào thứ 2, 4, 6
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 1, '2024-08-05');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 2, '2024-08-07');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 3, '2024-08-09');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 4, '2024-08-12');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 5, '2024-08-14');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 6, '2024-08-16');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 7, '2024-08-19');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 8, '2024-08-21');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 9, '2024-08-23');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 10, '2024-08-26');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 11, '2024-08-28');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 12, '2024-08-30');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 13, '2024-09-02');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 14, '2024-09-04');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 15, '2024-09-06');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 16, '2024-09-09');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 17, '2024-09-11');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 18, '2024-09-13');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 19, '2024-09-16');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 20, '2024-09-18');
+
+-- Lớp học với ID = 2 bắt đầu từ '2024-07-26', học vào thứ 2, 4, 6
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 1, '2024-07-26');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 2, '2024-07-29');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 3, '2024-07-31');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 4, '2024-08-02');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 5, '2024-08-05');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 6, '2024-08-07');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 7, '2024-08-09');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 8, '2024-08-12');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 9, '2024-08-14');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 10, '2024-08-16');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 11, '2024-08-19');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 12, '2024-08-21');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 13, '2024-08-23');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 14, '2024-08-26');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 15, '2024-08-28');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 16, '2024-08-30');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 17, '2024-09-02');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 18, '2024-09-04');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 19, '2024-09-06');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (2, 20, '2024-09-09');
+
 
 -- Lớp học với ID = 3 bắt đầu từ '2024-08-08', học vào thứ 3, 5, 7
 INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 1, '2024-07-18'); -- Thứ 5
@@ -351,49 +353,51 @@ INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 18, '2024-08-
 INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 19, '2024-08-29'); -- Thứ 5
 INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (3, 20, '2024-08-31'); -- Thứ 7
 
--- Lớp học với ID = 4 bắt đầu từ '2024-08-06', học vào thứ 3, 5, 7
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 1, '2024-08-06');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 2, '2024-08-08');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 3, '2024-08-10');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 4, '2024-08-13');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 5, '2024-08-15');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 6, '2024-08-17');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 7, '2024-08-20');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 8, '2024-08-22');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 9, '2024-08-24');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 10, '2024-08-27');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 11, '2024-08-29');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 12, '2024-08-31');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 13, '2024-09-03');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 14, '2024-09-05');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 15, '2024-09-07');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 16, '2024-09-10');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 17, '2024-09-12');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 18, '2024-09-14');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 19, '2024-09-17');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 20, '2024-09-19');
+-- Lớp học với ID = 4 bắt đầu từ '2024-07-27', học vào thứ 3, 5, 7
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 1, '2024-07-30');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 2, '2024-08-01');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 3, '2024-08-03');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 4, '2024-08-06');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 5, '2024-08-08');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 6, '2024-08-10');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 7, '2024-08-13');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 8, '2024-08-15');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 9, '2024-08-17');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 10, '2024-08-20');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 11, '2024-08-22');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 12, '2024-08-24');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 13, '2024-08-27');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 14, '2024-08-29');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 15, '2024-08-31');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 16, '2024-09-03');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 17, '2024-09-05');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 18, '2024-09-07');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 19, '2024-09-10');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (4, 20, '2024-09-12');
 
--- Lớp học với ID = 5 bắt đầu từ '2024-08-06', học vào thứ 3, 5, 7
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 1, '2024-08-06');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 2, '2024-08-08');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 3, '2024-08-10');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 4, '2024-08-13');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 5, '2024-08-15');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 6, '2024-08-17');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 7, '2024-08-20');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 8, '2024-08-22');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 9, '2024-08-24');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 10, '2024-08-27');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 11, '2024-08-29');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 12, '2024-08-31');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 13, '2024-09-03');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 14, '2024-09-05');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 15, '2024-09-07');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 16, '2024-09-10');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 17, '2024-09-12');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 18, '2024-09-14');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 19, '2024-09-17');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 20, '2024-09-19');
+
+-- Lớp học với ID = 5 bắt đầu từ '2024-07-30', học vào thứ 3, 5, 7
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 1, '2024-07-30');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 2, '2024-08-01');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 3, '2024-08-03');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 4, '2024-08-06');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 5, '2024-08-08');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 6, '2024-08-10');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 7, '2024-08-13');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 8, '2024-08-15');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 9, '2024-08-17');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 10, '2024-08-20');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 11, '2024-08-22');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 12, '2024-08-24');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 13, '2024-08-27');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 14, '2024-08-29');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 15, '2024-08-31');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 16, '2024-09-03');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 17, '2024-09-05');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 18, '2024-09-07');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 19, '2024-09-10');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (5, 20, '2024-09-12');
+
 
 -- Lớp học với ID = 6 bắt đầu từ '2024-07-30', học vào thứ 3, 5, 7
 INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (6, 1, '2024-07-30');
@@ -417,27 +421,29 @@ INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (6, 18, '2024-09-
 INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (6, 19, '2024-09-10');
 INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (6, 20, '2024-09-12');
 
--- Lớp học với ID = 7 bắt đầu từ '2024-08-07', học vào thứ 2, 4, 6
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 1, '2024-08-07');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 2, '2024-08-09');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 3, '2024-08-12');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 4, '2024-08-14');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 5, '2024-08-16');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 6, '2024-08-19');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 7, '2024-08-21');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 8, '2024-08-23');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 9, '2024-08-26');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 10, '2024-08-28');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 11, '2024-08-30');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 12, '2024-09-02');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 13, '2024-09-04');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 14, '2024-09-06');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 15, '2024-09-09');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 16, '2024-09-11');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 17, '2024-09-13');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 18, '2024-09-16');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 19, '2024-09-18');
-INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 20, '2024-09-20');
+-- Lớp học với ID = 7 bắt đầu từ '2024-06-25', học vào thứ 3, 5, 7
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 1, '2024-06-25');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 2, '2024-06-27');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 3, '2024-06-29');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 4, '2024-07-02');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 5, '2024-07-05');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 6, '2024-07-09');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 7, '2024-07-12');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 8, '2024-07-16');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 9, '2024-07-19');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 10, '2024-07-23');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 11, '2024-07-26');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 12, '2024-07-30');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 13, '2024-08-02');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 14, '2024-08-06');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 15, '2024-08-09');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 16, '2024-08-13');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 17, '2024-08-16');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 18, '2024-08-20');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 19, '2024-08-23');
+INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (7, 20, '2024-08-27');
+
+
 
 -- Lớp học với ID = 8 bắt đầu từ '2024-06-16', học vào thứ 2, 4, 6
 INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (8, 1, '2024-06-17'); -- Thứ 2
