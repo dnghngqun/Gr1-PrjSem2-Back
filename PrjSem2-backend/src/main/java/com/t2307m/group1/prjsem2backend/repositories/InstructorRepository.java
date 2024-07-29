@@ -7,5 +7,6 @@ import java.util.Optional;
 
 public interface InstructorRepository extends JpaRepository<Instructor, Integer> {
     Optional<Instructor> findByEmail(String email);
+    void deleteByEmail(String email);
 }
 

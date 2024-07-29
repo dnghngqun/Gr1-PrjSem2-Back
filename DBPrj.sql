@@ -58,12 +58,12 @@ CREATE TABLE Instructor (
 
 CREATE TABLE Account(
                         id INT AUTO_INCREMENT PRIMARY KEY ,
-                        userName varchar(255) not null ,
+                        userName varchar(255) unique not null ,
                         password varchar(255) not null,
                         fullName varchar(255) not null,
                         birthday DATE not null ,
-                        email varchar(255) not null,
-                        phoneNumber varchar(255) not null,
+                        email varchar(255) unique not null,
+                        phoneNumber varchar(255) unique not null,
                         imageAccount varchar(255),
                         createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
                         updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -100,20 +100,6 @@ CREATE TABLE Enrollment (
                             FOREIGN KEY (classId) REFERENCES Class(id),
                             FOREIGN KEY (userId) REFERENCES Account(id)
 );
-
-
--- Bảng lưu trữ thông tin thông báo
-CREATE TABLE Notification (
-                              id INT AUTO_INCREMENT PRIMARY KEY,
-                              userId INT NOT NULL,
-                              message TEXT,
-                              dateSent TIMESTAMP,
-                              status TINYINT,
-                              createdAt Timestamp DEFAULT CURRENT_TIMESTAMP,
-                              updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-                              FOREIGN KEY (userId) REFERENCES Account(id)
-);
-
 
 
 
@@ -233,7 +219,7 @@ CREATE TABLE SPRING_SESSION_ATTRIBUTES (
 
 CREATE INDEX SPRING_SESSION_ATTRIBUTES_IX1 ON SPRING_SESSION_ATTRIBUTES (SESSION_PRIMARY_ID);
 
-select * From SPRING_SESSION;
+SELECT * FROM Account;
 
 CREATE TABLE password_reset_tokens (
                                        id BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -242,28 +228,6 @@ CREATE TABLE password_reset_tokens (
                                        expiration_date TIMESTAMP NOT NULL,
                                        FOREIGN KEY (account_id) REFERENCES Account(id)
 );
-INSERT INTO Account(username, password, fullname,imageAccount, birthday, email, phonenumber, role) values ('hongquan', 123456, 'Dang Hong Quan','https://i.imgur.com/1BhEejF.jpeg', '1999-01-01','quandhth2304004@fpt.edu.vn','0383240511', 'customer');
-INSERT INTO Account(username, password, fullname,imageAccount ,birthday, email, phonenumber, role) values ('phamhoang', 123456, 'Pham Nhat Hoang','https://i.imgur.com/1BhEejF.jpeg', '1999-01-01','hoangpnth2304021@fpt.edu.vn','0915298826', 'customer');
-INSERT INTO Account(username, password, fullname,imageAccount, birthday, email, phonenumber, role) values ('dothao', 123456, 'Do Thi Thao','https://i.imgur.com/1BhEejF.jpeg', '1999-01-01','thaodtth2304010@fpt.edu.vn','0348279942', 'customer');
-SELECT * FROM  Account;
-
--- create admin
-INSERT INTO Account(username, password, fullname,imageAccount, birthday, email, phonenumber, role) values ('admin', 123456, 'admin','https://i.imgur.com/1BhEejF.jpeg', '1999-01-01','admin@example.com','00000000000', 'admin');
-
--- create instructor
-INSERT INTO Account(username, password, fullname,imageAccount, birthday, email, phonenumber, role) 
-values 
-('johnsmith', 123456, 'John Smith','https://i.imgur.com/TIuVvui.png?1', '1999-01-01','johnsmith_ielts@example.com','0123456789', 'instructor'),
-('sarahlee', 123456, 'Sarah Lee','https://i.imgur.com/ADQUqCv.png?1', '1999-01-01','sarahlee_toeic@example.com','0911222333', 'instructor'),
-('davidtaylor', 123456, 'David Taylor','https://i.imgur.com/TiY9PuH.jpg', '1999-01-01','davidtaylor_toeic@example.com','0933444555', 'instructor'),
-('emilyjohnson', 123456, 'Emily Johnson','https://i.imgur.com/tATWZoE.jpg', '1999-01-01','emilyjohnson_ielts@example.com','0987654321', 'instructor'),
-('lauramartinez', 123456, 'Laura Martinez','https://i.imgur.com/jQjsgtw.jpg', '1999-01-01','lauramartinez_toeic@example.com','0944555666', 'instructor'),
-('michaelbrown', 123456, 'Michael Brown','https://i.imgur.com/yXleNYE.jpg', '1999-01-01','michaelbrown_ielts@example.com','0123987654', 'instructor'),
-('sophiadavis', 123456, 'Sophia Davis','https://i.imgur.com/vwx4lTP.jpg', '1999-01-01','sophiadavis_ielts@example.com','0987123456', 'instructor'),
-('jameswilson', 123456, 'James Wilson','https://i.imgur.com/us80Xxs.jpg', '1999-01-01','jameswilson_ielts@example.com','0912345678', 'instructor'),
-('robertanderson', 123456, 'Robert Anderson','https://i.imgur.com/qLfUpbC.jpg', '1999-01-01','robertanderson_toeic@example.com','0955666777', 'instructor'),
-('emmathomas', 123456, 'Emma Thomas','https://i.imgur.com/LuXZpZA.jpg', '1999-01-01','emmathomas_toeic@example.com','0966777888', 'instructor');
-
 INSERT INTO Instructor (name, gender, bio, email, phoneNumber,imageLink,classify)
 VALUES
 ('John Smith', 'Male', 'IELTS instructor with 10 years of teaching and exam preparation experience.', 'johnsmith_ielts@example.com', '0123456789','https://i.imgur.com/TIuVvui.png?1','IELTS'),
@@ -278,7 +242,8 @@ VALUES
 ('Emma Thomas', 'Female', 'TOEIC instructor with many years of experience and advanced teaching methods.', 'emmathomas_toeic@example.com', '0966777888','https://i.imgur.com/LuXZpZA.jpg','TOEIC');
 
 
-SELECT * FROM Instructor;
+
+SELECT * FROM Attendance a ;
 
 
 -- course TOEIC 2 Skills
@@ -308,15 +273,7 @@ INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Speaking
 INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts B', 130,'https://i.imgur.com/xHHgR77.png','IELTS', 0);
 INSERT INTO Course(name, price,imgLink,classify, status) values ('Ielts Total review', 160,'https://i.imgur.com/O44JfSB.png','IELTS', 0);
 
-
-SELECT * FROM Course;
-
-INSERT INTO Order_(userId, status) values(1,0);
-INSERT INTO Order_(userId, status) values(2,0);
-INSERT INTO Order_(userId, status) values(3,0);
-
-SELECT * FROM Order_;
-
+SELECT * FROM Instructor i ;
 INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (1,1,'14h30-16h', '2024-08-06','2024-09-19', 0);
 INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (1,2,'14h30-16h', '2024-08-05','2024-09-18', 0);
 INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (2,3,'14h30-16h', '2024-07-18','2024-08-31', 0);
@@ -325,8 +282,6 @@ INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) 
 INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (1,2,'9h-10h30', '2024-07-30','2024-09-12', 0);
 INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (2,3,'17h-18h30', '2024-08-07','2024-09-20', 0);
 INSERT INTO Class(courseId, instructorId, location, startDate, endDate, status) values (3,3,'17h-18h30', '2024-06-16','2024-07-31', 0);
-
-select * FROM Class;
 
 
 -- thêm dữ liệu bảng schedule
@@ -506,7 +461,7 @@ INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (8, 18, '2024-07-
 INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (8, 19, '2024-07-29'); -- Thứ 2
 INSERT INTO Schedule (classId, lessonNumber, classDate) VALUES (8, 20, '2024-07-31'); -- Thứ 4
 
-SELECT  * FROM Payment ;
+
 
 -- TOEIC 2 Skills:Basic
 INSERT INTO Section(course_id, goalTitle, contentGoal, introduce, contentIntroduce, details, contentDetails, countLessons, durationLesson, supportTime, classSize, contentClassSize)
@@ -1139,4 +1094,3 @@ INSERT INTO Lesson (course_id, lesson_number, topics_covered, outcome)
 VALUES (21, 'Lesson 21 - Lesson 25', 'Exam Techniques\nFinal Tips', 'Learn effective exam techniques and receive final tips for the IELTS test.');
 
 
-SELECT * FROM Enrollment e ;

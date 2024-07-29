@@ -36,7 +36,8 @@ public class OrderService {
         Order order = orderOpt.get();
 
         if (orderUpdate.getTotalPrice() != null) {
-            order.setTotalPrice(orderUpdate.getTotalPrice());
+            Double totalAmountBefore = order.getTotalPrice();
+            order.setTotalPrice(totalAmountBefore + orderUpdate.getTotalPrice());
         }
         if (orderUpdate.getStatus() != null) {
             order.setStatus(orderUpdate.getStatus());

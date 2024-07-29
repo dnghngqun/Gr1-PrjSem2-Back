@@ -137,7 +137,30 @@ public class AttendanceController {
 
         return ResponseEntity.ok(attendances);
     }
+    @GetMapping("/class/{classId}/attendances")
+    public ResponseEntity<ResponseObject> getAttendanceByClassId(@PathVariable int classId) {
+        List<Attendance> attendances = attendanceService.getAttendanceByClassId(classId);
+        if (attendances.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    new ResponseObject("failed", "No attendance records found for the class", "")
+            );
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject("ok", "Attendance records retrieved successfully", attendances)
+        );
+    }
 
-
+        @GetMapping("/student/{studentId}")
+        public ResponseEntity<ResponseObject> getAttendanceByStudentId(@PathVariable int studentId) {
+            List<Attendance> attendances = attendanceService.getAttendanceByStudentId(studentId);
+            if (attendances.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                        new ResponseObject("failed", "No attendance records found for the student", "")
+                );
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(
+                    new ResponseObject("ok", "Attendance records retrieved successfully", attendances)
+            );
+        }
 }
 

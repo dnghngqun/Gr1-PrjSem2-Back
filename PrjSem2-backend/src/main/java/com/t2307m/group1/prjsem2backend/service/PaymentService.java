@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -86,6 +88,29 @@ public class PaymentService {
         payment.setStatus(1); // Đánh dấu thanh toán thành công
 
         return paymentRepository.save(payment);
+    }
+
+    public List<Payment> getAllPaymentsByIdDesc() {
+        return paymentRepository.findAllByOrderByIdDesc();
+    }
+
+    public Map<String, Object> getYearlyBreakup() {
+        List<Map<String, Object>> results = paymentRepository.getYearlyBreakup();
+        double totalYearlyRevenue = results.stream()
+                .mapToDouble(result -> ((Number) result.get("totalRevenue")).doubleValue())
+                .sum();
+        return Map.of("yearlyBreakup", totalYearlyRevenue);
+    }
+
+    public Map<String, Object> getMonthlyEarnings(int year) {
+        List<Map<String, Object>> results = paymentRepository.getMonthlyEarningsByYear(year);
+        Map<String, Double> monthlyEarnings = new HashMap<>();
+        results.forEach(result -> {
+            int month = ((Number) result.get("month")).intValue();
+            double totalRevenue = ((Number) result.get("totalRevenue")).doubleValue();
+            monthlyEarnings.put(String.valueOf(month), totalRevenue);
+        });
+        return Map.of("monthlyEarnings", monthlyEarnings);
     }
 }
 

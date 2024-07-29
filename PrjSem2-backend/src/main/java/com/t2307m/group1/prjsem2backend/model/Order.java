@@ -16,7 +16,7 @@ public class Order{
     @JoinColumn(name = "userId", nullable = false)
     private Account account;
 
-    private Double totalPrice;
+    private Double totalPrice = 0.0; //default value
     private Integer status;
     @Transient //giá trị này không được ánh xạ vào database
     private Timestamp createdAt;

@@ -66,6 +66,10 @@ public class AttendanceService {
         return scheduleRepository.findScheduleByClassDateAndInstructorId(classDate,instructorId);
     }
 
+    public List<Attendance> getAttendanceByClassId(int classId) {
+        return attendanceRepository.findAllByClassId(classId);
+    }
+
     public List<Schedule> findByClassDate (Date classDate){
         return scheduleRepository.findByClassDate(classDate);
     }
@@ -116,4 +120,7 @@ public class AttendanceService {
         return attendanceRepository.findAttendanceByClassIdAndDate(classId, classDate);
     }
 
+    public List<Attendance> getAttendanceByStudentId(int studentId) {
+        return attendanceRepository.findByStudentId(studentId);
+    }
 }

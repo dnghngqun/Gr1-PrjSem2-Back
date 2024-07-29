@@ -1,20 +1,19 @@
 package com.t2307m.group1.prjsem2backend.controllers;
 
 import com.paypal.api.payments.*;
-import com.paypal.base.rest.APIContext;
-import com.paypal.base.rest.PayPalRESTException;
-import com.t2307m.group1.prjsem2backend.model.OrderDetail;
+import com.t2307m.group1.prjsem2backend.model.Order;
 import com.t2307m.group1.prjsem2backend.model.Payment;
 import com.t2307m.group1.prjsem2backend.model.ResponseObject;
 import com.t2307m.group1.prjsem2backend.service.OrderDetailService;
+import com.t2307m.group1.prjsem2backend.service.OrderService;
 import com.t2307m.group1.prjsem2backend.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -23,10 +22,12 @@ public class PaymentController {
 
     private final PaymentService paymentService;
     private final OrderDetailService orderDetailService;
+    private final OrderService orderService;
     @Autowired
-    public PaymentController(PaymentService paymentService, OrderDetailService orderDetailService) {
+    public PaymentController(PaymentService paymentService, OrderDetailService orderDetailService, OrderService orderService) {
         this.paymentService = paymentService;
         this.orderDetailService = orderDetailService;
+        this.orderService= orderService;
     }
 
     @GetMapping
@@ -58,6 +59,11 @@ public class PaymentController {
             // Cập nhật trạng thái OrderDetail sau khi thanh toán thành công
             orderDetailService.updateStatus(payment.getOrderDetail().getId(), 1);
 
+            //update total amount on order
+            com.t2307m.group1.prjsem2backend.model.Order newOrder = new Order();
+            newOrder.setTotalPrice(payment.getAmount());
+            orderService.updateOrder(payment.getAccount().getId(), newOrder);
+
             // Trả về thông tin Payment đã thanh toán thành công
             return ResponseEntity.status(HttpStatus.OK).body(
                     new ResponseObject("ok", "Payment successful!", payment)
@@ -67,5 +73,28 @@ public class PaymentController {
                     new ResponseObject("Failed", "Payment execution failed!", "")
             );
         }
+    }
+
+    @GetMapping("/paymentOrder")
+    public ResponseEntity<ResponseObject> getAllPaymentByIdDesc (){
+        List<Payment> payments = paymentService.getAllPaymentsByIdDesc();
+        if (payments.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    new ResponseObject("Failed", "Payment not found!", "")
+            );
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject("ok", " get Payment successful!", payments)
+        );
+    }
+
+    @GetMapping("/revenue/yearly")
+    public Map<String, Object> getYearlyBreakup() {
+        return paymentService.getYearlyBreakup();
+    }
+
+    @GetMapping("/revenue/monthly")
+    public Map<String, Object> getMonthlyEarnings(@RequestParam int year) {
+        return paymentService.getMonthlyEarnings(year);
     }
 }

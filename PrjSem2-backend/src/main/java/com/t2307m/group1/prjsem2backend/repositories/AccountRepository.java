@@ -12,7 +12,12 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     //Optional để đại diện cho một giá trị có thể có hoặc không có, thay vì sử dụng null trực tiếp.
     Optional<Account> findByEmail(String email);
     Optional<Account> findByPhoneNumber(String phoneNumber);
-
+    void deleteAccountById(int id);
     @Query("SELECT a FROM Account a WHERE a.role = 'customer'")
     List<Account> findAllCustomers();
+
+    @Query("SELECT a FROM Account a WHERE a.role = 'instructor'")
+    List<Account> findALlInstructor();
+
+
 }

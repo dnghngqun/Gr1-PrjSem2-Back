@@ -11,4 +11,5 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
     Optional<List<Order>> findByStatus(int status); // Tìm các đơn hàng theo trạng thái
     boolean existsByAccountId(int Id);
     void deleteByAccount_Id(int Id);
+
 }

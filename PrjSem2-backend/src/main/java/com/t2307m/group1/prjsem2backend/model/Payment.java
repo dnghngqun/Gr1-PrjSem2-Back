@@ -1,5 +1,6 @@
 package com.t2307m.group1.prjsem2backend.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import org.antlr.v4.runtime.misc.NotNull;
@@ -14,14 +15,13 @@ public class Payment {
     @Column(name = "paymentId",nullable = false)
     private String paymentId; //giá trị này được paypal trả về
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @JoinColumn(name = "userId", nullable = false)
     private Account account;
 
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "orderDetailId", nullable = false)
     private OrderDetail orderDetail;
 
@@ -32,6 +32,7 @@ public class Payment {
     @Column(name = "paymentMethod")
     private String paymentMethod;
     @Column(name = "paymentDate")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Timestamp paymentDate;
     @Column(name = "status")
     private Integer status;

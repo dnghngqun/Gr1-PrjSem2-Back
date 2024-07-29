@@ -12,10 +12,10 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     //  chỉ định mối quan hệ nhiều-một với thực thể Course và sử dụng tải chậm (lazy loading).
     // optional = false nghĩa là thuộc tính này không thể null
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     //chỉ định rằng thuộc tính này chỉ được sử dụng khi ghi (serialization), không khi đọc (deserialization).
     @JoinColumn(name = "courseId",nullable = false)
     // chỉ định rằng cột courseId trong bảng OrderDetail sẽ lưu trữ khóa ngoại tham chiếu đến Course.

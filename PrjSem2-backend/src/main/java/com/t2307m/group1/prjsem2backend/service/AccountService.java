@@ -1,12 +1,17 @@
 package com.t2307m.group1.prjsem2backend.service;
 
 import com.t2307m.group1.prjsem2backend.model.Account;
+import com.t2307m.group1.prjsem2backend.model.Instructor;
+import com.t2307m.group1.prjsem2backend.model.InstructorDTO;
 import com.t2307m.group1.prjsem2backend.model.Order;
 import com.t2307m.group1.prjsem2backend.repositories.AccountRepository;
+import com.t2307m.group1.prjsem2backend.repositories.InstructorRepository;
 import com.t2307m.group1.prjsem2backend.repositories.OrderRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -18,15 +23,19 @@ import java.util.Optional;
 public class AccountService {
     private final AccountRepository accountRepository;
     private final OrderRepository orderRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final InstructorRepository instructorRepository;
     //DI = Dependency Injection
     @Autowired
-    public AccountService( AccountRepository accountRepository, OrderRepository orderRepository) {
+    public AccountService( AccountRepository accountRepository, OrderRepository orderRepository, PasswordEncoder passwordEncoder, InstructorRepository instructorRepository) {
         this.accountRepository = accountRepository;
         this.orderRepository = orderRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.instructorRepository = instructorRepository;
     }
 
     public Account registerCustomer(Account account){
-        account.setPassword(account.getPassword());
+        account.setPassword(passwordEncoder.encode(account.getPassword()));
         Order order = new Order();
         order.setAccount(account);
         Account newAcc = accountRepository.save(account);
@@ -34,20 +43,41 @@ public class AccountService {
         return newAcc;
     }
     //role can use this function: admin
-    public Account createStaff(Account account){
-        account.setRole("staff");
-        account.setPassword(account.getPassword());
+    @Transactional
+    public Account createInstructor(InstructorDTO instructorDTO){
+        Account account = new Account();
+        account.setEmail(instructorDTO.getEmail());
+        account.setPhoneNumber(instructorDTO.getPhoneNumber());
+        account.setBirthday(instructorDTO.getBirthday());
+        account.setFullName(instructorDTO.getFullName());
+        account.setUserName(instructorDTO.getUsername());
+        account.setImageAccount(instructorDTO.getImageLink());
+        account.setRole("instructor");
+        account.setPassword(passwordEncoder.encode(instructorDTO.getPassword()));
+
+        Optional<Instructor> instructorOpt = instructorRepository.findByEmail(instructorDTO.getEmail());
+        if (instructorOpt.isEmpty()) {
+            Instructor instructor = new Instructor();
+            instructor.setName(instructorDTO.getFullName());
+            instructor.setBio(instructorDTO.getBio());
+            instructor.setEmail(instructorDTO.getEmail());
+            instructor.setGender(instructorDTO.getGender());
+            instructor.setPhoneNumber(instructorDTO.getPhoneNumber());
+            instructor.setClassify(instructorDTO.getClassify());
+            instructor.setImageLink(instructorDTO.getImageLink());
+            instructorRepository.save(instructor);
+        }
         return accountRepository.save(account);
     }
 
     public Account createAdmin(Account account){
         account.setRole("admin");
-        account.setPassword(account.getPassword());
+        account.setPassword(passwordEncoder.encode(account.getPassword()));
         return accountRepository.save(account);
     }
 
-    public Page<Account> getAllAccount(Pageable pageable){
-        return accountRepository.findAll(pageable);
+    public List<Account> getAllAccount(){
+        return accountRepository.findAll();
     }
 
 
@@ -62,8 +92,8 @@ public class AccountService {
         //ktra xem optional có chứa dữ liệu ko, return true or false
         if (optionalAccount.isPresent()){
             Account account = optionalAccount.get();//get value of optional
-            if (!account.getPassword().equals(oldPassword)) return Optional.empty();
-            account.setPassword(newPassword);
+            if (!passwordEncoder.matches(oldPassword, account.getPassword())) return Optional.empty();
+            account.setPassword(passwordEncoder.encode(newPassword));
             accountRepository.save(account);
             return Optional.of(account); //return value of account
         }
@@ -99,6 +129,9 @@ public class AccountService {
     public List<Account> getAllCustomers() {
         return accountRepository.findAllCustomers();
     }
+    public List<Account> getAllInstructor() {
+        return accountRepository.findALlInstructor();
+    }
 
     public Optional<Account> login(String identify, String password) {
         // Giả sử Account có các thuộc tính: username, email, phoneNumber, password
@@ -106,10 +139,39 @@ public class AccountService {
         if (account.isEmpty()) account = accountRepository.findByPhoneNumber(identify);
         if (account.isEmpty()) account = accountRepository.findByEmail(identify);
 
-        if (account.isPresent() && account.get().getPassword().equals(password)) {
+        if (account.isPresent() && passwordEncoder.matches(password, account.get().getPassword())) {
             return Optional.of(account.get());
         }
         return Optional.empty();
+    }
+    public Optional<Account> updateAccountWithPassword(int id, Account updatedAccount) {
+        Optional<Account> accountOpt = accountRepository.findById(id);
+        if (accountOpt.isEmpty()) throw new RuntimeException("Account not found");
+
+        Account existingAccount = accountOpt.get();
+
+        if (updatedAccount.getFullName() != null) {
+            existingAccount.setFullName(updatedAccount.getFullName());
+        }
+        if (updatedAccount.getBirthday() != null) {
+            existingAccount.setBirthday(updatedAccount.getBirthday());
+        }
+        if (updatedAccount.getEmail() != null) {
+            existingAccount.setEmail(updatedAccount.getEmail());
+        }
+        if (updatedAccount.getPhoneNumber() != null) {
+            existingAccount.setPhoneNumber(updatedAccount.getPhoneNumber());
+        }
+        if (updatedAccount.getImageAccount() != null) {
+            existingAccount.setImageAccount(updatedAccount.getImageAccount());
+        }
+        if (updatedAccount.getPassword() != null) {
+            // Mã hóa mật khẩu mới trước khi lưu
+            existingAccount.setPassword(passwordEncoder.encode(updatedAccount.getPassword()));
+        }
+
+        accountRepository.save(existingAccount);
+        return Optional.of(existingAccount);
     }
 
     public boolean deleteAccount(String identify, String password){
@@ -128,6 +190,16 @@ public class AccountService {
             return true;
         }
         return false;
+    }
+    @Transactional
+    public void deleteAccountById(int id){
+        orderRepository.deleteByAccount_Id(id);
+        accountRepository.deleteAccountById(id);
+    }
+
+    @Transactional
+    public void deleteAccountInstructorById(int id){
+        accountRepository.deleteAccountById(id);
     }
 
     public Optional<Account> findByEmail(String email){
