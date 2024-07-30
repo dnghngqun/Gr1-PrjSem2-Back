@@ -53,4 +53,8 @@ public class EnrollmentService {
         List<Enrollment> enrollments = enrollmentRepository.findByAccountId(id);
         return  enrollments;
     }
+
+    public long getUniqueStudentCountByInstructorId(int instructorId) {
+        return enrollmentRepository.countDistinctStudentsByInstructorId(instructorId);
+    }
 }

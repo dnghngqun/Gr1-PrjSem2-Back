@@ -112,4 +112,8 @@ public class ClassController {
                 new ResponseObject("ok", "Get class by instructor successfully!", classes)
         );
     }
+    @GetMapping("/today")
+    public List<AClass> getClassesForToday() {
+        return classService.getClassesForToday();
+    }
 }

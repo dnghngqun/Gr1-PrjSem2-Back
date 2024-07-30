@@ -19,5 +19,7 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     @Query("SELECT a FROM Account a WHERE a.role = 'instructor'")
     List<Account> findALlInstructor();
 
+    @Query("SELECT COUNT(a) FROM Account a WHERE a.role = 'customer'")
+    long countCustomers();
 
 }

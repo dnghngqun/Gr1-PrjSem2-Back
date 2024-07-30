@@ -18,4 +18,8 @@ public interface EnrollmentRepository extends JpaRepository<Enrollment, Integer>
     List<Enrollment> findByAClassId(@Param("classId") int id);
 
     List<Enrollment> findByAccountId(int accountId);
+
+//    DISTINCT e.account.id: lấy giá trị bản ghi và bỏ qua giá tri trùng lặp, count: đếm bản ghi
+    @Query("SELECT COUNT(DISTINCT e.account.id) FROM Enrollment e WHERE e.aClass.instructor.id = :instructorId")
+    long countDistinctStudentsByInstructorId(@Param("instructorId") int instructorId);
 }

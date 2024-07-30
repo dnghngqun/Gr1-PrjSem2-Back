@@ -63,11 +63,13 @@ public class PaymentController {
             // Cập nhật trạng thái OrderDetail sau khi thanh toán thành công
             orderDetailService.updateStatus(payment.getOrderDetail().getId(), 1);
 
-            // cập nhật số lượt sử dụng mã giảm giá
-            Discount discount = discountService.findByCode(discountCode).get();
-            int remaining = discount.getRemaining() - 1;
-            discount.setRemaining(remaining);
-            Discount  updateDis = discountService.updateDiscount(discount.getId(),discount);
+            if(discountCode != null || discountCode != "") {
+                // cập nhật số lượt sử dụng mã giảm giá
+                Discount discount = discountService.findByCode(discountCode).get();
+                int remaining = discount.getRemaining() - 1;
+                discount.setRemaining(remaining);
+                Discount  updateDis = discountService.updateDiscount(discount.getId(),discount);
+            }
 
             //update total amount on order
             com.t2307m.group1.prjsem2backend.model.Order newOrder = new Order();

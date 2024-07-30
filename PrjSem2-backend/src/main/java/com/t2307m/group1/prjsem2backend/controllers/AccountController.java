@@ -362,6 +362,11 @@ public class AccountController {
         ));
     }
 
+    @GetMapping("/count-customers")
+    public long countCustomers() {
+        return accountService.countCustomers();
+    }
+
     @PostMapping("/createDefaultDBAccount")
     public String createDefaultAccounts() {
         //tạo 3 tk user mặc định hongquan, dothao, phamhoang

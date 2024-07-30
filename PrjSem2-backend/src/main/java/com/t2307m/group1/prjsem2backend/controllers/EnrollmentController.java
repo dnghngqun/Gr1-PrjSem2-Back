@@ -88,4 +88,8 @@ public class EnrollmentController {
                 new ResponseObject("ok", "Enrollment get successfully!", enrollments)
         );
     }
+    @GetMapping("/instructors/{instructorId}/students/counts")
+    public long getUniqueStudentCount(@PathVariable int instructorId) {
+        return enrollmentService.getUniqueStudentCountByInstructorId(instructorId);
+    }
 }

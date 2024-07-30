@@ -216,5 +216,7 @@ public class AccountService {
 
 
 
-
+    public long countCustomers() {
+        return accountRepository.countCustomers();
+    }
 }
