@@ -148,16 +148,17 @@ Create Table Discount(
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	code VARCHAR(255) NOT NULL,
 	value int default 0,
+	remaining int ,
 	createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-INSERT INTO Discount(code,value) 
+INSERT INTO Discount(code,value, remaining) 
 VALUES
-('GIAMGIA10', 10),
-('GIAMGIA20', 20),
-('GIAMGIA30', 30),
-('GIAMGIA40', 40);
+('GIAMGIA10', 10, 100),
+('GIAMGIA20', 20, 100),
+('GIAMGIA30', 30, 100),
+('GIAMGIA40', 40, 50);
 
 -- bảng này lưu trữ lịch học
 CREATE TABLE Schedule (
