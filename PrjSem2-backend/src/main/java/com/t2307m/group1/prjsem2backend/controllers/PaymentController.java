@@ -1,9 +1,11 @@
 package com.t2307m.group1.prjsem2backend.controllers;
 
 import com.paypal.api.payments.*;
+import com.t2307m.group1.prjsem2backend.model.Discount;
 import com.t2307m.group1.prjsem2backend.model.Order;
 import com.t2307m.group1.prjsem2backend.model.Payment;
 import com.t2307m.group1.prjsem2backend.model.ResponseObject;
+import com.t2307m.group1.prjsem2backend.service.DiscountService;
 import com.t2307m.group1.prjsem2backend.service.OrderDetailService;
 import com.t2307m.group1.prjsem2backend.service.OrderService;
 import com.t2307m.group1.prjsem2backend.service.PaymentService;
@@ -23,11 +25,13 @@ public class PaymentController {
     private final PaymentService paymentService;
     private final OrderDetailService orderDetailService;
     private final OrderService orderService;
+    private final DiscountService discountService;
     @Autowired
-    public PaymentController(PaymentService paymentService, OrderDetailService orderDetailService, OrderService orderService) {
+    public PaymentController(PaymentService paymentService, OrderDetailService orderDetailService, OrderService orderService, DiscountService discountService) {
         this.paymentService = paymentService;
         this.orderDetailService = orderDetailService;
         this.orderService= orderService;
+        this.discountService = discountService;
     }
 
     @GetMapping
@@ -51,13 +55,19 @@ public class PaymentController {
     }
 
     @PostMapping
-    public ResponseEntity<ResponseObject> executePayment(@RequestBody Payment payment) {
+    public ResponseEntity<ResponseObject> executePayment(@RequestBody Payment payment, @RequestParam String discountCode) {
         try {
             // Thực hiện thanh toán và lưu thông tin thanh toán
             payment = paymentService.executePayment(payment);
 
             // Cập nhật trạng thái OrderDetail sau khi thanh toán thành công
             orderDetailService.updateStatus(payment.getOrderDetail().getId(), 1);
+
+            // cập nhật số lượt sử dụng mã giảm giá
+            Discount discount = discountService.findByCode(discountCode).get();
+            int remaining = discount.getRemaining() - 1;
+            discount.setRemaining(remaining);
+            Discount  updateDis = discountService.updateDiscount(discount.getId(),discount);
 
             //update total amount on order
             com.t2307m.group1.prjsem2backend.model.Order newOrder = new Order();

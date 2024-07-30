@@ -44,6 +44,9 @@ public class DiscountService {
             if (updatedDiscount.getValue() != null) {
                 existingDiscount.setValue(updatedDiscount.getValue());
             }
+            if(updatedDiscount.getRemaining() != null){
+                existingDiscount.setRemaining(updatedDiscount.getRemaining());
+            }
 
             // Lưu lại thông tin đã cập nhật
             return discountRepository.save(existingDiscount);
