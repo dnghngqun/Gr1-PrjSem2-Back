@@ -63,12 +63,16 @@ public class PaymentController {
             // Cập nhật trạng thái OrderDetail sau khi thanh toán thành công
             orderDetailService.updateStatus(payment.getOrderDetail().getId(), 1);
 
-            if(discountCode != null || discountCode != "") {
-                // cập nhật số lượt sử dụng mã giảm giá
-                Discount discount = discountService.findByCode(discountCode).get();
+            // Tìm mã giảm giá dựa trên discountCode
+            Optional<Discount> optionalDiscount = discountService.findByCode(discountCode);
+            if (optionalDiscount.isPresent()) {
+                Discount discount = optionalDiscount.get();
                 int remaining = discount.getRemaining() - 1;
                 discount.setRemaining(remaining);
-                Discount  updateDis = discountService.updateDiscount(discount.getId(),discount);
+                Discount updateDis = discountService.updateDiscount(discount.getId(), discount);
+            } else {
+                // Log thông báo hoặc xử lý khi mã giảm giá không tìm thấy
+                System.err.println("Discount code not found: " + discountCode);
             }
 
             //update total amount on order
